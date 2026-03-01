@@ -330,7 +330,7 @@ a:hover{text-decoration:underline}
 .legal h2{font-size:1.3rem;font-weight:700;margin:32px 0 10px}
 .legal h3{font-size:1.1rem;font-weight:600;margin:24px 0 8px}
 .legal p,.legal li{font-size:.97rem;color:#333;line-height:1.75}
-.legal ul{padding-left:22px;margin:8px 0 16px}
+.legal ul,.legal ol{padding-left:28px;margin:8px 0 16px}
 .legal li{margin-bottom:6px}
 .legal a{color:var(--blue)}
 
