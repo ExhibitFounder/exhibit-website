@@ -132,6 +132,12 @@ a:hover{text-decoration:underline}
   box-shadow:0 12px 32px rgba(26,58,245,.3);
 }
 
+/* Beta note */
+.beta-note{
+  font-size:.85rem;font-weight:500;color:var(--gray-mid);
+  margin-top:14px;
+}
+
 /* ── Phone Mockup ──────────────────────────────────── */
 .hero-device{
   margin:56px auto 0;
