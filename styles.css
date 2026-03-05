@@ -142,11 +142,11 @@ a:hover{text-decoration:underline}
 .hero-device{
   margin:56px auto 0;
   position:relative;
-  width:300px;
+  width:340px;
   animation:float 5s ease-in-out infinite;
 }
 .phone-frame{
-  width:300px;
+  width:340px;
   aspect-ratio:300/585;
   border-radius:48px;
   background:linear-gradient(145deg,#1c1c1c 0%,#0a0a0a 100%);
