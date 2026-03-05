@@ -147,7 +147,7 @@ a:hover{text-decoration:underline}
 }
 .phone-frame{
   width:300px;
-  aspect-ratio:9/19.5;
+  aspect-ratio:300/585;
   border-radius:48px;
   background:linear-gradient(145deg,#1c1c1c 0%,#0a0a0a 100%);
   padding:10px;
@@ -161,8 +161,8 @@ a:hover{text-decoration:underline}
 }
 /* Dynamic Island */
 .phone-frame::before{
-  content:"";position:absolute;top:12px;left:50%;transform:translateX(-50%);z-index:3;
-  width:110px;height:30px;border-radius:20px;background:#000;
+  content:"";position:absolute;top:14px;left:50%;transform:translateX(-50%);z-index:3;
+  width:100px;height:28px;border-radius:20px;background:#000;
 }
 /* Side button accents */
 .phone-frame::after{
@@ -189,7 +189,7 @@ a:hover{text-decoration:underline}
 /* Screenshot slot */
 .phone-screen img{
   position:absolute;inset:0;width:100%;height:100%;
-  object-fit:cover;object-position:top;border-radius:34px;z-index:1;
+  object-fit:cover;border-radius:34px;z-index:1;
 }
 /* Glow behind phone */
 .hero-device::before{
