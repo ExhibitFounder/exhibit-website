@@ -159,10 +159,9 @@ a:hover{text-decoration:underline}
   position:relative;
   overflow:hidden;
 }
-/* Dynamic Island */
+/* Dynamic Island — hidden when screenshot is present (screenshot has its own status bar) */
 .phone-frame::before{
-  content:"";position:absolute;top:14px;left:50%;transform:translateX(-50%);z-index:3;
-  width:100px;height:28px;border-radius:20px;background:#000;
+  content:none;
 }
 /* Side button accents */
 .phone-frame::after{
@@ -172,7 +171,7 @@ a:hover{text-decoration:underline}
 }
 .phone-screen{
   width:100%;height:100%;
-  border-radius:34px;
+  border-radius:38px;
   background:#000;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   gap:10px;
@@ -189,7 +188,7 @@ a:hover{text-decoration:underline}
 /* Screenshot slot */
 .phone-screen img{
   position:absolute;inset:0;width:100%;height:100%;
-  object-fit:cover;border-radius:34px;z-index:1;
+  object-fit:contain;border-radius:38px;z-index:1;
 }
 /* Glow behind phone */
 .hero-device::before{
