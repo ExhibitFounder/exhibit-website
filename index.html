@@ -3,20 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Exhibit - Daily Fit Check</title>
-  <meta name="description" content="Post your fit. See what's worn near you. Keep a private style archive. Exhibit is the daily outfit app for people who care about what they wear.">
+  <title>Exhibit - Daily Fit Check | Rate Outfits, Share Your OOTD & Discover Style</title>
+  <meta name="description" content="Exhibit is the daily fit check app where you share your OOTD, rate outfits, and discover daily outfit ideas from a real style community. Free on iOS.">
+  <meta name="keywords" content="daily fit check, outfit rating app, OOTD app, daily outfit ideas, fit check, fashion social app, style community, outfit inspiration, fashion challenge app, rate my outfit">
+  <link rel="canonical" href="https://joinexhibit.com/">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Exhibit - Daily Fit Check">
-  <meta property="og:description" content="Post your fit. Discover what people are wearing nearby. Build your private style archive.">
+  <meta property="og:title" content="Exhibit - Daily Fit Check | OOTD Just Got Social">
+  <meta property="og:description" content="Post your daily fit check, get real outfit ratings, and discover style inspiration from people who actually get dressed. The fashion social app for outfit lovers.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://exhibitfounder.github.io/exhibit-website/">
-  <meta property="og:image" content="https://exhibitfounder.github.io/exhibit-website/og-image.png">
+  <meta property="og:url" content="https://joinexhibit.com/">
+  <meta property="og:image" content="https://joinexhibit.com/og-image.png">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Exhibit - Daily Fit Check">
-  <meta name="twitter:description" content="Post your fit. Discover what people are wearing nearby. Build your private style archive.">
+  <meta name="twitter:title" content="Exhibit - Daily Fit Check | OOTD Just Got Social">
+  <meta name="twitter:description" content="Post your daily fit check, get real outfit ratings, and discover style inspiration. The fashion social app for outfit lovers.">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "Exhibit: Daily Fit Check",
+    "operatingSystem": "iOS",
+    "applicationCategory": "SocialNetworkingApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "description": "The daily fit check app where you share your OOTD, rate outfits, and discover daily outfit ideas from a real style community.",
+    "url": "https://apps.apple.com/app/exhibit",
+    "author": {
+      "@type": "Person",
+      "name": "Afan Rashid"
+    }
+  }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👔</text></svg>">
@@ -26,102 +55,420 @@
 <!-- Nav -->
 <nav class="nav" role="navigation" aria-label="Main">
   <div class="container">
-    <a href="/" class="nav-logo">Exhibit</a>
+    <a href="/" class="nav-logo">
+      <span class="nav-logo-text">EXHIBIT</span>
+    </a>
     <div class="nav-links">
-      <a href="privacy.html">Privacy</a>
-      <a href="terms.html">Terms</a>
-      <a href="mailto:ops@joinexhibit.com">Support</a>
+      <a href="#features" class="nav-link-desktop">Features</a>
+      <a href="#how-it-works" class="nav-link-desktop">How It Works</a>
+      <a href="#community" class="nav-link-desktop">Community</a>
+      <a href="https://apps.apple.com/app/exhibit" class="nav-cta">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        Get the App
+      </a>
     </div>
   </div>
 </nav>
 
 <!-- Hero -->
-<section class="hero container">
-  <div class="hero-label fade-up">Now on iOS</div>
-  <h1 class="fade-up delay-1">Show the world<br>what you <span>wore today</span></h1>
-  <p class="sub fade-up delay-2">Exhibit is a social app where people share their daily outfits and discover real style from real people. Post your fit, see what others are wearing near you, and build a private archive of every look.</p>
+<section class="hero">
+  <div class="hero-bg" aria-hidden="true">
+    <div class="hero-glow hero-glow--1"></div>
+    <div class="hero-glow hero-glow--2"></div>
+    <div class="hero-noise"></div>
+  </div>
+  <div class="container hero-content">
+    <div class="hero-badge fade-up">
+      <span class="hero-badge-dot"></span>
+      OOTD just got social
+    </div>
+    <h1 class="fade-up delay-1">
+      Your daily fit check<br>
+      <span class="hero-h1-accent">starts here.</span>
+    </h1>
+    <p class="hero-sub fade-up delay-2">Share your outfit of the day. Get real ratings from real people. Discover daily outfit ideas from a style community that actually gets dressed.</p>
+    <div class="hero-ctas fade-up delay-3">
+      <a href="https://apps.apple.com/app/exhibit" class="btn-primary" aria-label="Download Exhibit on the App Store">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        Download Free on iOS
+      </a>
+    </div>
 
-  <a href="https://apps.apple.com/app/exhibit" class="btn-appstore fade-up delay-3" aria-label="Download Exhibit on the App Store">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-    Download on the App Store
-  </a>
-
-  <!-- iPhone mockups -->
-  <div class="hero-devices fade-in delay-4">
-    <div class="hero-device">
-      <div class="phone-frame">
-        <div class="phone-screen">
-          <img src="screenshot.jpg" alt="Exhibit app - fit detail view">
+    <!-- Triple Phone Mockup -->
+    <div class="hero-phones fade-in delay-4">
+      <div class="hero-phone hero-phone--side hero-phone--left">
+        <div class="phone-frame">
+          <div class="phone-screen">
+            <img src="screenshot2.jpg" alt="Exhibit app feed showing daily outfit ideas from friends and nearby" width="280" height="546" loading="eager">
+          </div>
         </div>
       </div>
-    </div>
-    <div class="hero-device">
-      <div class="phone-frame">
-        <div class="phone-screen">
-          <img src="screenshot2.jpg" alt="Exhibit app - feed view">
+      <div class="hero-phone hero-phone--center">
+        <div class="phone-frame phone-frame--hero">
+          <div class="phone-screen">
+            <img src="screenshot.jpg" alt="Exhibit app fullscreen fit check view with outfit ratings" width="280" height="546" loading="eager">
+          </div>
+        </div>
+        <div class="phone-reflection"></div>
+      </div>
+      <div class="hero-phone hero-phone--side hero-phone--right">
+        <div class="phone-frame">
+          <div class="phone-screen">
+            <img src="screenshot1.jpg" alt="Exhibit app outfit detail with upvotes, comments and music" width="280" height="546" loading="eager">
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Features -->
-<section class="features">
+<!-- Marquee -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>RATE THE FIT</span>
+    <span class="marquee-dot">&#x2022;</span>
+    <span>DAILY OUTFIT IDEAS</span>
+    <span class="marquee-dot">&#x2022;</span>
+    <span>OOTD APP</span>
+    <span class="marquee-dot">&#x2022;</span>
+    <span>STYLE COMMUNITY</span>
+    <span class="marquee-dot">&#x2022;</span>
+    <span>FIT CHECK</span>
+    <span class="marquee-dot">&#x2022;</span>
+    <span>OUTFIT INSPIRATION</span>
+    <span class="marquee-dot">&#x2022;</span>
+    <span>FASHION CHALLENGE</span>
+    <span class="marquee-dot">&#x2022;</span>
+    <span>RATE MY OUTFIT</span>
+    <span class="marquee-dot">&#x2022;</span>
+    <span>RATE THE FIT</span>
+    <span class="marquee-dot">&#x2022;</span>
+    <span>DAILY OUTFIT IDEAS</span>
+    <span class="marquee-dot">&#x2022;</span>
+    <span>OOTD APP</span>
+    <span class="marquee-dot">&#x2022;</span>
+    <span>STYLE COMMUNITY</span>
+    <span class="marquee-dot">&#x2022;</span>
+    <span>FIT CHECK</span>
+    <span class="marquee-dot">&#x2022;</span>
+    <span>OUTFIT INSPIRATION</span>
+    <span class="marquee-dot">&#x2022;</span>
+    <span>FASHION CHALLENGE</span>
+    <span class="marquee-dot">&#x2022;</span>
+    <span>RATE MY OUTFIT</span>
+    <span class="marquee-dot">&#x2022;</span>
+  </div>
+</div>
+
+<!-- Feed Scopes Feature -->
+<section class="scopes" id="features">
   <div class="container">
-    <div class="features-header reveal">
-      <h2>Built for people who<br>get dressed with intention</h2>
-      <p>Three things Exhibit does differently.</p>
+    <div class="section-header reveal">
+      <p class="section-eyebrow">Three Feeds, One App</p>
+      <h2>Discover outfit inspiration<br><span class="accent-text">your way</span></h2>
+      <p class="section-sub">Three powerful feeds let you explore daily outfit ideas from friends, trending fits worldwide, or people right in your neighborhood.</p>
     </div>
-    <div class="features-grid">
 
-      <div class="feature-card reveal reveal-d1">
-        <div class="feature-icon" aria-hidden="true">📸</div>
-        <h3>Post Your Fit</h3>
-        <p>Snap, tag, share. One active fit at a time keeps your profile honest and your style current. No backlog, no old photos.</p>
+    <div class="scope-tabs reveal">
+      <button class="scope-tab scope-tab--active" data-scope="friends">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Friends
+      </button>
+      <button class="scope-tab" data-scope="exhibit">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+        Exhibit
+      </button>
+      <button class="scope-tab" data-scope="nearby">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Nearby
+      </button>
+    </div>
+
+    <div class="scope-cards">
+      <div class="scope-card scope-card--active reveal reveal-d1" data-scope="friends">
+        <div class="scope-card-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Friends Feed</h3>
+        <p>See daily fit checks from people you follow. Rate your friends' outfits, leave comments, and keep up with what your circle is wearing today.</p>
+        <div class="scope-card-tag">Mutual follows only</div>
+      </div>
+      <div class="scope-card reveal reveal-d2" data-scope="exhibit">
+        <div class="scope-card-icon scope-card-icon--blue">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+        </div>
+        <h3>Exhibit Feed</h3>
+        <p>The global stage. Trending fits, fresh faces, and outfit inspiration from the entire style community. This is where your OOTD goes viral.</p>
+        <div class="scope-card-tag">For You algorithm</div>
+      </div>
+      <div class="scope-card reveal reveal-d3" data-scope="nearby">
+        <div class="scope-card-icon scope-card-icon--green">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <h3>Nearby Feed</h3>
+        <p>What are people wearing in your city right now? Browse fits within 25 miles — or use Passport to teleport anywhere and explore outfit ideas worldwide.</p>
+        <div class="scope-card-tag">Location-based discovery</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How It Works -->
+<section class="how-it-works" id="how-it-works">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-eyebrow">How It Works</p>
+      <h2>Post. Rate. Repeat.<br><span class="accent-text">It's that simple.</span></h2>
+    </div>
+
+    <div class="steps-grid">
+      <div class="step-card reveal reveal-d1">
+        <div class="step-number">01</div>
+        <div class="step-visual">
+          <div class="step-icon-circle">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+          </div>
+        </div>
+        <h3>Snap your fit</h3>
+        <p>Open the camera, strike your pose. Body detection ensures you're framed right. Add a song from Spotify, tag your brands, and choose who sees it.</p>
       </div>
 
-      <div class="feature-card reveal reveal-d2">
-        <div class="feature-icon" aria-hidden="true">📍</div>
-        <h3>Discover Nearby</h3>
-        <p>See what people are actually wearing within 25 miles. Use Passport to drop into any city and explore fits worldwide.</p>
+      <div class="step-connector reveal" aria-hidden="true">
+        <svg width="40" height="2" viewBox="0 0 40 2"><line x1="0" y1="1" x2="40" y2="1" stroke="rgba(255,255,255,0.1)" stroke-width="2" stroke-dasharray="4 4"/></svg>
       </div>
 
-      <div class="feature-card reveal reveal-d3">
-        <div class="feature-icon" aria-hidden="true">🔒</div>
-        <h3>Private Archive</h3>
-        <p>Every fit you post is saved privately. Only you see your full history. It's your personal lookbook, always growing.</p>
+      <div class="step-card reveal reveal-d2">
+        <div class="step-number">02</div>
+        <div class="step-visual">
+          <div class="step-icon-circle step-icon-circle--blue">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+          </div>
+        </div>
+        <h3>Rate the fit</h3>
+        <p>Swipe through outfits. Upvote the ones that go hard, downvote the misses. Double-tap to rate, comment to talk fashion.</p>
       </div>
 
+      <div class="step-connector reveal" aria-hidden="true">
+        <svg width="40" height="2" viewBox="0 0 40 2"><line x1="0" y1="1" x2="40" y2="1" stroke="rgba(255,255,255,0.1)" stroke-width="2" stroke-dasharray="4 4"/></svg>
+      </div>
+
+      <div class="step-card reveal reveal-d3">
+        <div class="step-number">03</div>
+        <div class="step-visual">
+          <div class="step-icon-circle step-icon-circle--fire">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
+          </div>
+        </div>
+        <h3>Build your streak</h3>
+        <p>Post daily, build your streak, grow your style archive. Every fit is saved privately — your personal lookbook that tracks your style evolution.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features Deep Dive -->
+<section class="features-deep">
+  <div class="container">
+
+    <!-- Feature 1: Music -->
+    <div class="feature-row reveal">
+      <div class="feature-row-text">
+        <div class="feature-pill">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+          Music Integration
+        </div>
+        <h3>Every outfit has a soundtrack</h3>
+        <p>Attach a song from Spotify to your daily fit check. When someone scrolls to your post, your track plays automatically — your outfit, your vibe, your music.</p>
+      </div>
+      <div class="feature-row-visual">
+        <div class="music-pill-demo">
+          <div class="music-pill-art"></div>
+          <div class="music-pill-info">
+            <span class="music-pill-title">God's Plan</span>
+            <span class="music-pill-artist">Drake</span>
+          </div>
+          <div class="music-pill-eq">
+            <span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature 2: Passport -->
+    <div class="feature-row reveal">
+      <div class="feature-row-text">
+        <div class="feature-pill feature-pill--green">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72"/><path d="M15 2a7 7 0 0 1 7 7"/><path d="M15 6a3 3 0 0 1 3 3"/></svg>
+          Passport
+        </div>
+        <h3>Teleport your feed anywhere</h3>
+        <p>Traveling? Curious? Use Passport to drop into any city's Nearby feed and explore what people are wearing in Tokyo, Paris, Lagos, or right across town. Outfit inspiration has no borders.</p>
+      </div>
+      <div class="feature-row-visual">
+        <div class="passport-demo">
+          <div class="passport-globe">
+            <div class="passport-pin passport-pin--1">NYC</div>
+            <div class="passport-pin passport-pin--2">LDN</div>
+            <div class="passport-pin passport-pin--3">TYO</div>
+            <div class="passport-ring"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Engagement Features -->
+<section class="engagement">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-eyebrow">Built for Fashion</p>
+      <h2>Everything you need to<br><span class="accent-text">rate the fit</span></h2>
+    </div>
+
+    <div class="engage-grid">
+      <div class="engage-card reveal reveal-d1">
+        <div class="engage-icon">👍👎</div>
+        <h4>Upvote & Downvote</h4>
+        <p>Double-tap to upvote. Triple-tap to downvote. Honest outfit ratings, no sugar coating.</p>
+      </div>
+      <div class="engage-card reveal reveal-d2">
+        <div class="engage-icon">💬</div>
+        <h4>Comments & Replies</h4>
+        <p>Talk fashion. Threaded comments, @mentions, and GIF replies on every fit check.</p>
+      </div>
+      <div class="engage-card reveal reveal-d3">
+        <div class="engage-icon">🔖</div>
+        <h4>Save & Bookmark</h4>
+        <p>Save fits that inspire you to a private collection. Your personal outfit inspiration board.</p>
+      </div>
+      <div class="engage-card reveal reveal-d4">
+        <div class="engage-icon">🔥</div>
+        <h4>Posting Streaks</h4>
+        <p>Post daily, build your streak. Consecutive days of sharing your fit check earn you streak badges.</p>
+      </div>
+      <div class="engage-card reveal reveal-d1">
+        <div class="engage-icon">✉️</div>
+        <h4>Direct Messages</h4>
+        <p>Share fits privately, send voice notes, react with emojis. Fashion convos beyond the feed.</p>
+      </div>
+      <div class="engage-card reveal reveal-d2">
+        <div class="engage-icon">🏷️</div>
+        <h4>Tags & Discovery</h4>
+        <p>Tag your brands and styles. Search by tag to find exactly the outfit inspiration you're looking for.</p>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- Statement -->
-<section class="statement container reveal">
-  <blockquote>Style is identity.<br><span>Exhibit yours.</span></blockquote>
-  <p>Real outfits from real people. No influencers, no algorithms, just what people actually wore today.</p>
+<section class="statement reveal">
+  <div class="container">
+    <h2 class="statement-text">
+      <span class="statement-serif">Rate the Fit,</span><br>
+      not the person.
+    </h2>
+    <p class="statement-sub">Real outfits. Real people. Real ratings. No influencers, no filters, no fake feeds — just what people actually wore today.</p>
+  </div>
 </section>
 
-<!-- About -->
-<section class="about container reveal">
-  <h2>About Exhibit</h2>
-  <p>Exhibit is a social platform where people share their daily outfits and discover real style from real people.</p>
-  <p>Founded by <strong>Afan Rashid</strong>, a Computer Science student at the <strong>University of Maryland</strong>, Exhibit is building a new social platform focused on authentic daily style rather than influencers and algorithms.</p>
+<!-- Testimonials -->
+<section class="testimonials" id="community">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-eyebrow">Community</p>
+      <h2>What the <span class="accent-text">style community</span> says</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal reveal-d1">
+        <div class="testimonial-stars" aria-label="5 stars">★★★★★</div>
+        <p>"I've never been more intentional about getting dressed. Seeing what people near me are actually wearing changed how I think about my daily fit check."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar testimonial-avatar--1"></div>
+          <div>
+            <span class="testimonial-name">@maya.fits</span>
+            <span class="testimonial-loc">Brooklyn, NY</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card testimonial-card--featured reveal reveal-d2">
+        <div class="testimonial-stars" aria-label="5 stars">★★★★★</div>
+        <p>"Finally a fashion social app that isn't about influencers. It's real people, real outfits, every day. This is what OOTD was meant to be. The music feature is insane."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar testimonial-avatar--2"></div>
+          <div>
+            <span class="testimonial-name">@carlos.drip</span>
+            <span class="testimonial-loc">Austin, TX</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-d3">
+        <div class="testimonial-stars" aria-label="5 stars">★★★★★</div>
+        <p>"My private archive is basically my digital closet diary. I go back and reference old fits all the time for outfit inspiration. The shop feature is next level."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar testimonial-avatar--3"></div>
+          <div>
+            <span class="testimonial-name">@priya.ootd</span>
+            <span class="testimonial-loc">Chicago, IL</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- CTA -->
-<section class="container">
-  <div class="cta reveal">
-    <h2>Your fit is waiting</h2>
-    <p>Free on the App Store. Show what you wore today.</p>
-    <a href="https://apps.apple.com/app/exhibit" class="btn-appstore btn-appstore--blue" aria-label="Download Exhibit on the App Store">
+<!-- App Screenshots -->
+<section class="app-preview">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-eyebrow">The App</p>
+      <h2>See <span class="accent-text">Exhibit</span> in action</h2>
+    </div>
+    <div class="preview-row reveal">
+      <div class="preview-phone">
+        <div class="phone-frame phone-frame--sm">
+          <div class="phone-screen">
+            <img src="screenshot2.jpg" alt="Exhibit feed view with outfit posts and fit check ratings" width="240" height="468" loading="lazy">
+          </div>
+        </div>
+        <span class="preview-label">Feed</span>
+      </div>
+      <div class="preview-phone preview-phone--up">
+        <div class="phone-frame phone-frame--sm">
+          <div class="phone-screen">
+            <img src="screenshot.jpg" alt="Exhibit fullscreen outfit detail with ratings and music" width="240" height="468" loading="lazy">
+          </div>
+        </div>
+        <span class="preview-label">Detail</span>
+      </div>
+      <div class="preview-phone">
+        <div class="phone-frame phone-frame--sm">
+          <div class="phone-screen">
+            <img src="screenshot1.jpg" alt="Exhibit daily fit check with upvotes and outfit ratings" width="240" height="468" loading="lazy">
+          </div>
+        </div>
+        <span class="preview-label">Rate</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA -->
+<section class="final-cta">
+  <div class="final-cta-glow" aria-hidden="true"></div>
+  <div class="container reveal">
+    <h2>Your outfit deserves<br><span class="accent-text">an audience</span></h2>
+    <p>Join the daily fashion challenge. Post your OOTD, rate outfits, discover your style community.</p>
+    <a href="https://apps.apple.com/app/exhibit" class="btn-primary btn-primary--lg" aria-label="Download Exhibit on the App Store">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-      Download on the App Store
+      Download Free on iOS
     </a>
     <div class="trust-row">
-      <span class="trust-item"><span class="trust-dot"></span>Free on iOS</span>
-      <span class="trust-item"><span class="trust-dot"></span>No ads</span>
-      <span class="trust-item"><span class="trust-dot"></span>No influencers</span>
+      <span class="trust-item">Free Forever</span>
+      <span class="trust-item">No Ads</span>
+      <span class="trust-item">No Influencer Algorithm</span>
+      <span class="trust-item">Private by Default</span>
     </div>
   </div>
 </section>
@@ -129,34 +476,80 @@
 <!-- Footer -->
 <footer class="footer">
   <div class="container">
-    <div>
-      <div class="footer-brand">Exhibit</div>
-      <p class="footer-copy">&copy; 2026 Exhibit. All rights reserved.</p>
-      <p class="footer-contact">Press &amp; inquiries: <a href="mailto:founder@joinexhibit.com">founder@joinexhibit.com</a></p>
-    </div>
-    <div class="footer-cols">
+    <div class="footer-grid">
+      <div class="footer-brand-col">
+        <a href="/" class="footer-logo">EXHIBIT</a>
+        <p class="footer-tagline">The daily fit check app for people who get dressed with intention. Rate the fit, not the person.</p>
+        <p class="footer-copy">&copy; 2026 Exhibit. All rights reserved.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="https://apps.apple.com/app/exhibit">Download</a>
+      </div>
       <div class="footer-col">
         <h4>Legal</h4>
         <a href="privacy.html">Privacy Policy</a>
-        <a href="terms.html">Terms &amp; Conditions</a>
+        <a href="terms.html">Terms & Conditions</a>
       </div>
       <div class="footer-col">
-        <h4>Support</h4>
-        <a href="mailto:ops@joinexhibit.com">Contact Us</a>
-        <a href="mailto:ops@joinexhibit.com">Report a Problem</a>
+        <h4>Connect</h4>
+        <a href="mailto:founder@joinexhibit.com">Press & Inquiries</a>
+        <a href="mailto:ops@joinexhibit.com">Support</a>
       </div>
+    </div>
+    <div class="footer-bottom">
+      <span>Made in College Park, MD</span>
     </div>
   </div>
 </footer>
 
-<!-- Scroll reveal -->
+<!-- Scripts -->
 <script>
-  document.addEventListener('DOMContentLoaded',()=>{
-    const io=new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}})
-    },{threshold:0.15});
-    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+document.addEventListener('DOMContentLoaded', () => {
+  // Scroll reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
   });
+
+  // Scope tab interaction
+  const scopeTabs = document.querySelectorAll('.scope-tab');
+  const scopeCards = document.querySelectorAll('.scope-card');
+  scopeTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const scope = tab.dataset.scope;
+      scopeTabs.forEach(t => t.classList.remove('scope-tab--active'));
+      tab.classList.add('scope-tab--active');
+      scopeCards.forEach(card => {
+        card.classList.toggle('scope-card--active', card.dataset.scope === scope);
+      });
+    });
+  });
+
+  // Nav background on scroll
+  const nav = document.querySelector('.nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('nav--scrolled', window.scrollY > 20);
+  }, { passive: true });
+});
 </script>
 
 </body>
