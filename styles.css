@@ -138,19 +138,37 @@ a:hover{text-decoration:underline}
   margin-top:14px;
 }
 
-/* ── Phone Mockup ──────────────────────────────────── */
-.hero-device{
+/* ── Phone Mockups ─────────────────────────────────── */
+.hero-devices{
   margin:56px auto 0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:32px;
   position:relative;
-  width:340px;
+}
+/* Shared glow behind both phones */
+.hero-devices::before{
+  content:"";position:absolute;
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  width:600px;height:400px;border-radius:50%;
+  background:radial-gradient(circle,rgba(26,58,245,.10) 0%,rgba(26,58,245,.03) 40%,transparent 70%);
+  z-index:-1;animation:pulse 4s ease-in-out infinite;
+}
+.hero-device{
+  position:relative;
+  width:300px;
   animation:float 5s ease-in-out infinite;
 }
+.hero-device:nth-child(2){
+  animation-delay:.6s;
+}
 .phone-frame{
-  width:340px;
+  width:300px;
   aspect-ratio:300/585;
-  border-radius:48px;
+  border-radius:44px;
   background:linear-gradient(145deg,#1c1c1c 0%,#0a0a0a 100%);
-  padding:10px;
+  padding:9px;
   box-shadow:
     0 0 0 1.5px rgba(255,255,255,.12) inset,
     0 2px 4px rgba(0,0,0,.08),
@@ -159,7 +177,7 @@ a:hover{text-decoration:underline}
   position:relative;
   overflow:hidden;
 }
-/* Dynamic Island — hidden when screenshot is present (screenshot has its own status bar) */
+/* Dynamic Island — hidden when screenshot is present */
 .phone-frame::before{
   content:none;
 }
@@ -171,7 +189,7 @@ a:hover{text-decoration:underline}
 }
 .phone-screen{
   width:100%;height:100%;
-  border-radius:38px;
+  border-radius:35px;
   background:#000;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   gap:10px;
@@ -188,15 +206,7 @@ a:hover{text-decoration:underline}
 /* Screenshot slot */
 .phone-screen img{
   position:absolute;inset:0;width:100%;height:100%;
-  object-fit:contain;border-radius:38px;z-index:1;
-}
-/* Glow behind phone */
-.hero-device::before{
-  content:"";position:absolute;
-  top:50%;left:50%;transform:translate(-50%,-50%);
-  width:380px;height:380px;border-radius:50%;
-  background:radial-gradient(circle,rgba(26,58,245,.12) 0%,rgba(26,58,245,.04) 40%,transparent 70%);
-  z-index:-1;animation:pulse 4s ease-in-out infinite;
+  object-fit:contain;border-radius:35px;z-index:1;
 }
 
 /* ── Features ───────────────────────────────────────── */
@@ -366,12 +376,12 @@ a:hover{text-decoration:underline}
   .hero{padding:64px 0 48px}
   .hero::before{width:500px;height:500px;top:-80px}
   .features{padding:64px 0 56px}
-  .hero-device{width:240px}
-  .phone-frame{width:240px;border-radius:36px;padding:8px}
-  .phone-screen{border-radius:28px}
-  .phone-screen img{border-radius:28px}
-  .phone-frame::before{width:80px;height:24px;top:10px}
-  .hero-device::before{width:300px;height:300px}
+  .hero-devices{gap:16px}
+  .hero-device{width:160px}
+  .phone-frame{width:160px;border-radius:28px;padding:6px}
+  .phone-screen{border-radius:22px}
+  .phone-screen img{border-radius:22px}
+  .hero-devices::before{width:360px;height:280px}
   .nav-links{gap:18px}
   .cta{padding:56px 24px;margin-bottom:56px}
   .footer .container{flex-direction:column;gap:28px}
