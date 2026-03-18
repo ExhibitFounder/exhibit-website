@@ -206,7 +206,7 @@ a:hover{text-decoration:underline}
 /* Screenshot slot */
 .phone-screen img{
   position:absolute;inset:0;width:100%;height:100%;
-  object-fit:contain;border-radius:35px;z-index:1;
+  object-fit:cover;object-position:center bottom;border-radius:35px;z-index:1;
 }
 
 /* ── Features ───────────────────────────────────────── */
