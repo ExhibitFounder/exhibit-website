@@ -555,7 +555,7 @@ a:hover{color:var(--blue-vivid)}
 
 /* Passport Demo */
 .passport-demo{display:flex;justify-content:center;align-items:center}
-.passport-demo canvas{display:block;border-radius:50%;max-width:100%}
+.passport-demo canvas{display:block;border-radius:50%;width:280px;height:280px}
 
 /* ── Bento Grid (Engagement Features) ─────────────── */
 .engagement{padding:140px 0;background:var(--bg-elevated)}
@@ -878,6 +878,8 @@ body:has(.legal) .legal p,body:has(.legal) .legal li{color:#333}
   .preview-row{gap:14px}
   .preview-phone{width:165px}
 
+  .passport-demo canvas{width:240px!important;height:240px!important}
+
   .footer-grid{grid-template-columns:1fr 1fr}
   .footer-brand-col{grid-column:span 2}
 }
@@ -916,5 +918,5 @@ body:has(.legal) .legal p,body:has(.legal) .legal li{color:#333}
 
   .scopes,.how-it-works,.features-deep,.engagement,.statement,.testimonials,.app-preview,.final-cta{padding:72px 0}
 
-  .passport-demo canvas{width:220px!important;height:220px!important}
+  .passport-demo canvas{width:200px!important;height:200px!important}
 }
