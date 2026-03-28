@@ -870,7 +870,7 @@ a:hover{color:var(--blue-vivid)}
   .preview-row{gap:14px}
   .preview-phone{width:165px}
 
-  .passport-demo canvas{width:240px!important;height:240px!important}
+  .passport-demo canvas{width:240px;height:240px}
 
   .footer-grid{grid-template-columns:1fr 1fr}
   .footer-brand-col{grid-column:span 2}
@@ -910,5 +910,5 @@ a:hover{color:var(--blue-vivid)}
 
   .scopes,.how-it-works,.features-deep,.engagement,.statement,.testimonials,.app-preview,.final-cta{padding:72px 0}
 
-  .passport-demo canvas{width:200px!important;height:200px!important}
+  .passport-demo canvas{width:200px;height:200px}
 }

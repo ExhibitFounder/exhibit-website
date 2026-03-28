@@ -631,30 +631,60 @@ if (canvas) {
     canvas.style.cursor = 'grab';
   });
 
-  const globe = createGlobe(canvas, {
-    devicePixelRatio: window.devicePixelRatio || 1,
-    width: 280 * (window.devicePixelRatio || 1),
-    height: 280 * (window.devicePixelRatio || 1),
-    phi: 0.5,
-    theta: -0.15,
-    dark: 1,
-    diffuse: 1.2,
-    mapSamples: 16000,
-    mapBrightness: 8,
-    baseColor: [0.12, 0.12, 0.15],
-    markerColor: [0.22, 0.47, 1],
-    glowColor: [0.08, 0.16, 0.4],
-    markers: [
-      { location: [40.7, -74], size: 0.06 },
-      { location: [51.5, -0.1], size: 0.06 },
-      { location: [35.7, 139.7], size: 0.06 },
-    ],
-    onRender: (state) => {
-      if (!pointerDown) {
-        phi += reducedMotion ? 0 : 0.003;
-      }
-      state.phi = phi;
-    },
+  function getGlobeSize() {
+    const w = window.innerWidth;
+    if (w <= 480) return 200;
+    if (w <= 768) return 240;
+    return 280;
+  }
+
+  let globe;
+  function initGlobe() {
+    const size = getGlobeSize();
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = size * dpr;
+    canvas.height = size * dpr;
+    canvas.style.width = size + 'px';
+    canvas.style.height = size + 'px';
+
+    if (globe) globe.destroy();
+    globe = createGlobe(canvas, {
+      devicePixelRatio: dpr,
+      width: size * dpr,
+      height: size * dpr,
+      phi: phi,
+      theta: -0.15,
+      dark: 1,
+      diffuse: 1.2,
+      mapSamples: 16000,
+      mapBrightness: 8,
+      baseColor: [0.12, 0.12, 0.15],
+      markerColor: [0.22, 0.47, 1],
+      glowColor: [0.08, 0.16, 0.4],
+      markers: [
+        { location: [40.7, -74], size: 0.06 },
+        { location: [51.5, -0.1], size: 0.06 },
+        { location: [35.7, 139.7], size: 0.06 },
+      ],
+      onRender: (state) => {
+        if (!pointerDown) {
+          phi += reducedMotion ? 0 : 0.003;
+        }
+        state.phi = phi;
+      },
+    });
+  }
+
+  initGlobe();
+
+  // Re-init only when crossing a breakpoint
+  let lastSize = getGlobeSize();
+  window.addEventListener('resize', () => {
+    const newSize = getGlobeSize();
+    if (newSize !== lastSize) {
+      lastSize = newSize;
+      initGlobe();
+    }
   });
 
   // Pointer drag rotation
