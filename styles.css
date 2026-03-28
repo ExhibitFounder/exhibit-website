@@ -816,24 +816,16 @@ a:hover{color:var(--blue-vivid)}
 .legal h1{
   font-size:clamp(1.8rem,4vw,2.6rem);
   font-weight:700;letter-spacing:-.02em;margin-bottom:8px;
+  color:var(--text);
 }
-.legal .updated{font-size:.9rem;color:var(--text-secondary);margin-bottom:36px}
-.legal h2{font-size:1.3rem;font-weight:700;margin:32px 0 10px}
-.legal h3{font-size:1.1rem;font-weight:600;margin:24px 0 8px}
+.legal .updated{font-size:.9rem;color:var(--text-muted);margin-bottom:36px}
+.legal h2{font-size:1.3rem;font-weight:700;margin:32px 0 10px;color:var(--text)}
+.legal h3{font-size:1.1rem;font-weight:600;margin:24px 0 8px;color:var(--text)}
 .legal p,.legal li{font-size:.97rem;color:var(--text-secondary);line-height:1.75}
 .legal ul,.legal ol{padding-left:28px;margin:8px 0 16px}
 .legal li{margin-bottom:6px}
 .legal a{color:var(--blue)}
-body:has(.legal){background:#fff;color:#0a0a0a}
-body:has(.legal) .nav{background:rgba(255,255,255,.85);border-bottom-color:rgba(0,0,0,.06)}
-body:has(.legal) .nav-logo-text{color:#0a0a0a}
-body:has(.legal) .nav-links a{color:#999}
-body:has(.legal) .nav-links a:hover{color:#0a0a0a}
-body:has(.legal) .nav-cta{color:#fff!important}
-body:has(.legal) .legal h1{color:#0a0a0a}
-body:has(.legal) .legal h2{color:#0a0a0a}
-body:has(.legal) .legal h3{color:#0a0a0a}
-body:has(.legal) .legal p,body:has(.legal) .legal li{color:#333}
+.legal strong{color:var(--text)}
 
 /* ── Responsive ─────────────────────────────────────── */
 @media(max-width:1024px){
