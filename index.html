@@ -190,7 +190,7 @@
     </div>
 
     <div class="scope-cards">
-      <div class="scope-card scope-card--active reveal reveal-d1" data-scope="friends">
+      <div class="scope-card scope-card--active reveal reveal-d1" data-scope="friends" role="button" tabindex="0" aria-pressed="true">
         <div class="scope-card-icon">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         </div>
@@ -198,7 +198,7 @@
         <p>See daily fit checks from people you follow. Rate your friends' outfits, leave comments, and keep up with what your circle is wearing today.</p>
         <div class="scope-card-tag">Mutual follows only</div>
       </div>
-      <div class="scope-card reveal reveal-d2" data-scope="exhibit">
+      <div class="scope-card reveal reveal-d2" data-scope="exhibit" role="button" tabindex="0" aria-pressed="false">
         <div class="scope-card-icon scope-card-icon--blue">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
         </div>
@@ -206,7 +206,7 @@
         <p>The global stage. Trending fits, fresh faces, and outfit inspiration from the entire style community. This is where your OOTD goes viral.</p>
         <div class="scope-card-tag">For You algorithm</div>
       </div>
-      <div class="scope-card reveal reveal-d3" data-scope="nearby">
+      <div class="scope-card reveal reveal-d3" data-scope="nearby" role="button" tabindex="0" aria-pressed="false">
         <div class="scope-card-icon scope-card-icon--green">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
         </div>
@@ -311,12 +311,7 @@
       </div>
       <div class="feature-row-visual">
         <div class="passport-demo">
-          <div class="passport-globe">
-            <div class="passport-pin passport-pin--1">NYC</div>
-            <div class="passport-pin passport-pin--2">LDN</div>
-            <div class="passport-pin passport-pin--3">TYO</div>
-            <div class="passport-ring"></div>
-          </div>
+          <canvas id="passport-globe" width="280" height="280"></canvas>
         </div>
       </div>
     </div>
@@ -582,14 +577,26 @@ document.addEventListener('DOMContentLoaded', () => {
   // Scope tab interaction
   const scopeTabs = document.querySelectorAll('.scope-tab');
   const scopeCards = document.querySelectorAll('.scope-card');
+  function activateScope(scope) {
+    scopeTabs.forEach(t => t.classList.remove('scope-tab--active'));
+    const activeTab = document.querySelector(`.scope-tab[data-scope="${scope}"]`);
+    if (activeTab) activeTab.classList.add('scope-tab--active');
+    scopeCards.forEach(card => {
+      const isActive = card.dataset.scope === scope;
+      card.classList.toggle('scope-card--active', isActive);
+      card.setAttribute('aria-pressed', isActive);
+    });
+  }
   scopeTabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      const scope = tab.dataset.scope;
-      scopeTabs.forEach(t => t.classList.remove('scope-tab--active'));
-      tab.classList.add('scope-tab--active');
-      scopeCards.forEach(card => {
-        card.classList.toggle('scope-card--active', card.dataset.scope === scope);
-      });
+    tab.addEventListener('click', () => activateScope(tab.dataset.scope));
+  });
+  scopeCards.forEach(card => {
+    card.addEventListener('click', () => activateScope(card.dataset.scope));
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        activateScope(card.dataset.scope);
+      }
     });
   });
 
@@ -598,7 +605,66 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', () => {
     nav.classList.toggle('nav--scrolled', window.scrollY > 20);
   }, { passive: true });
+
 });
+</script>
+
+<!-- Passport Globe (Cobe) -->
+<script type="module">
+import createGlobe from 'https://esm.sh/cobe@0.6.3';
+
+const canvas = document.getElementById('passport-globe');
+if (canvas) {
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let phi = 0.5;
+  let pointerDown = false;
+  let pointerX = 0;
+
+  canvas.style.cursor = 'grab';
+  canvas.addEventListener('pointerdown', (e) => {
+    pointerDown = true;
+    pointerX = e.clientX;
+    canvas.style.cursor = 'grabbing';
+  });
+  window.addEventListener('pointerup', () => {
+    pointerDown = false;
+    canvas.style.cursor = 'grab';
+  });
+
+  const globe = createGlobe(canvas, {
+    devicePixelRatio: window.devicePixelRatio || 1,
+    width: 280 * (window.devicePixelRatio || 1),
+    height: 280 * (window.devicePixelRatio || 1),
+    phi: 0.5,
+    theta: -0.15,
+    dark: 1,
+    diffuse: 1.2,
+    mapSamples: 16000,
+    mapBrightness: 8,
+    baseColor: [0.12, 0.12, 0.15],
+    markerColor: [0.22, 0.47, 1],
+    glowColor: [0.08, 0.16, 0.4],
+    markers: [
+      { location: [40.7, -74], size: 0.06 },
+      { location: [51.5, -0.1], size: 0.06 },
+      { location: [35.7, 139.7], size: 0.06 },
+    ],
+    onRender: (state) => {
+      if (!pointerDown) {
+        phi += reducedMotion ? 0 : 0.003;
+      }
+      state.phi = phi;
+    },
+  });
+
+  // Pointer drag rotation
+  window.addEventListener('pointermove', (e) => {
+    if (!pointerDown) return;
+    const dx = e.clientX - pointerX;
+    phi += dx * 0.005;
+    pointerX = e.clientX;
+  });
+}
 </script>
 
 </body>

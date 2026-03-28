@@ -30,7 +30,7 @@
   --red:#FF453A;
   --text:#FFFFFF;
   --text-secondary:#999999;
-  --text-muted:#555555;
+  --text-muted:#777777;
   --border:rgba(255,255,255,0.06);
   --border-light:rgba(255,255,255,0.10);
   --border-blue:rgba(56,120,255,0.20);
@@ -400,6 +400,10 @@ a:hover{color:var(--blue-vivid)}
   content:"";position:absolute;top:0;left:0;right:0;height:1px;
   background:linear-gradient(90deg,transparent,rgba(255,255,255,.06),transparent);
 }
+.scope-card:focus-visible{
+  outline:2px solid var(--blue);
+  outline-offset:2px;
+}
 .scope-card--active{
   opacity:1;
   border-color:var(--border-blue);
@@ -551,30 +555,7 @@ a:hover{color:var(--blue-vivid)}
 
 /* Passport Demo */
 .passport-demo{display:flex;justify-content:center;align-items:center}
-.passport-globe{
-  position:relative;
-  width:220px;height:220px;
-  border-radius:50%;
-  background:radial-gradient(circle at 30% 30%,var(--bg-card),var(--bg));
-  border:1px solid var(--border-light);
-  box-shadow:0 12px 40px rgba(0,0,0,.4),inset 0 0 60px rgba(56,120,255,.04);
-}
-.passport-ring{
-  position:absolute;inset:-10px;
-  border-radius:50%;
-  border:1px dashed rgba(56,120,255,.15);
-  animation:float 5s ease-in-out infinite;
-}
-.passport-pin{
-  position:absolute;
-  padding:4px 12px;border-radius:100px;
-  font-size:.62rem;font-weight:700;letter-spacing:.1em;
-  background:var(--blue);color:var(--text);
-  box-shadow:0 4px 16px var(--blue-glow);
-}
-.passport-pin--1{top:18%;right:-14px;animation:pinPulse 3s ease-in-out infinite}
-.passport-pin--2{bottom:28%;left:-14px;animation:pinPulse 3s ease-in-out infinite .5s}
-.passport-pin--3{top:8%;left:28%;animation:pinPulse 3s ease-in-out infinite 1s}
+.passport-demo canvas{display:block;border-radius:50%;max-width:100%}
 
 /* ── Bento Grid (Engagement Features) ─────────────── */
 .engagement{padding:140px 0;background:var(--bg-elevated)}
@@ -935,5 +916,5 @@ body:has(.legal) .legal p,body:has(.legal) .legal li{color:#333}
 
   .scopes,.how-it-works,.features-deep,.engagement,.statement,.testimonials,.app-preview,.final-cta{padding:72px 0}
 
-  .passport-globe{width:165px;height:165px}
+  .passport-demo canvas{width:220px!important;height:220px!important}
 }
