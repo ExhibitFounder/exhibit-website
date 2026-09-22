@@ -1,0 +1,108 @@
+---
+import Article from '../../layouts/Article.astro';
+---
+
+<Article slug="what-ai-operations-actually-costs">
+  <p>
+    Almost nobody publishes the cost stack behind an AI operations system, which is convenient for vendors and useless
+    for buyers. Here is ours, with real ranges, so you can tell whether a quote you are given is reasonable.
+  </p>
+
+  <h2>First, the thing everyone gets wrong about 24/7</h2>
+  <p>
+    Running around the clock does not cost extra by itself. Nothing in the stack charges by the hour of availability.
+    Voice bills per minute of actual conversation. The model bills per token actually processed. Texts bill per
+    message. An idle system at 3am costs the hosting fee and nothing else.
+  </p>
+  <p>
+    What 24/7 actually costs is reliability engineering. If the system is down at 2am, a no-heat call goes unanswered
+    after someone promised it would not. That is not a vendor bill, it is a design requirement: health checks plus an
+    automatic fallback that routes calls to the existing voicemail or on-call number the moment the system stops
+    responding. Ten to thirty dollars a month in uptime monitoring, and it should be written into the contract.
+  </p>
+
+  <h2>The five lines that make up the bill</h2>
+
+  <h3>1. Voice minutes</h3>
+  <p>
+    The largest and most variable line. Advertised platform rates sit around $0.05 to $0.12 a minute, but the
+    all-in figure after transcription, the model, voice synthesis and telephony lands closer to $0.10 to $0.31. The gap
+    between advertised and actual is commonly three to six times, because the pricing page shows the platform fee and
+    not the four things underneath it.
+  </p>
+  <p>
+    For a mid-size property manager taking roughly 450 after-hours and overflow calls a month at three minutes each,
+    that is about 1,350 minutes, or <b>$135 to $245</b>.
+  </p>
+
+  <h3>2. The model</h3>
+  <p>
+    Cheaper than most people expect, and easy to underestimate. Current API pricing runs about $1.25 per million input
+    tokens and $4.25 per million output, with cached input far cheaper.
+  </p>
+  <p>
+    The trap is assuming one pass per message. Agentic work re-sends the playbook and the customer context on every
+    tool call, so a single email might be five to ten round trips. Daily digests read a whole day of data. Budget
+    <b>$75 to $180 a month</b> for a busy account, not the $30 a naive calculation suggests.
+  </p>
+
+  <h3>3. Telephony and messaging</h3>
+  <p>
+    Phone numbers, per-message costs, and in the US an A2P 10DLC registration with a one-time brand and campaign
+    vetting fee plus carrier surcharges. Small but not zero: <b>$40 to $80 a month</b> for a few numbers and a couple
+    of thousand texts.
+  </p>
+
+  <h3>4. Hosting, monitoring and storage</h3>
+  <p>
+    The always-on listener, a queue, a database, error monitoring, and call recordings held for the retention period.
+    <b>$50 to $130 a month.</b>
+  </p>
+
+  <h3>5. Spam filtering, which nobody budgets for</h3>
+  <p>
+    After-hours business lines attract a lot of robocalls, and you pay per minute even while the agent politely ends a
+    call with a robot. A spam-score lookup on every inbound call costs <b>$10 to $40 a month</b> and saves several times
+    that in wasted minutes.
+  </p>
+
+  <div class="callout">
+    <p>
+      <b>Realistic all-in for a large account</b> (750 units, three properties): roughly <b>$350 to $850 a month</b> in
+      direct vendor costs. Add insurance, software and accounting spread across clients and it is a little higher. The
+      spread is wide because minutes and tokens depend entirely on your actual volume.
+    </p>
+  </div>
+
+  <h2>What this means when you are buying</h2>
+  <p>Three things to take into any vendor conversation:</p>
+  <ul>
+    <li>
+      <b>Ask what happens when volume spikes.</b> A flat monthly price with unlimited minutes is either capped
+      somewhere in the contract or priced for the worst case. Both are fine; not knowing which is not.
+    </li>
+    <li>
+      <b>Ask about a fair-use line.</b> A reasonable structure is a generous included allowance with a stated
+      per-minute rate beyond it. That protects both sides and makes the bill predictable.
+    </li>
+    <li>
+      <b>Be suspicious of very low prices on high-volume accounts.</b> If someone quotes $99 a month for something
+      handling two thousand call minutes, the arithmetic does not work, and the usual resolution is a tool that answers
+      quickly and does nothing else.
+    </li>
+  </ul>
+
+  <h2>How we handle this</h2>
+  <p>
+    The two weeks of supervised running in our Workflow Package are also a measurement window. We meter minutes and
+    tokens per property, then set the fair-use line from real numbers rather than benchmarks. If your usage turns out to
+    be materially higher than assumed, you hear it in week three rather than in a surprise invoice in month four.
+  </p>
+
+  <h2>Sources</h2>
+  <ul>
+    <li><a href="https://www.famulor.io/blog/ai-voice-agent-pricing-2026-what-10-platforms-actually-cost-per-minute" rel="nofollow noopener">AI Voice Agent Pricing 2026: per-minute cost of 10 platforms</a> and <a href="https://ainora.lt/blog/ai-voice-agent-cost-per-minute-2026" rel="nofollow noopener">AI Voice Agent Cost per Minute, 2026</a> for voice stack economics.</li>
+    <li><a href="https://dev.meta.ai/docs/pricing-rate-limits" rel="nofollow noopener">Meta Model API pricing and rate limits</a> for token costs.</li>
+    <li><a href="https://www.layer3labs.io/roi/ai-automation-agency-cost" rel="nofollow noopener">AI Automation Agency Cost, 2026</a> for agency-level tooling cost benchmarks.</li>
+  </ul>
+</Article>

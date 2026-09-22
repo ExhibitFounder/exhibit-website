@@ -1,0 +1,199 @@
+---
+interface Row { tag?: 'green' | 'red'; tagText?: string; text: string; indent?: boolean }
+interface Block { head: string; rows: Row[] }
+interface Props { animate?: boolean; caption?: boolean; variant?: 'pm' | 'home' | 'law' }
+const { animate = false, caption = true, variant = 'pm' } = Astro.props;
+
+const sets: Record<string, { title: string; greet: string; sub: string; blocks: Block[]; footer: string; captionText: string }> = {
+  pm: {
+    title: 'Morning digest · Tue 7:30 AM',
+    greet: 'Good morning, Dana. Here\'s last night at Northgate & Riverside',
+    sub: '(312 units)',
+    blocks: [
+      {
+        head: '6 missed calls',
+        rows: [
+          { tag: 'green', tagText: '4 handled', text: '2 tour requests booked (Sat 10am, Sat 1pm)' },
+          { text: '1 rent question answered from ledger', indent: true },
+          { text: '1 vendor confirming Tuesday HVAC visit', indent: true },
+          { tag: 'red', tagText: '2 need you', text: 'Unit 4B: "water under sink." Existing open WO #1182. Flagged as possible escalation.' },
+          { text: 'Unknown caller asked for "the owner" twice, no callback #. Marked suspicious.', indent: true },
+        ],
+      },
+      {
+        head: '11 after-hours emails',
+        rows: [
+          { tag: 'green', tagText: '9 handled', text: '6 leasing inquiries → replied, availability sent, 3 tours booked' },
+          { text: '3 maintenance → logged as WOs, tenants texted confirmation', indent: true },
+          { tag: 'red', tagText: '2 need you', text: 'Lease-break request, Unit 12A (needs a decision)' },
+          { text: 'Pet policy exception request (needs approval)', indent: true },
+        ],
+      },
+      {
+        head: 'Leasing pipeline',
+        rows: [
+          { text: '14 active leads · 5 went cold >72h: re-engaged 3, 2 unresponsive, recommend closing' },
+          { text: 'Fastest first response last night: <b>38 seconds</b>' },
+        ],
+      },
+    ],
+    footer: 'Approve / decline the 4 items above',
+    captionText: 'This is what a client sees. Nothing above was done by a human until 7:30am.',
+  },
+  home: {
+    title: 'Morning dispatch · Wed 6:45 AM',
+    greet: 'Morning, Ray. Here\'s overnight for Brennan Heating & Air',
+    sub: '(2 trucks)',
+    blocks: [
+      {
+        head: '9 after-hours calls',
+        rows: [
+          { tag: 'green', tagText: '6 handled', text: '3 booked into Housecall Pro for today (8am, 11am, 2pm)' },
+          { text: '2 quote requests captured with photos, sent to your estimate queue', indent: true },
+          { text: '1 existing customer rescheduled Thursday', indent: true },
+          { tag: 'red', tagText: '1 escalated', text: '11:52pm, no heat, elderly customer on Oak St. Paged you at 11:53. You dispatched at 12:20am.' },
+          { tag: 'red', tagText: '2 need you', text: 'Warranty dispute on the Kessler install (needs a decision)' },
+          { text: 'Job 40 minutes outside service area. Quoted nothing, asked how you want it handled.', indent: true },
+        ],
+      },
+      {
+        head: 'Estimates and invoices',
+        rows: [
+          { tag: 'green', tagText: '5 handled', text: '3 pending estimates followed up, 1 approved ($4,180)' },
+          { text: '2 overdue invoices nudged, 1 paid overnight', indent: true },
+          { tag: 'red', tagText: '1 needs you', text: 'Customer asking for a discount on estimate #2291' },
+        ],
+      },
+      {
+        head: 'Today',
+        rows: [
+          { text: '7 jobs booked · first truck out at 8:00 · 1 slot open at 3pm' },
+          { text: 'Fastest first response last night: <b>22 seconds</b>' },
+        ],
+      },
+    ],
+    footer: 'Approve / decline the 4 items above',
+    captionText: 'This is what a client sees at 6:45am. The no-heat call was handled at 11:53pm.',
+  },
+  law: {
+    title: 'Intake digest · Thu 7:30 AM',
+    greet: 'Good morning, Marta. Here\'s overnight intake for Alvarez & Cole',
+    sub: '(3 attorneys)',
+    blocks: [
+      {
+        head: '7 after-hours calls',
+        rows: [
+          { tag: 'green', tagText: '5 handled', text: '3 full intakes captured by practice area, conflict-check data collected, in Clio' },
+          { text: '2 consults booked (Tue 9am, Wed 2pm)', indent: true },
+          { tag: 'red', tagText: '2 need you', text: 'Potential conflict flagged: opposing party matches an existing matter. No intake completed.' },
+          { text: 'Caller asked whether they "have a case." Told them only an attorney can answer that. Consult offered.', indent: true },
+        ],
+      },
+      {
+        head: '12 web and email inquiries',
+        rows: [
+          { tag: 'green', tagText: '10 handled', text: '7 qualified and scheduled, 3 outside practice areas, referred out per your list' },
+          { tag: 'red', tagText: '2 need you', text: 'Fee question beyond your published schedule' },
+          { text: 'Prospective client outside your state (needs your call)', indent: true },
+        ],
+      },
+      {
+        head: 'Follow-ups',
+        rows: [
+          { text: '4 unsigned engagement letters chased · 2 signed overnight' },
+          { text: 'Median first response to a new inquiry: <b>41 seconds</b>' },
+        ],
+      },
+    ],
+    footer: 'Approve / decline the 4 items above',
+    captionText: 'No legal advice was given, and no client was accepted. Every prospective client is your decision.',
+  },
+};
+
+const d = sets[variant];
+---
+
+<figure class:list={['digest', { animate }]} aria-label="Example morning digest">
+  <div class="digest-bar">
+    <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+    <span class="digest-title">{d.title}</span>
+  </div>
+  <div class="digest-body">
+    <p class="d-line d-greet">{d.greet} <span class="muted">{d.sub}</span></p>
+
+    {d.blocks.map((block) => (
+      <div class="d-block">
+        <p class="d-line d-head"><b>{block.head}</b></p>
+        {block.rows.map((r) => (
+          <p class:list={['d-line', { 'd-indent': r.indent }]}>
+            {r.tag && <span class:list={['tag', r.tag === 'green' ? 'tag-green' : 'tag-red']}>{r.tagText}</span>}
+            <span set:html={r.text} />
+          </p>
+        ))}
+      </div>
+    ))}
+
+    <div class="d-actions d-line">
+      <span class="muted">{d.footer}</span>
+      <span class="d-btns"><button type="button" class="d-btn ok">Approve</button><button type="button" class="d-btn no">Decline</button></span>
+    </div>
+  </div>
+  {caption && <figcaption>{d.captionText}</figcaption>}
+</figure>
+
+<style>
+  .digest {
+    margin: 0;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    font-size: 0.95rem;
+  }
+  .digest-bar {
+    display: flex; align-items: center; gap: 6px;
+    padding: 10px 14px; border-bottom: 1px solid var(--line); background: var(--bg-2);
+  }
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--line); }
+  .digest-title { margin-left: 8px; font-size: 0.8rem; color: var(--muted); font-weight: 600; }
+  .digest-body { padding: 18px 20px 6px; }
+  .d-greet { font-weight: 600; margin-bottom: 14px; }
+  .d-block { padding: 10px 0 8px; border-top: 1px dashed var(--line); }
+  .d-head { margin-bottom: 6px; }
+  .d-line { margin: 0 0 6px; color: var(--ink-2); display: grid; grid-template-columns: 92px 1fr; gap: 8px; align-items: start; }
+  .d-line:not(:has(.tag)) { display: block; }
+  .d-line .tag { justify-self: start; margin-top: 2px; }
+  .d-indent { padding-left: 100px; }
+  .d-actions { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; padding: 12px 0 10px; border-top: 1px dashed var(--line); }
+  .d-btns { display: inline-flex; gap: 8px; }
+  .d-btn {
+    font: inherit; font-size: 0.8rem; font-weight: 650; padding: 6px 12px; border-radius: 999px;
+    border: 1px solid transparent; cursor: default;
+  }
+  .d-btn.ok { background: var(--green-soft); color: var(--green); }
+  .d-btn.no { background: var(--red-soft); color: var(--red); }
+  figcaption { padding: 12px 20px 16px; font-size: 0.85rem; color: var(--muted); border-top: 1px solid var(--line); }
+  @media (max-width: 540px) { .d-indent { padding-left: 0; } }
+
+  .animate .d-line { opacity: 0; transform: translateY(6px); animation: rise 0.45s ease forwards; }
+  .animate .d-greet { animation-delay: 0.1s }
+  .animate .d-block:nth-of-type(1) .d-line:nth-child(1) { animation-delay: 0.3s }
+  .animate .d-block:nth-of-type(1) .d-line:nth-child(2) { animation-delay: 0.45s }
+  .animate .d-block:nth-of-type(1) .d-line:nth-child(3) { animation-delay: 0.6s }
+  .animate .d-block:nth-of-type(1) .d-line:nth-child(4) { animation-delay: 0.75s }
+  .animate .d-block:nth-of-type(1) .d-line:nth-child(5) { animation-delay: 0.9s }
+  .animate .d-block:nth-of-type(1) .d-line:nth-child(6) { animation-delay: 1.05s }
+  .animate .d-block:nth-of-type(1) .d-line:nth-child(7) { animation-delay: 1.2s }
+  .animate .d-block:nth-of-type(2) .d-line:nth-child(1) { animation-delay: 1.4s }
+  .animate .d-block:nth-of-type(2) .d-line:nth-child(2) { animation-delay: 1.55s }
+  .animate .d-block:nth-of-type(2) .d-line:nth-child(3) { animation-delay: 1.7s }
+  .animate .d-block:nth-of-type(2) .d-line:nth-child(4) { animation-delay: 1.85s }
+  .animate .d-block:nth-of-type(2) .d-line:nth-child(5) { animation-delay: 2s }
+  .animate .d-block:nth-of-type(3) .d-line:nth-child(1) { animation-delay: 2.2s }
+  .animate .d-block:nth-of-type(3) .d-line:nth-child(2) { animation-delay: 2.35s }
+  .animate .d-block:nth-of-type(3) .d-line:nth-child(3) { animation-delay: 2.5s }
+  .animate .d-actions { animation-delay: 2.7s }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { .animate .d-line { animation: none; opacity: 1; transform: none; } }
+</style>

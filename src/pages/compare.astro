@@ -1,0 +1,144 @@
+---
+import Base from '../layouts/Base.astro';
+import FAQ from '../components/FAQ.astro';
+import CTA from '../components/CTA.astro';
+
+const title = 'Compare: Receptionist vs Agency | Exhibit Automation';
+const description =
+  "What AI receptionist apps, vertical platforms like Avoca and EliseAI, and automation agencies each cost, and when you should not hire us.";
+
+const faqs = [
+  { q: 'Are you saying I should sometimes buy a competitor?', a: 'Yes. If a well-answered phone is your whole problem, a $49 to $109 a month AI receptionist will do it and you should buy one. If you run ServiceTitan with ten trucks and have a CSR team, Avoca is built for you. We would rather lose the sale than sell you something you do not need and watch you churn in four months.' },
+  { q: 'Why is your price higher than an AI receptionist?', a: 'Because you are not buying software seats, you are buying an operation that someone designs, runs and keeps tuning. A receptionist app is a product you configure and maintain. We are closer to hiring a part-time operations person who happens to work nights and weekends.' },
+  { q: 'Why are you cheaper than the enterprise platforms?', a: 'They sell to 500-unit-plus operators with an ops team and price accordingly. Their pricing is quote-based rather than published, but third-party guides put it well above ours once minimums are included. We built for the 50 to 500 unit band those platforms are not really trying to serve, and we do not carry their sales, onboarding and support overhead.' },
+  { q: 'What stops you from being replaced by these platforms going down-market?', a: 'Nothing permanent, and we would rather say that plainly. Vertical AI funding went from about $714M in 2024 to over $3B in the last twelve months, and some of those companies will build cheaper self-serve tiers. What is hard to copy is the part that is not software: knowing your building, your vendors, your on-call rules, and being the person who fixes it when something is off. That is what you are actually paying for.' },
+  { q: 'Can I switch away from you later?', a: 'Yes. You own the playbooks and the connector documentation. If you leave, you keep both and can hand them to another provider or an in-house hire. There is no data hostage situation and no annual lock-in, just a three-month initial minimum and then month to month.' },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
+---
+
+<Base title={title} description={description} path="/compare" schema={schema}>
+  <section class="hero">
+    <div class="wrap">
+      <span class="eyebrow">The honest comparison</span>
+      <h1>Four ways to solve this. We are only right for one of them.</h1>
+      <p class="lede">
+        Most comparison pages are written so the seller wins every row. This one is not. Here is what each option costs,
+        who it is built for, and the specific case where you should pick it over us.
+      </p>
+    </div>
+  </section>
+
+  <section class="tight">
+    <div class="wrap">
+      <div class="table-wrap">
+        <table class="big">
+          <thead>
+            <tr>
+              <th></th>
+              <th>AI receptionist apps<br /><span class="muted small">Voksha, AgentZap, Call Agent AI, Super, Smith.ai AI tier</span></th>
+              <th>Vertical platforms<br /><span class="muted small">Avoca, EliseAI, Vellum, Funnel, Knock</span></th>
+              <th>Generic AI agencies</th>
+              <th class="us-col">Exhibit Automation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Price</td><td>$45 to $299/mo</td><td>Quote-based. Estimated $3 to $8 per unit/mo with high annual minimums<sup><a href="#fn1">1</a></sup></td><td>Builds $3K to $15K, retainers $500 to $3,000/mo<sup><a href="#fn2">2</a></sup></td><td class="us-col">$5 per unit/mo, $750 min. Setup from $4,500</td></tr>
+            <tr><td>Answers calls</td><td>Yes, well</td><td>Yes</td><td>Sometimes</td><td class="us-col">Yes</td></tr>
+            <tr><td>Reads and writes your email</td><td>Rarely</td><td>Some do</td><td>Depends on the build</td><td class="us-col">Yes</td></tr>
+            <tr><td>Reasons across calls, email, CRM and invoices together</td><td>No</td><td>If you configure it</td><td>If you specified it</td><td class="us-col">Yes, by design</td></tr>
+            <tr><td>Who builds it</td><td>You</td><td>Your ops person, with their onboarding team</td><td>The agency</td><td class="us-col">We do</td></tr>
+            <tr><td>Who maintains it after month one</td><td>You</td><td>You</td><td>Often nobody</td><td class="us-col">We do, monthly</td></tr>
+            <tr><td>Approval gates on irreversible actions</td><td>No</td><td>Varies</td><td>Rarely</td><td class="us-col">Always</td></tr>
+            <tr><td>New dashboard to learn</td><td>Yes</td><td>Yes</td><td>Usually</td><td class="us-col">No. A morning digest</td></tr>
+            <tr><td>Time to live</td><td>An afternoon</td><td>Weeks, with their team</td><td>Weeks to months</td><td class="us-col">2 to 4 weeks</td></tr>
+            <tr><td>Contract</td><td>Monthly</td><td>Usually annual</td><td>Varies</td><td class="us-col">3 months, then monthly</td></tr>
+            <tr><td><b>Pick this if</b></td><td>A well-answered phone is your whole problem</td><td>You have 500+ units or 10+ trucks and an ops team to run it</td><td>You have an unusual, one-off workflow and someone in-house to own it</td><td class="us-col">You are the ops team, and the work spans more than one system</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="wrap">
+      <span class="eyebrow">In plain language</span>
+      <h2>When each one is the right buy.</h2>
+      <div class="grid grid-2 verdicts">
+        <div class="card">
+          <h3>Buy an AI receptionist app</h3>
+          <p>If what you need is "somebody answer the phone and take a message." These are genuinely good at that, they set up in an afternoon, and at $45 to $299 a month nothing else competes on price. AgentZap for legal at $109 and Voksha for property management at $49 to $99 are both solid.</p>
+          <p class="small"><b>The limit:</b> it does not know the caller is the tenant in 4B with an open work order, it does not touch your email, and you own the configuration forever.</p>
+        </div>
+        <div class="card">
+          <h3>Buy a vertical platform</h3>
+          <p>If you are past the size where a person can hold the whole operation in their head. Avoca is excellent for ServiceTitan shops doing $3M or more. EliseAI is the serious choice above 500 units. Both are better-resourced than we are and always will be.</p>
+          <p class="small"><b>The limit:</b> they sell to operators with someone whose job is running the system. Their minimums also make them poor value below a few hundred units.</p>
+        </div>
+        <div class="card">
+          <h3>Hire a generic AI agency</h3>
+          <p>If you have a genuinely unusual workflow that no vertical product covers, and someone in-house who can own the result after handover.</p>
+          <p class="small"><b>The limit:</b> the common failure mode is a build that works in week one, drifts in month three, and has nobody responsible for it in month six. Ask any agency who maintains it and what happens when it breaks at 2am.</p>
+        </div>
+        <div class="card us">
+          <h3>Hire us</h3>
+          <p>If the work spans more than one system, if the judgment calls matter, and if the honest answer to "who would own this internally" is nobody. We build it, we run it, and you get a digest instead of a dashboard.</p>
+          <p class="small"><b>The limit:</b> we take two or three new clients a month, we do not serve enterprises or anything touching patient data, and we are more expensive than a phone answerer on purpose.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <span class="eyebrow">The comparison nobody publishes</span>
+      <h2>Versus hiring someone.</h2>
+      <p class="lede">This is the real alternative for most of our clients, and it is the fairest comparison available.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th></th><th>Part-time office manager</th><th>Exhibit Automation</th></tr></thead>
+          <tbody>
+            <tr><td>Cost</td><td>$28,000 to $40,000 a year plus payroll tax</td><td>$9,000 to $32,000 a year depending on size</td></tr>
+            <tr><td>Hours covered</td><td>Roughly 9 to 5, weekdays</td><td>Every hour, including holidays</td></tr>
+            <tr><td>Ramp time</td><td>Weeks of training, and it walks out the door if they leave</td><td>2 to 4 weeks, and the playbook stays</td></tr>
+            <tr><td>Judgment</td><td>Real, and irreplaceable for hard conversations</td><td>Handles routine, escalates judgment to you</td></tr>
+            <tr><td>Sick days, holidays, turnover</td><td>Yes</td><td>No</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small">We are not arguing you should fire anyone. Most clients keep their person and stop losing them to voicemail triage and data re-entry.</p>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="wrap">
+      <FAQ items={faqs} title="The questions behind the questions" />
+    </div>
+  </section>
+
+  <CTA title="Still not sure which one you are?" body="Book twenty minutes. If a cheaper option fits you better, we will name it and send you on your way. That is not a sales line, it is how we keep our delivery quality up." />
+
+  <section class="tight">
+    <div class="wrap">
+      <p class="footnote" id="fn1">1. Per-unit benchmarks and platform minimums: <a href="https://www.layer3labs.io/guides/ai-leasing-assistant" rel="nofollow noopener">AI Leasing Assistant Buyer Guide, 2026</a>; <a href="https://aitoolsbakery.com/blog/eliseai-review/" rel="nofollow noopener">EliseAI Review, 2026</a>. Avoca funding and positioning: <a href="https://goodmunity.com/funding/avoca-125m-funding-ai-home-services-automation-2026/" rel="nofollow noopener">Avoca $125M raise, 2026</a>.</p>
+      <p class="footnote" id="fn2">2. Agency build and retainer ranges: <a href="https://www.layer3labs.io/roi/ai-automation-agency-cost" rel="nofollow noopener">AI Automation Agency Cost, 2026</a>; <a href="https://lets-viz.com/blogs/ai-automation-agency-pricing-2026-what-buyers-pay" rel="nofollow noopener">What Buyers Pay, 2026</a>. Vertical AI funding trend: <a href="https://newmarketpitch.com/blogs/news/vertical-ai-funding-analysis" rel="nofollow noopener">Vertical AI Startup Funding, 2026</a>. Competitor prices checked September 2026 and may change.</p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero { padding: 72px 0 24px; }
+  .hero h1 { max-width: 20ch; }
+  table.big td, table.big th { font-size: 0.93rem; }
+  table td:first-child { font-weight: 600; color: var(--ink); }
+  .us-col { background: var(--amber-soft); }
+  thead .us-col { border-radius: 8px 8px 0 0; }
+  .verdicts { margin-top: 24px; }
+  .verdicts .card.us { border-color: var(--amber); }
+  .verdicts h3 { margin-bottom: 10px; }
+</style>

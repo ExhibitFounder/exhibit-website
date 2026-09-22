@@ -1,0 +1,107 @@
+---
+import Article from '../../layouts/Article.astro';
+---
+
+<Article slug="questions-before-automating">
+  <p>
+    Most automation projects that fail do not fail on technology. They fail because nobody answered a basic question
+    before the build started. Here are the seven that matter, all answerable in an afternoon, and all cheaper to answer
+    now than in month three.
+  </p>
+
+  <h2>1. What actually happens today, step by step?</h2>
+  <p>
+    Not what is supposed to happen. What happens. Take last week's inbox and call log and trace five real cases from
+    first contact to resolution. Who touched each one, what did they look up, where did it sit waiting.
+  </p>
+  <p>
+    Almost everyone discovers something they did not know: an inquiry type nobody owns, a step that exists only because
+    one person remembers to do it, a handoff that silently drops things on Fridays. You cannot automate a process you
+    have not written down, and writing it down is usually where the first real savings appear, before any software.
+  </p>
+
+  <h2>2. What is the cost of the status quo, in dollars?</h2>
+  <p>
+    If you cannot put a number on the problem, you cannot evaluate a solution, and you will end up buying on how good
+    the demo felt.
+  </p>
+  <p>
+    The number does not need to be precise. Missed calls times booking rate times average ticket gets you within an
+    order of magnitude, which is enough. If the answer comes out smaller than the cost of fixing it, stop. That is a
+    successful afternoon, not a wasted one.
+  </p>
+
+  <h2>3. Which part is routine, and which part is judgment?</h2>
+  <p>
+    Automation is good at the first and dangerous at the second. Go through your process and mark each step: could a
+    careful new hire do this from a written rule, or does it need someone who knows the business?
+  </p>
+  <p>
+    If most steps are judgment, automation will not help much and you need a person. If most are routine, you have a
+    real candidate. Most small businesses find it is roughly 80% routine and 20% judgment, and the 20% is what actually
+    needs your morning.
+  </p>
+
+  <h2>4. What must never happen without a human?</h2>
+  <p>
+    Write this list before anyone writes code. Every action that would be expensive or embarrassing to reverse: refunds,
+    price commitments, contract terms, legal notices, anything involving an angry customer.
+  </p>
+  <p>
+    This list is the spine of the project. We wrote about <a href="/resources/approval-gates">how approval gates
+    work</a> separately, but the short version is that a system without this list is a liability regardless of how well
+    it performs on a good day.
+  </p>
+
+  <h2>5. Where does the data actually live, and can you get at it?</h2>
+  <p>
+    This is where projects stall in week two. Your property or practice software may have an API, or it may have one
+    only on a higher plan, or it may have one that does not expose the thing you need.
+  </p>
+  <p>Check three things before signing anything:</p>
+  <ul>
+    <li>Does your plan include API access, or is that an upgrade?</li>
+    <li>Can it write, or only read? Booking requires write access.</li>
+    <li>Who at your company can authorise the connection?</li>
+  </ul>
+
+  <h2>6. Who owns this in month six?</h2>
+  <p>
+    The single most predictive question. Every automated system drifts: your prices change, your policies change, a new
+    property comes on, a staff member leaves. Something has to absorb that.
+  </p>
+  <p>
+    If the honest answer is "nobody, I suppose me," then a self-serve tool is the wrong shape regardless of price,
+    because the maintenance will not happen and the system will quietly decay into something that gives out-of-date
+    answers. Either assign a real owner with real time, or buy the managed version where it is somebody's job.
+  </p>
+
+  <h2>7. How will you know if it is working?</h2>
+  <p>
+    Decide the measure before go-live, while you are still honest about it. Good ones are concrete: percentage of calls
+    answered, median first response time, number of inquiries that got no reply within an hour, jobs booked outside
+    business hours.
+  </p>
+  <p>
+    Capture a baseline in the two weeks before launch. Almost nobody does this, and without it you are left arguing
+    about impressions six months later.
+  </p>
+
+  <div class="callout">
+    <p>
+      <b>If you only do one:</b> question six. Ownership predicts outcomes better than budget, better than vendor
+      choice, and better than how sophisticated the technology is.
+    </p>
+  </div>
+
+  <h2>What to do with the answers</h2>
+  <p>
+    Questions one through three tell you whether to automate at all. Four and five tell you whether it is buildable and
+    safe. Six tells you what shape to buy: a tool, a platform, or a managed service. Seven tells you whether it worked.
+  </p>
+  <p>
+    If you want help working through them, the intro call on our <a href="/book">booking page</a> is essentially this
+    list, and we will tell you if the answers point somewhere other than us. Our <a href="/compare">comparison page</a>
+    lays out when a cheaper option is the right call.
+  </p>
+</Article>

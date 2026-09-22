@@ -1,0 +1,176 @@
+---
+import Base from '../layouts/Base.astro';
+import PricingCards from '../components/PricingCards.astro';
+import PriceCalc from '../components/PriceCalc.astro';
+import FAQ from '../components/FAQ.astro';
+import CTA from '../components/CTA.astro';
+
+const title = 'Pricing, Per Unit and Published | Exhibit Automation';
+const description =
+  "Managed Agent $5 per unit per month, $750 minimum. Setup from $4,500 with a 30-day go-live guarantee. Cheaper than the platforms and agencies.";
+
+const faqs = [
+  { q: 'Is there a contract?', a: 'Setup packages are fixed-scope statements of work. Managed Agent has a three-month minimum, then month to month with 30 days\' notice. No auto-renewing annual terms.' },
+  { q: 'How is the per-unit price calculated?', a: '$5 per unit per month for the first 300 units, $4 per unit for every unit after 300, with a $750 minimum. Your first two properties are included; each additional property is $100 per month to cover its own phone line, calendar, on-call rules and listing feeds. Use the calculator above to see your number.' },
+  { q: 'Why per unit instead of a flat fee?', a: 'Because a 500-unit portfolio generates about ten times the calls, emails and work orders of a 50-unit one. Per-unit pricing is how you already buy AppFolio or Buildium, so it reads honestly in both directions: small portfolios aren\'t subsidising large ones, and large ones aren\'t paying for capacity they don\'t use.' },
+  { q: 'Why the extra $100 per property?', a: 'Each property is its own phone number, calendar, on-call rotation and set of listing feeds. That\'s real configuration we maintain every month. The first two are included; beyond that it\'s a cost-recovery line, not a profit centre.' },
+  { q: 'Starter Package or Workflow Package?', a: 'Starter is for one property up to 150 units: same playbook, same digest, fewer connectors, lower first step. Workflow Package is for two or three properties, or anything over 150 units. You can start with Starter and add properties later at $1,000 each.' },
+  { q: 'What does "billed in thirds" mean?', a: 'One third at scope sign-off (the written playbook you approve), one third when the integrations are complete and tested against your data, one third at go-live. The scope sign-off is also a freeze point. Changes after it are a new, priced item, which protects both of us from scope creep.' },
+  { q: 'How does the 30-day go-live guarantee work?', a: 'If the Workflow Package isn\'t live within 30 days for reasons on our side, the final third ($2,500) is waived. The clock starts when you\'ve delivered system access and credentials, and pauses during delays on your side: pending approvals, missing logins, unavailable stakeholders.' },
+  { q: 'Who owns the playbooks and connectors?', a: 'You do. You receive the written playbooks and connector documentation at handover. If we ever part ways, you keep both and can hand them to anyone.' },
+  { q: 'Why isn\'t this $99 a month like an AI receptionist?', a: 'Because you\'re not buying software seats. You\'re buying a person who designs, runs and keeps tuning an operation across your phone, inbox and property software. A $99 tool answers the phone very well and then someone on your team has to set it up and babysit it. If that\'s all you need, buy it; we\'ll tell you which one.' },
+  { q: 'How do I pay?', a: 'Stripe invoices. Card or ACH.' },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
+---
+
+<Base title={title} description={description} path="/pricing" schema={schema}>
+  <section class="hero">
+    <div class="wrap">
+      <span class="eyebrow">Pricing</span>
+      <h1>Per unit. Published. Cheaper than the platforms built for 500-unit operators.</h1>
+      <p class="lede">Most clients start with a setup package and move straight into Managed Agent. The first month of Managed Agent is always included.</p>
+    </div>
+  </section>
+
+  <section class="tight">
+    <div class="wrap">
+      <PricingCards />
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="wrap">
+      <span class="eyebrow">Managed Agent</span>
+      <h2>Priced like an employee's workload, not a software seat.</h2>
+      <p class="lede">$5 per unit per month for the first 300 units, $4 per unit after that, $750 minimum. First two properties included, then $100 per property.</p>
+      <div class="grid grid-2 examples-grid">
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Portfolio</th><th>Monthly</th><th>Per unit</th></tr></thead>
+            <tbody>
+              <tr><td>80 units, 1 property</td><td><b>$750</b></td><td>$9.38 (minimum applies)</td></tr>
+              <tr><td>150 units, 1 property</td><td><b>$750</b></td><td>$5.00</td></tr>
+              <tr><td>220 units, 2 properties</td><td><b>$1,100</b></td><td>$5.00</td></tr>
+              <tr><td>220 units, 5 properties</td><td><b>$1,400</b></td><td>$6.36</td></tr>
+              <tr><td>400 units, 4 properties</td><td><b>$2,100</b></td><td>$5.25</td></tr>
+              <tr><td>500 units, 6 properties</td><td><b>$2,700</b></td><td>$5.40</td></tr>
+              <tr><td>Over 500 units</td><td colspan="2">Quoted individually. <a href="/book">Talk to us.</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <PriceCalc />
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <span class="eyebrow">How we compare</span>
+      <h2>Cheaper than the platforms and the agencies. Not cheaper than a phone answerer, on purpose.</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th></th><th>What it costs</th><th>Who it's built for</th><th>Who runs it</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><b>AI receptionist apps</b><br /><span class="muted small">Voksha, Call Agent AI, AgentZap, Super</span></td><td>$45 to $299/mo</td><td>Anyone with a phone</td><td>You</td></tr>
+            <tr><td><b>Enterprise leasing platforms</b><br /><span class="muted small">EliseAI, Funnel, Knock</span></td><td>Quote-based. Third-party guides estimate $3 to $8 per unit/mo with annual minimums in the tens of thousands<sup><a href="#fn1">1</a></sup></td><td>500+ units with an ops team</td><td>Your ops team</td></tr>
+            <tr><td><b>AI automation agencies</b></td><td>Builds $3,000 to $15,000; retainers $500 to $3,000/mo, median SMB retainer $2,800 to $7,000<sup><a href="#fn2">2</a></sup></td><td>Whoever will pay</td><td>Varies</td></tr>
+            <tr class="us"><td><b>Exhibit Automation</b></td><td>$5 per unit/mo, $750 minimum. Setup from $4,500</td><td>50 to 500 units, no ops team</td><td>We do</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small compare-note">Enterprise platforms do not publish pricing, so treat those figures as third-party estimates rather than quotes. What we can say plainly is our own number: a 200-unit manager pays $1,000 a month here, published, and we run it. If a well-answered phone is your whole problem, the $49 tool is the right buy and we'll say so.</p>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="wrap">
+      <span class="eyebrow">Other industries</span>
+      <h2>Home services and law firms: indicative, published at launch.</h2>
+      <div class="grid grid-2 tiers">
+        <div class="card">
+          <h3>Home services <span class="tag tag-amber">soon</span></h3>
+          <p class="small">Priced per truck, $750 minimum. Indicative:</p>
+          <table>
+            <tbody>
+              <tr><td>1 truck</td><td><b>$750</b></td></tr>
+              <tr><td>2 to 3 trucks</td><td><b>$1,250</b></td></tr>
+              <tr><td>4 to 6 trucks</td><td><b>$1,900</b></td></tr>
+            </tbody>
+          </table>
+          <a class="link" href="/book">Join the waitlist →</a>
+        </div>
+        <div class="card">
+          <h3>Law firms <span class="tag tag-amber">soon</span></h3>
+          <p class="small">Priced per attorney, $750 minimum. Indicative:</p>
+          <table>
+            <tbody>
+              <tr><td>1 to 2 attorneys</td><td><b>$750</b></td></tr>
+              <tr><td>3 to 5 attorneys</td><td><b>$1,250</b></td></tr>
+              <tr><td>6 to 10 attorneys</td><td><b>$1,900</b></td></tr>
+            </tbody>
+          </table>
+          <a class="link" href="/book">Join the waitlist →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap two-col">
+      <div>
+        <span class="eyebrow">The guarantee</span>
+        <h2>Live in 30 days, or the final third is waived.</h2>
+        <p>We're a new company and you have no case studies to check. So we carry the delivery risk. If the Workflow Package isn't live within 30 days for reasons on our side, you don't pay the go-live milestone.</p>
+        <p class="small">The clock starts when you've delivered system access and credentials, and pauses during delays on your side. Details in the statement of work.</p>
+      </div>
+      <div>
+        <span class="eyebrow">Capacity</span>
+        <h2>Two or three new clients a month.</h2>
+        <p>Every setup is built by the person you talk to on the intro call. That caps how many we can take on properly. If we're full, we'll tell you when the next slot is. We don't run a fake waitlist.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="wrap">
+      <FAQ items={faqs} title="Pricing questions" />
+    </div>
+  </section>
+
+  <CTA />
+
+  <section class="tight">
+    <div class="wrap">
+      <p class="footnote" id="fn1">1. Per-unit benchmarks and EliseAI minimum: <a href="https://www.layer3labs.io/guides/ai-leasing-assistant" rel="nofollow noopener">AI Leasing Assistant Buyer Guide, 2026</a>; <a href="https://aitoolsbakery.com/blog/eliseai-review/" rel="nofollow noopener">EliseAI Review, 2026</a>.</p>
+      <p class="footnote" id="fn2">2. Agency build and retainer ranges: <a href="https://www.layer3labs.io/roi/ai-automation-agency-cost" rel="nofollow noopener">AI Automation Agency Cost, 2026</a>; <a href="https://lets-viz.com/blogs/ai-automation-agency-pricing-2026-what-buyers-pay" rel="nofollow noopener">AI Automation Agency Pricing: What Buyers Pay, 2026</a>. Receptionist app prices from vendor sites, checked September 2026.</p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero { padding: 72px 0 24px; }
+  .hero h1 { max-width: 22ch; }
+  .examples-grid { margin-top: 24px; align-items: start; grid-template-columns: 0.9fr 1.1fr; }
+  @media (max-width: 960px) { .examples-grid { grid-template-columns: 1fr; } }
+  .examples-grid table td:nth-child(2), .examples-grid table td:nth-child(3) { white-space: nowrap; }
+  .tiers { margin-top: 24px; }
+  .tiers table { margin: 12px 0 18px; }
+  .tiers td { padding: 10px 0; }
+  .tiers td:last-child { text-align: right; }
+  .tiers h3 { display: flex; align-items: center; gap: 10px; }
+  .link { font-weight: 600; text-decoration: none; color: var(--ink); border-bottom: 2px solid var(--amber); padding-bottom: 1px; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+  @media (max-width: 860px) { .two-col { grid-template-columns: 1fr; } }
+  tr.us td { background: var(--amber-soft); }
+  tr.us td:first-child { border-radius: 8px 0 0 8px; }
+  tr.us td:last-child { border-radius: 0 8px 8px 0; }
+  .compare-note { margin-top: 14px; max-width: 70ch; }
+</style>

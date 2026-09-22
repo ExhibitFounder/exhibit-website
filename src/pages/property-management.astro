@@ -1,0 +1,226 @@
+---
+import Base from '../layouts/Base.astro';
+import Digest from '../components/Digest.astro';
+import Calculator from '../components/Calculator.astro';
+import PriceCalc from '../components/PriceCalc.astro';
+import Scene from '../components/Scene.astro';
+import FAQ from '../components/FAQ.astro';
+import Guardrails from '../components/Guardrails.astro';
+import CTA from '../components/CTA.astro';
+
+const title = 'AI for Property Management | Exhibit Automation';
+const description =
+  "After-hours tenant calls triaged, leasing leads answered in under 60 seconds, maintenance logged in AppFolio or Buildium. From $5 per unit.";
+
+const faqs = [
+  { q: 'Do tenants and prospects know they\'re talking to an AI?', a: 'Yes. It introduces itself as your after-hours assistant and never pretends to be a person. Prospects care about getting an answer in 40 seconds, not about who typed it. Where state law requires it, calls carry a recording notice.' },
+  { q: 'What happens to a real emergency at 2am?', a: 'Water, gas, no-heat, lockout, fire or security language triggers an immediate escalation to your on-call number and text thread, with the unit, the tenant\'s history and a transcript. Everything else waits for the digest. The emergency list is yours to define and we test it before go-live.' },
+  { q: 'Does this replace my leasing agent or property manager?', a: 'No. It replaces the part of their day spent on voicemail, inbox triage and re-typing things into AppFolio. Your people spend the morning on the four items that need judgment instead of the sixty that don\'t.' },
+  { q: 'What if it gets something wrong?', a: 'It can\'t do anything irreversible. Refunds, credits, lease terms, policy exceptions and legal notices always wait for your approval. Anything ambiguous is handled conservatively and flagged in the digest. We review every flagged item weekly for the first month and tune the playbook.' },
+  { q: 'Do I have to change software?', a: 'No. That\'s the whole point. We connect to AppFolio, Buildium, Rent Manager, Yardi Breeze, your phone system and your inbox. Nothing new to log into.' },
+  { q: 'How long until it\'s live?', a: 'Three to four weeks for the Workflow Package, with a 30-day go-live guarantee. If we miss it for reasons on our side, the final third of the fee is waived.' },
+];
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Property Management Operations Automation',
+    provider: { '@type': 'Organization', name: 'Exhibit Automation' },
+    areaServed: 'US',
+    audience: { '@type': 'BusinessAudience', name: 'Regional property managers, 50–500 units' },
+    description,
+    offers: { '@type': 'Offer', price: '750', priceCurrency: 'USD', priceSpecification: { '@type': 'UnitPriceSpecification', price: '750', priceCurrency: 'USD', unitText: 'month' } },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a.replace(/<[^>]+>/g, '') } })),
+  },
+];
+---
+
+<Base title={title} description={description} path="/property-management" schema={schema}>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Property management · 50–500 units</span>
+        <h1>Property management operations, handled overnight.</h1>
+        <p class="lede">
+          After-hours calls triaged. Leasing leads answered in under a minute. Maintenance logged as work orders in the
+          software you already run. Tours booked. You approve the four things that need a human, over coffee.
+        </p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="/book">See if you qualify →</a>
+          <a class="btn btn-secondary" href="#calc">Calculate what missed calls cost you</a>
+        </div>
+      </div>
+      <Digest caption={false} />
+    </div>
+  </section>
+
+  <section class="tight">
+    <div class="wrap">
+      <Scene img="property-management" alt="An empty property management office at sunrise, a desk phone and closed laptop on the desk, an apartment building visible through the window" caption="6:40am. Eleven emails and six calls came in overnight. All of them are already handled or waiting on the desk." />
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="wrap">
+      <span class="eyebrow">The problem, in numbers</span>
+      <h2>The leasing lead called at 7:40pm. Nobody picked up.</h2>
+      <div class="grid grid-2 stats">
+        <div class="card stat"><b>60%+</b><span>of calls to multifamily properties go unanswered<sup><a href="#fn1">1</a></sup></span></div>
+        <div class="card stat"><b>40% → 10%</b><span>renter engagement after a 30-minute delay in responding to an inquiry<sup><a href="#fn2">2</a></sup></span></div>
+        <div class="card stat"><b>32 to 41 days</b><span>median list-to-lease during 2026, against 26 days in 2022<sup><a href="#fn3">3</a></sup></span></div>
+        <div class="card stat"><b>$15–30K</b><span>annual rent lost from a single missed leasing call<sup><a href="#fn1">1</a></sup></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap two-col">
+      <div>
+        <span class="eyebrow">What we handle</span>
+        <h2>The routine, every night.</h2>
+        <ul class="checks">
+          <li><b>After-hours and overflow calls</b>, triaged as leasing, tenant, vendor or spam</li>
+          <li><b>Leasing lead response in under 60 seconds</b> across phone, email, Zillow and Apartments.com inquiries</li>
+          <li><b>Tour scheduling</b> into the calendar you already use</li>
+          <li><b>Maintenance intake → structured work order</b> in AppFolio, Buildium, Rent Manager or Yardi Breeze; tenant gets a confirmation text</li>
+          <li><b>Emergency detection</b>: water, gas, no-heat, lockout → immediate escalation to your on-call</li>
+          <li><b>Rent and ledger questions</b> answered from your system of record</li>
+          <li><b>Cold-lead re-engagement</b> and pipeline hygiene</li>
+          <li><b>Vendor confirmations</b> and scheduling</li>
+        </ul>
+      </div>
+      <div>
+        <span class="eyebrow">What waits for you</span>
+        <h2>The judgment calls.</h2>
+        <ul class="checks waits">
+          <li>Lease-break requests</li>
+          <li>Policy exceptions (pets, parking, guests)</li>
+          <li>Fee waivers, credits, refunds</li>
+          <li>Anything involving a legal notice</li>
+          <li>Owner communications you haven't pre-approved</li>
+          <li>Any caller flagged as suspicious or hostile</li>
+        </ul>
+        <p class="small">Each shows up in the digest with context and a one-tap approve / decline. Nothing irreversible happens without you.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="wrap">
+      <span class="eyebrow">Systems we connect to</span>
+      <h2>Your stack, not ours.</h2>
+      <div class="systems">
+        {['AppFolio', 'Buildium', 'Rent Manager', 'Yardi Breeze', 'RentCafe', 'Propertyware', 'Google Workspace', 'Microsoft 365', 'RingCentral', 'Dialpad', 'OpenPhone', 'Twilio-based phones', 'Zillow leads', 'Apartments.com leads'].map((s) => <span class="sys">{s}</span>)}
+      </div>
+      <p class="small">Don't see yours? Ask. Most property software has an API or an email hook we can work with; we'll tell you on the call if it doesn't.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <Calculator
+        defaults={{ calls: 30, missed: 60, value: 1800, close: 25 }}
+        valueLabel="Value of one closed lease to you ($, e.g. first-month rent + avoided vacancy)"
+      />
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="wrap">
+      <span class="eyebrow">Projected results · 200-unit example</span>
+      <h2>What the math says, before we've proven it on your portfolio.</h2>
+      <p class="lede">We're new. Here's what we expect to deliver and where every number comes from. We'll replace this with client results as we earn them.</p>
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>Recovered leasing revenue</h3>
+          <p>At 30 leasing inquiries a month with 60% currently missed, 18 go unanswered. Recovering 12 of those at a 25% lead-to-lease rate is roughly <b>3 additional leases a month</b> in season.</p>
+          <p>Faster response cutting days-vacant by five saves <b>$225–375 per turn</b>.<sup><a href="#fn3">3</a></sup></p>
+        </div>
+        <div class="card">
+          <h3>Recovered staff time</h3>
+          <p>Buildium reports up to <b>12 hours a week</b> saved on communication and admin for a 20-unit portfolio.<sup><a href="#fn4">4</a></sup> At 200 units we project conservatively 20+ hours a week, or <b>800+ hours a year</b>.</p>
+        </div>
+      </div>
+      <div class="card total">
+        <div class="stat"><b>$30K–90K / yr</b><span>projected recovered rent and avoided vacancy</span></div>
+        <div class="stat"><b>800+ hrs / yr</b><span>projected staff time returned</span></div>
+        <div class="stat"><b>$12K / yr</b><span>Managed Agent cost at 200 units, 2 properties</span></div>
+      </div>
+      <p class="footnote">Projections use published industry benchmarks and the assumptions stated above. Your numbers will differ. This is not a guarantee of results.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <span class="eyebrow">Pricing for property managers</span>
+      <h2>$5 per unit per month. $750 minimum. Multiple properties welcome.</h2>
+      <p class="lede">Priced the way you already buy AppFolio or Buildium. $5 per unit for the first 300 units, $4 per unit after that. Your first two properties are included; each additional property is $100 a month for its own phone line, calendar and on-call rules.</p>
+      <div class="grid grid-2 price-grid">
+        <PriceCalc />
+        <div>
+          <div class="card setup-card">
+            <h3>Setup</h3>
+            <ul class="checks">
+              <li><b>Starter Package, $4,500.</b> One property, up to 150 units. Add properties later at $1,000 each.</li>
+              <li><b>Workflow Package, $7,500.</b> Up to three properties. Billed in thirds with a 30-day go-live guarantee. Additional properties $1,000 each.</li>
+              <li>First month of Managed Agent included with either.</li>
+            </ul>
+          </div>
+          <div class="card setup-card">
+            <h3>Compared to the alternatives</h3>
+            <p class="small">Enterprise leasing platforms are quote-based and do not publish prices. Third-party guides put them at $3 to $8 per unit with annual minimums in the tens of thousands, which prices out most portfolios under a few hundred units.<sup><a href="#fn5">5</a></sup> We publish $5 per unit and run it for you. AI receptionist apps are $45 to $299 a month and answer the phone; if that's the whole problem, buy one.</p>
+            <a class="link" href="/pricing">Full pricing and comparison →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Guardrails variant="pm" />
+
+  <section>
+    <div class="wrap">
+      <FAQ items={faqs} />
+    </div>
+  </section>
+
+  <CTA title="Book a property management intro call." body="Twenty minutes. We'll map your actual morning, tell you what we'd automate first, and tell you honestly if a $49 tool would do." />
+
+  <section class="tight">
+    <div class="wrap">
+      <p class="footnote" id="fn1">1. 60.8% unanswered and the $15,000 to $30,000 per-call figure come from an analysis of more than 170,000 multifamily call records, presented at Cadence Connect and reported by <a href="https://digible.com/our-thoughts/why-missed-calls-are-costing-you-leases-data-driven-insights-and-solutions-for-multifamily-operators/" rel="nofollow noopener">Digible</a>.</p>
+      <p class="footnote" id="fn2">2. <a href="https://use.rently.com/blog/rently-2026-renter-touring-expectations-report/" rel="nofollow noopener">Rently 2026 Renter Touring Expectations Report</a>, an online survey of 800 US renters aged 18+ conducted in May 2026 via Pollfish.</p>
+      <p class="footnote" id="fn3">3. Median list-to-lease and avoided-vacancy value: <a href="https://www.onewave-ai.com/blog/ai-for-property-management-smb-playbook" rel="nofollow noopener">OneWave AI, AI for Property Management: The SMB Playbook, 2026</a>.</p>
+      <p class="footnote" id="fn4">4. Hours saved per 20-unit portfolio is <a href="https://www.buildium.com/blog/best-ai-property-management-tools/" rel="nofollow noopener">Buildium's own published claim about its Lumina AI tooling</a>, not an independent benchmark. We cite it because it is attributable, and we scale it down rather than up.</p>
+      <p class="footnote" id="fn5">5. Per-unit benchmarks and platform minimums: <a href="https://www.layer3labs.io/guides/ai-leasing-assistant" rel="nofollow noopener">AI Leasing Assistant Buyer Guide, 2026</a>; <a href="https://aitoolsbakery.com/blog/eliseai-review/" rel="nofollow noopener">EliseAI Review, 2026</a>.</p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero { padding: 72px 0 56px; }
+  .hero-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 48px; align-items: center; }
+  @media (max-width: 960px) { .hero-grid { grid-template-columns: 1fr; gap: 36px; } }
+  .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
+  .stats { margin-top: 24px; }
+  .stats .stat b { color: var(--amber); }
+  .two-col { display: grid; grid-template-columns: 1.3fr 1fr; gap: 48px; }
+  @media (max-width: 860px) { .two-col { grid-template-columns: 1fr; } }
+  .two-col .checks li b { color: var(--ink); }
+  .systems { display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0; }
+  .sys { padding: 8px 14px; border-radius: 999px; background: var(--card); border: 1px solid var(--line); font-size: 0.92rem; font-weight: 500; }
+  .price-grid { margin-top: 24px; align-items: start; grid-template-columns: 1.1fr 0.9fr; }
+  @media (max-width: 960px) { .price-grid { grid-template-columns: 1fr; } }
+  .setup-card { margin-bottom: 20px; }
+  .setup-card h3 { font-size: 1.1rem; }
+  .setup-card .checks { font-size: 0.95rem; }
+  .link { font-weight: 600; text-decoration: none; color: var(--ink); border-bottom: 2px solid var(--amber); padding-bottom: 1px; }
+  .total { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 24px; border-color: var(--amber); }
+  .total .stat b { color: var(--amber); font-size: 1.7rem; }
+  @media (max-width: 760px) { .total { grid-template-columns: 1fr; } }
+</style>

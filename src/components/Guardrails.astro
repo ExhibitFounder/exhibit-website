@@ -1,0 +1,63 @@
+---
+interface Props { variant?: 'general' | 'pm' | 'home' | 'law' }
+const { variant = 'general' } = Astro.props;
+
+const sets = {
+  general: {
+    auto: ['Answering availability and pricing from your published data', 'Booking appointments into your calendar', 'Logging requests as structured records in your software', 'Confirmations and reminders by text or email'],
+    logged: ['Re-engaging cold leads', 'Rescheduling a vendor or appointment', 'Marking a caller as suspicious', 'Recommending a lead be closed'],
+    gated: ['Refunds, credits, fee waivers', 'Contract terms, policy exceptions, legal notices', 'Anything resembling legal or medical advice', 'Any payment or contract'],
+  },
+  pm: {
+    auto: ['Answering availability and pricing from your published data', 'Booking tours into your calendar', 'Logging maintenance as structured work orders', 'Confirmations and reminders to tenants by text or email'],
+    logged: ['Re-engaging cold leasing leads', 'Rescheduling a vendor', 'Marking a caller as suspicious', 'Recommending a lead be closed'],
+    gated: ['Refunds, credits, fee waivers', 'Lease terms, policy exceptions, legal notices', 'Owner communications you have not pre-approved', 'Any payment or contract'],
+  },
+  home: {
+    auto: ['Quoting from your published price book only', 'Booking jobs into Housecall Pro or Jobber', 'Capturing job details and photos for the estimate queue', 'Confirmations, reminders and on-my-way texts'],
+    logged: ['Following up on pending estimates', 'Nudging overdue invoices', 'Rescheduling a customer', 'Requesting a review after a closed job'],
+    gated: ['Pricing exceptions and discounts', 'Warranty disputes', 'Refunds and credits', 'Jobs outside your service area'],
+  },
+  law: {
+    auto: ['Capturing intake by practice area', 'Collecting conflict-check information', 'Booking consults into Clio or MyCase', 'Chasing unsigned engagement letters and document requests'],
+    logged: ['Referring out inquiries outside your practice areas', 'Following up on a scheduled consult', 'Flagging a potential conflict', 'Marking a caller as urgent'],
+    gated: ['Any legal advice, ever', 'Accepting a client or a matter', 'Fees beyond your published schedule', 'Anything involving a deadline or filing'],
+  },
+};
+
+const g = sets[variant];
+const gatedNote =
+  variant === 'law'
+    ? 'We never give legal advice, quote fees beyond your published schedule, or accept a client. Every prospective client is a decision made by your firm.'
+    : 'You own the playbooks and the connector documentation. If we ever part ways, you keep both.';
+---
+
+<section class="alt">
+  <div class="wrap">
+    <span class="eyebrow">Guardrails</span>
+    <h2>Nothing irreversible happens without you.</h2>
+    <p class="lede">Every workflow ships with approval gates. The agent handles the routine, logs the ambiguous, and waits for a human on anything with money, legal weight, or a relationship on the line.</p>
+    <div class="grid grid-3 lanes">
+      <div class="card">
+        <span class="tag tag-green">Handled automatically</span>
+        <ul class="checks">{g.auto.map((i) => <li>{i}</li>)}</ul>
+      </div>
+      <div class="card">
+        <span class="tag tag-amber">Handled, logged for review</span>
+        <ul class="checks waits">{g.logged.map((i) => <li>{i}</li>)}</ul>
+      </div>
+      <div class="card">
+        <span class="tag tag-red">Waits for your approval</span>
+        <ul class="checks waits">{g.gated.map((i) => <li>{i}</li>)}</ul>
+      </div>
+    </div>
+    <p class="small guard-foot">{gatedNote}</p>
+  </div>
+</section>
+
+<style>
+  .lanes { margin-top: 24px; }
+  .lanes .tag { margin-bottom: 14px; }
+  .lanes .checks { font-size: 0.95rem; }
+  .guard-foot { margin-top: 24px; }
+</style>

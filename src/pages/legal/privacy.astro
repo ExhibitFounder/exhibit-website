@@ -1,0 +1,52 @@
+---
+import Base from '../../layouts/Base.astro';
+const title = 'Privacy Policy | Exhibit Automation';
+const description =
+  "How we collect, use and retain information from visitors and clients, including call recordings, transcripts and messaging consent.";
+---
+
+<Base title={title} description={description} path="/legal/privacy">
+  <section class="hero">
+    <div class="wrap legal">
+      <span class="eyebrow">Legal</span>
+      <h1>Privacy policy</h1>
+      <p class="small">Last updated: September 2026. <b>Draft. Have counsel review before launch.</b></p>
+
+      <h2>Who we are</h2>
+      <p>Exhibit Automation ("we") builds and operates automated operations workflows for small businesses. Contact: <a href="mailto:hello@joinexhibit.com">hello@joinexhibit.com</a>.</p>
+
+      <h2>Website visitors</h2>
+      <p>We use privacy-friendly analytics (Plausible) that does not use cookies or collect personal data. If you submit the fit-check form we collect the information you enter (name, email, phone, business details and your answers) to respond to your request. We do not sell this information or add you to marketing lists without your consent.</p>
+
+      <h2>Clients and their customers</h2>
+      <p>When we operate a workflow for a client, we process information on the client's behalf and under the client's instructions, including: call audio and transcripts, emails and text messages, and records from the client's business systems (for example property-management, field-service or practice-management software). We process this information only to perform the agreed workflow.</p>
+
+      <h2>Call recording and transcription</h2>
+      <p>Calls handled by the agent may be recorded and transcribed. Where required by law, callers hear a recording notice at the start of the call. Clients in two-party-consent jurisdictions are responsible for confirming the notice configuration meets local requirements; we provide the default notice and configure it per client.</p>
+
+      <h2>Text messaging</h2>
+      <p>Automated text messages are sent only to people who have contacted the client first (for example, a leasing inquiry or a service request) and only about that inquiry. Every message includes a way to opt out. We do not send marketing texts.</p>
+
+      <h2>Health information</h2>
+      <p>We do not knowingly process protected health information and do not serve clients whose workflows involve it.</p>
+
+      <h2>Retention</h2>
+      <p>Call recordings and transcripts are retained for 90 days by default and then deleted, unless the client requests a different period or the law requires longer. Structured records written to the client's systems belong to the client and follow the client's retention policies.</p>
+
+      <h2>Sub-processors</h2>
+      <p>We use third-party infrastructure to operate workflows, including the AI platform the agent runs on, telephony and messaging providers, and hosting. A current list is available on request.</p>
+
+      <h2>Your rights</h2>
+      <p>You may ask what information we hold about you, ask us to correct or delete it, or object to processing, by emailing <a href="mailto:hello@joinexhibit.com">hello@joinexhibit.com</a>. If you are a customer of one of our clients, we may direct your request to that client.</p>
+
+      <h2>Changes</h2>
+      <p>We will post any changes on this page and update the date above.</p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero { padding: 64px 0; }
+  .legal { max-width: 760px; }
+  .legal h2 { font-size: 1.25rem; margin-top: 2em; }
+</style>

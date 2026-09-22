@@ -1,0 +1,54 @@
+---
+import Base from '../../layouts/Base.astro';
+const title = 'Terms | Exhibit Automation';
+const description =
+  "Website terms and a summary of commercial terms, including the 30-day go-live guarantee, milestone billing and the results disclaimer.";
+---
+
+<Base title={title} description={description} path="/legal/terms">
+  <section class="hero">
+    <div class="wrap legal">
+      <span class="eyebrow">Legal</span>
+      <h1>Terms</h1>
+      <p class="small">Last updated: September 2026. <b>Draft. Have counsel review before launch.</b> Client engagements are governed by a signed statement of work, which controls over this page.</p>
+
+      <h2>Website</h2>
+      <p>This site is provided for information. Content may change without notice. Nothing on it is legal, financial or professional advice.</p>
+
+      <h2>Projected results</h2>
+      <p>Figures described as "projected" are estimates derived from published industry benchmarks and stated assumptions. They are not guarantees. Actual results depend on your business, your systems and your market and will vary.</p>
+
+      <h2>Services summary</h2>
+      <ul>
+        <li><b>Connector Build</b>: fixed scope, 50% on start, 50% on delivery.</li>
+        <li><b>Starter Package</b>: fixed scope, one property or location, 50% on start, 50% at go-live.</li>
+        <li><b>Workflow Package</b>: fixed scope, billed in thirds at scope sign-off, integration complete and go-live. Scope is frozen at sign-off; changes and additional properties are quoted separately.</li>
+        <li><b>Managed Agent</b>: monthly, priced per unit (or per truck or attorney for other industries) with a published minimum and a per-property charge beyond the first two, three-month minimum, then month to month with 30 days' notice.</li>
+      </ul>
+
+      <h2>30-day go-live guarantee</h2>
+      <p>If a Workflow Package is not live within 30 days for reasons attributable to us, the go-live milestone is waived. The 30-day period begins when the client has provided all required system access and credentials, and is paused during any period in which we are waiting on the client (including approvals, access, or stakeholder availability).</p>
+
+      <h2>Approval gates</h2>
+      <p>Workflows are configured so that actions designated in the playbook as requiring approval are not executed without the client's confirmation. The client is responsible for reviewing and approving the playbook, including the designation of such actions.</p>
+
+      <h2>Ownership</h2>
+      <p>On payment, the client owns the playbooks and connector documentation produced for them. We retain ownership of our general methods, templates and tooling.</p>
+
+      <h2>Legal and medical advice</h2>
+      <p>The agent does not provide legal or medical advice, quote fees beyond a client's published schedule, or accept clients or patients on a client's behalf. For law-firm clients, every prospective client is a decision made by the firm.</p>
+
+      <h2>Liability</h2>
+      <p>To the extent permitted by law, our aggregate liability under any engagement is limited to the fees paid for that engagement in the preceding twelve months. Full terms are in the statement of work.</p>
+
+      <h2>Contact</h2>
+      <p><a href="mailto:hello@joinexhibit.com">hello@joinexhibit.com</a></p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero { padding: 64px 0; }
+  .legal { max-width: 760px; }
+  .legal h2 { font-size: 1.25rem; margin-top: 2em; }
+</style>

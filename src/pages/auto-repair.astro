@@ -1,0 +1,50 @@
+---
+import Base from '../layouts/Base.astro';
+import WaitlistPage from '../components/WaitlistPage.astro';
+import CTA from '../components/CTA.astro';
+
+const title = 'AI for Auto Repair Shops | Exhibit Automation';
+const description =
+  "Waitlist open. Calls answered, appointments booked, status updates sent, declined work followed up instead of forgotten. From $750/mo.";
+---
+
+<Base title={title} description={description} path="/auto-repair">
+  <WaitlistPage
+    eyebrow="Auto repair · 1 to 2 locations"
+    h1="The phone rings while you are under a car."
+    lede="Every call answered, appointments booked into your shop system, status updates sent before customers have to ask, and declined work followed up instead of forgotten."
+    img="auto-repair"
+    imgAlt="An empty two-bay auto repair shop at sunrise, a phone handset and clipboard on the front counter"
+    imgCaption="The phone on the counter rang eleven times yesterday while both bays were busy."
+    stats={[
+      { big: '$11,250', label: 'estimated monthly cost of missed calls for a typical auto repair shop<sup><a href="#fn1">1</a></sup>' },
+      { big: '~$4,200', label: 'estimated lifetime revenue behind a single lost customer, per AAA consumer research<sup><a href="#fn1">1</a></sup>' },
+      { big: '85%', label: 'of people who reach voicemail never call back<sup><a href="#fn1">1</a></sup>' },
+      { big: '30%', label: 'of callers hang up within 60 seconds of being put on hold<sup><a href="#fn2">2</a></sup>' },
+    ]}
+    handles={[
+      '<b>Every inbound call answered</b>, including while you are in the bay or on another line',
+      '<b>Appointments booked</b> into Shop-Ware, Tekmetric, Mitchell 1 or your calendar',
+      '<b>Status updates</b> texted to customers at the points you choose, so the "is it ready" calls stop',
+      '<b>Declined work follow-up</b>, the single biggest pile of money most shops leave sitting there',
+      '<b>Service reminders</b> on mileage or date intervals',
+      '<b>Parts and vendor confirmations</b>',
+      '<b>Review requests</b> after a clean job',
+      '<b>Morning digest</b> with the day\'s board and anything that needs you',
+    ]}
+    waits={[
+      'Any estimate change or price exception',
+      'Comebacks and warranty disputes',
+      'Refunds and goodwill credits',
+      'Diagnoses. The agent never guesses what is wrong with a car',
+      'Anything a customer is angry about',
+    ]}
+    systems={['Shop-Ware', 'Tekmetric', 'Mitchell 1', 'AutoLeap', 'Protractor', 'QuickBooks', 'Google Workspace', 'RingCentral', 'OpenPhone', 'Twilio-based phones']}
+    position="If your shop runs a full DMS with a dedicated service advisor, you likely need a platform rather than us. We are building for the one or two bay independent where the owner is also the service advisor and the phone is the bottleneck."
+    footnotes={[
+      { id: 'fn1', html: '1. Monthly missed-call cost is an industry estimate published by service vendors: <a href="https://answeringagent.com/blog/missed-calls-business-revenue" rel="nofollow noopener">Missed Call Revenue Statistics, 2026</a>. Customer lifetime value of roughly $4,200 is attributed to AAA consumer research via <a href="https://agentzap.ai/blog/auto-repair-phone-statistics" rel="nofollow noopener">Auto Repair Shop Phone Statistics, 2026</a>.' },
+      { id: 'fn2', html: '2. Hold-time abandonment: roughly 30% of callers hang up within 60 seconds and over half by 90 seconds. See <a href="https://ainora.lt/blog/customer-hold-time-statistics-abandonment-2026" rel="nofollow noopener">Call Abandonment and Hold Time Statistics, 2026</a>. Definitions of abandonment differ between studies.' },
+    ]}
+  />
+  <CTA title="Join the auto repair waitlist." body="Two minutes now, and you get the first slot when we open this industry. We will also tell you if a cheaper answering tool covers what you need in the meantime." />
+</Base>

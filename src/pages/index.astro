@@ -1,0 +1,181 @@
+---
+import Base from '../layouts/Base.astro';
+import Digest from '../components/Digest.astro';
+import PricingCards from '../components/PricingCards.astro';
+import Guardrails from '../components/Guardrails.astro';
+import CTA from '../components/CTA.astro';
+
+const title = 'Operations Handled Overnight | Exhibit Automation';
+const description =
+  "Done-for-you AI operations for property managers, home services and law firms. We work inside the software you already use. From $750/mo.";
+---
+
+<Base title={title} description={description} path="/">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Done-for-you operations · No new dashboard</span>
+        <h1>Your operations, handled overnight. Reviewed by you over coffee.</h1>
+        <p class="lede">
+          We connect to the phone, inbox and software you already use, handle the routine work 24/7, and send one
+          morning digest of what actually needs a human. No new logins. Nothing irreversible without you.
+        </p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="/book">See if you qualify →</a>
+          <a class="btn btn-secondary" href="#digest">See a real morning digest</a>
+        </div>
+        <p class="small hero-note">Built for property managers (50–500 units), 1–3 truck home-service shops, and small law firms. We take on 2–3 new clients a month.</p>
+      </div>
+      <div id="digest">
+        <Digest animate />
+      </div>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="wrap">
+      <span class="eyebrow">Who this is for</span>
+      <h2>Specific industries. Specific mornings.</h2>
+      <p class="lede">We don't sell "automation." We sell the first two hours of your day back, in the language of your business.</p>
+      <div class="grid grid-3 niches">
+        <div class="card niche live">
+          <span class="tag tag-green">Live now</span>
+          <h3>Property management</h3>
+          <p class="stat-line"><b>60%+</b> of multifamily calls go unanswered.<sup><a href="#fn1">1</a></sup></p>
+          <p class="small">After-hours tenant calls triaged, leasing leads answered in under a minute, maintenance logged as work orders, tours booked. You approve the exceptions.</p>
+          <a class="link stretched" href="/property-management">See the property management workflow →</a>
+        </div>
+        <div class="card niche live">
+          <span class="tag tag-amber">Coming next</span>
+          <h3>Home services</h3>
+          <p class="stat-line"><b>35–45%</b> of HVAC and plumbing calls come in after hours. Under 18% get picked up.<sup><a href="#fn2">2</a></sup></p>
+          <p class="small">Emergency vs. schedule-tomorrow triage, booking into Housecall Pro or Jobber, estimate follow-up, a morning dispatch digest.</p>
+          <a class="link stretched" href="/home-services">See the home services workflow →</a>
+        </div>
+        <div class="card niche live">
+          <span class="tag tag-amber">Coming next</span>
+          <h3>Small law firms</h3>
+          <p class="stat-line"><b>62%</b> of callers who reach voicemail call the next firm instead.<sup><a href="#fn3">3</a></sup></p>
+          <p class="small">Intake by practice area, conflict-check capture, consults scheduled into Clio. Never legal advice. Every prospective client is your decision.</p>
+          <a class="link stretched" href="/law-firms">See the law firm workflow →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <span class="eyebrow">The honest comparison</span>
+      <h2>Why not just buy an AI receptionist?</h2>
+      <p class="lede">Because sometimes you should. Here's the difference, plainly.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th>AI receptionist app<br /><span class="muted">$49–109/mo</span></th>
+              <th>Vertical platform<br /><span class="muted">Avoca, Vellum, etc.</span></th>
+              <th>Exhibit Automation<br /><span class="muted">from $750/mo</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Answers calls well</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+            <tr><td>Reads and drafts your email</td><td>Rarely</td><td>Some</td><td>Yes</td></tr>
+            <tr><td>Knows the caller is the tenant in 4B with an open work order</td><td>No</td><td>If you configure it</td><td>Yes. That's the point</td></tr>
+            <tr><td>Who sets it up and keeps it tuned</td><td>You</td><td>Your ops person</td><td>We do</td></tr>
+            <tr><td>Approval gates on anything irreversible</td><td>No</td><td>Varies</td><td>Always</td></tr>
+            <tr><td>New dashboard to learn</td><td>Yes</td><td>Yes</td><td>No. A morning email</td></tr>
+            <tr><td>Best for</td><td>"Just answer the phone"</td><td>Companies with an ops team</td><td>The operator who <em>is</em> the ops team</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small">If a well-answered phone is your whole problem, buy the $49 tool. We'll tell you which one on the call. <a class="link" href="/compare">The full comparison, including when to pick a competitor →</a></p>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="wrap">
+      <span class="eyebrow">How it works</span>
+      <h2>Three steps. About three hours of your time.</h2>
+      <div class="grid grid-3 steps">
+        <div class="card">
+          <span class="step-n">1</span>
+          <h3>Map</h3>
+          <p>A 60-minute working session. We document your actual morning: what gets missed, what gets forwarded, who decides what.</p>
+        </div>
+        <div class="card">
+          <span class="step-n">2</span>
+          <h3>Connect &amp; build</h3>
+          <p>We wire into your phone system, inbox and property or practice software, then write the playbooks: mappings, schedules, escalation rules, approval gates. Two to four weeks.</p>
+        </div>
+        <div class="card">
+          <span class="step-n">3</span>
+          <h3>Run &amp; manage</h3>
+          <p>It works nights and weekends. You get the digest at 7:30. We tune the playbooks monthly as your business changes.</p>
+        </div>
+      </div>
+      <p><a class="link" href="/how-it-works">The full process, including what a week looks like →</a></p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <span class="eyebrow">Pricing</span>
+      <h2>Fixed scope. Published prices.</h2>
+      <p class="lede">You'll never wonder what this costs. Managed Agent is $5 per unit per month with a $750 minimum, and the first month is included with any setup package.</p>
+      <PricingCards compact />
+      <p style="margin-top:20px"><a class="link" href="/pricing">Full pricing, tiers and terms →</a></p>
+    </div>
+  </section>
+
+  <Guardrails />
+
+  <section>
+    <div class="wrap not-for">
+      <h2>Not for you if…</h2>
+      <div class="grid grid-3">
+        <div class="card"><h3>You just need the phone answered</h3><p class="small">Buy a $49–109/mo AI receptionist. Honestly. We'll point you to a good one.</p></div>
+        <div class="card"><h3>You're an enterprise</h3><p class="small">Procurement cycles and security questionnaires are a full-time job we've chosen not to have.</p></div>
+        <div class="card"><h3>You handle patient health data</h3><p class="small">We don't touch PHI, full stop. Dental and medical offices: not yet.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <CTA />
+
+  <section class="tight">
+    <div class="wrap">
+      <p class="footnote" id="fn1">1. Over 60% of calls to multifamily properties go unanswered: <a href="https://www.retellai.com/blog/best-property-management-answering-service" rel="nofollow noopener">Retell AI, 2026</a>.</p>
+      <p class="footnote" id="fn2">2. After-hours share and pickup rate for HVAC and plumbing: <a href="https://ainora.lt/blog/hvac-service-call-statistics-2026" rel="nofollow noopener">HVAC, Plumbing &amp; Electrical Service Call Statistics, 2026</a>.</p>
+      <p class="footnote" id="fn3">3. 62% of callers will not leave a voicemail and call the next firm: <a href="https://www.legalsoft.com/blog/law-firm-client-intake-statistics" rel="nofollow noopener">Legal Soft, 2026</a>.</p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero { padding: 72px 0 56px; }
+  .hero-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 48px; align-items: center; }
+  @media (max-width: 960px) { .hero-grid { grid-template-columns: 1fr; gap: 36px; } }
+  .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin: 24px 0 16px; }
+  .hero-note { max-width: 46ch; }
+  .niches { margin-top: 24px; }
+  .niche { text-decoration: none; display: flex; flex-direction: column; position: relative; }
+  .niche.live:hover { border-color: var(--amber); }
+  .stretched::after { content: ''; position: absolute; inset: 0; }
+  .niche sup { position: relative; z-index: 1; }
+  .niche .tag { align-self: flex-start; margin-bottom: 14px; }
+  .niche h3 { margin-bottom: 8px; }
+  .stat-line { color: var(--ink-2); }
+  .stat-line b { font-size: 1.5rem; letter-spacing: -0.02em; margin-right: 4px; }
+  .niche .link { margin-top: auto; }
+  .niche.soon { opacity: 0.92; }
+  .link { font-weight: 600; text-decoration: none; color: var(--ink); border-bottom: 2px solid var(--amber); padding-bottom: 1px; }
+  .link:hover { color: var(--amber); }
+  .steps { margin: 24px 0; }
+  .step-n {
+    display: inline-flex; width: 34px; height: 34px; align-items: center; justify-content: center;
+    border-radius: 50%; background: var(--amber-soft); color: var(--amber); font-weight: 700; margin-bottom: 12px;
+  }
+  .not-for .card h3 { font-size: 1.1rem; }
+  table td:first-child { font-weight: 600; color: var(--ink); }
+</style>

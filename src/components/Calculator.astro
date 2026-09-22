@@ -1,0 +1,85 @@
+---
+interface Props {
+  unitLabel?: string;
+  defaults?: { calls: number; missed: number; value: number; close: number };
+  valueLabel?: string;
+}
+const {
+  defaults = { calls: 30, missed: 60, value: 1800, close: 25 },
+  valueLabel = 'Average value per closed lease (first-year rent margin, $)',
+} = Astro.props;
+---
+
+<div class="calc card" id="calc">
+  <div class="calc-head">
+    <span class="eyebrow">Missed-call cost calculator</span>
+    <h3>What is the unanswered phone costing you right now?</h3>
+    <p class="small">Estimates only. Defaults come from published industry benchmarks; change them to your numbers.</p>
+  </div>
+  <form class="calc-grid" onsubmit="return false">
+    <div class="field">
+      <label for="c-calls">Inbound leasing/service inquiries per month</label>
+      <input id="c-calls" type="number" min="1" value={defaults.calls} inputmode="numeric" />
+    </div>
+    <div class="field">
+      <label for="c-missed">% that currently go unanswered or wait &gt; 30 min</label>
+      <input id="c-missed" type="number" min="0" max="100" value={defaults.missed} inputmode="numeric" />
+    </div>
+    <div class="field">
+      <label for="c-value">{valueLabel}</label>
+      <input id="c-value" type="number" min="0" value={defaults.value} inputmode="numeric" />
+    </div>
+    <div class="field">
+      <label for="c-close">% of answered inquiries that close</label>
+      <input id="c-close" type="number" min="0" max="100" value={defaults.close} inputmode="numeric" />
+    </div>
+  </form>
+  <div class="calc-out">
+    <div class="stat"><b id="o-missed">0</b><span>inquiries lost per year</span></div>
+    <div class="stat"><b id="o-leak">$0</b><span>annual revenue leaking</span></div>
+    <div class="stat"><b id="o-recover">$0</b><span>recoverable at a 65% catch rate<sup><a href="#fn-calc">*</a></sup></span></div>
+  </div>
+  <p class="footnote" id="fn-calc">
+    * Assumes we recover 65% of currently missed inquiries, consistent with the 35–55% missed-call reduction reported by
+    home-service companies switching to AI answering and the sub-60-second response benchmarks in property management.
+    Individual results vary. Sources on this page.
+  </p>
+  <div class="calc-cta">
+    <a class="btn btn-primary" href="/book">See if you qualify</a>
+    <span class="small">Managed Agent starts at $750/mo.</span>
+  </div>
+</div>
+
+<script>
+  const $ = (id: string) => document.getElementById(id) as HTMLInputElement;
+  const fmt = (n: number) =>
+    n.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
+  const run = () => {
+    const calls = +$('c-calls').value || 0;
+    const missed = Math.min(100, Math.max(0, +$('c-missed').value || 0)) / 100;
+    const value = +$('c-value').value || 0;
+    const close = Math.min(100, Math.max(0, +$('c-close').value || 0)) / 100;
+    const lostPerYear = calls * 12 * missed;
+    const leak = lostPerYear * close * value;
+    const recover = leak * 0.65;
+    $('o-missed').textContent = Math.round(lostPerYear).toLocaleString('en-US');
+    $('o-leak').textContent = fmt(leak);
+    $('o-recover').textContent = fmt(recover);
+  };
+  ['c-calls', 'c-missed', 'c-value', 'c-close'].forEach((id) => $(id).addEventListener('input', run));
+  run();
+</script>
+
+<style>
+  .calc { padding: 32px; }
+  .calc-head h3 { font-size: 1.5rem; }
+  .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; margin-top: 16px; }
+  @media (max-width: 640px) { .calc-grid { grid-template-columns: 1fr; } }
+  .calc-out {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+    padding: 20px; border-radius: 12px; background: var(--bg-2); margin: 8px 0 12px;
+  }
+  .calc-out .stat b { color: var(--amber); }
+  @media (max-width: 640px) { .calc-out { grid-template-columns: 1fr; } }
+  .calc-cta { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 16px; }
+</style>

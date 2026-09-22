@@ -1,0 +1,208 @@
+---
+import Base from '../layouts/Base.astro';
+
+const title = 'See If You Qualify | Exhibit Automation';
+const description =
+  "Five questions, then a 20-minute intro call. We will tell you honestly if a cheaper tool would serve you better.";
+---
+
+<Base title={title} description={description} path="/book">
+  <section class="hero">
+    <div class="wrap book-grid">
+      <div>
+        <span class="eyebrow">Intro call</span>
+        <h1>Five questions, then a calendar.</h1>
+        <p class="lede">This takes two minutes and saves us both a call if we're not the right fit. If we're not, you'll get an honest pointer to what is.</p>
+        <ul class="checks small">
+          <li>We reply to every submission within one business hour, from a person</li>
+          <li>We take on two or three new clients a month</li>
+          <li>No obligation, no drip campaign</li>
+        </ul>
+      </div>
+
+      <form id="qualify" class="card" novalidate>
+        <div class="field">
+          <label for="q-industry">1. Which best describes your business?</label>
+          <select id="q-industry" name="industry" required>
+            <option value="">Choose one…</option>
+            <option value="pm">Property management</option>
+            <option value="home">Home services (HVAC, plumbing, electrical…)</option>
+            <option value="law">Law firm</option>
+            <option value="auto">Auto repair</option>
+            <option value="vet">Veterinary clinic</option>
+            <option value="health">Medical / dental (patient data)</option>
+            <option value="enterprise">Enterprise (500+ employees or formal procurement)</option>
+            <option value="other">Something else</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="q-size">2. How big? <span class="muted">(units, trucks, attorneys or locations)</span></label>
+          <input id="q-size" name="size" type="text" placeholder="e.g. 180 units · 2 trucks · 3 attorneys" required />
+        </div>
+
+        <div class="field">
+          <label for="q-story">3. Walk us through what happens when a call is missed after hours.</label>
+          <textarea id="q-story" name="story" placeholder="Who notices, what has to happen next, who decides…" required></textarea>
+        </div>
+
+        <div class="field">
+          <label>4. Which software do you run today?</label>
+          <div class="radio-row" id="q-systems">
+            {['Property software (AppFolio, Buildium…)', 'Field-service software (Housecall Pro, Jobber…)', 'Practice software (Clio, MyCase…)', 'A CRM', 'Invoicing / accounting', 'A shared inbox', 'A phone system with voicemail', 'Just a phone'].map((s) => (
+              <label><input type="checkbox" name="systems" value={s} /> {s}</label>
+            ))}
+          </div>
+        </div>
+
+        <div class="field">
+          <label>5. Are you looking for a tool your team uses, or do you want this handled for you?</label>
+          <div class="radio-row">
+            <label><input type="radio" name="mode" value="tool" required /> A tool my team logs into</label>
+            <label><input type="radio" name="mode" value="handled" /> Handled for us, end to end</label>
+            <label><input type="radio" name="mode" value="unsure" /> Not sure yet</label>
+          </div>
+        </div>
+
+        <div class="grid grid-2">
+          <div class="field"><label for="q-name">Name</label><input id="q-name" name="name" type="text" required autocomplete="name" /></div>
+          <div class="field"><label for="q-email">Work email</label><input id="q-email" name="email" type="email" required autocomplete="email" /></div>
+        </div>
+        <div class="field"><label for="q-phone">Phone <span class="muted">(optional)</span></label><input id="q-phone" name="phone" type="tel" autocomplete="tel" /></div>
+
+        <button class="btn btn-primary" type="submit">Continue →</button>
+        <p class="small form-note">By continuing you agree to our <a href="/legal/privacy">privacy policy</a>. We'll only contact you about this request.</p>
+        <p class="small error" id="form-error" hidden>Please fill in every question so we can give you a straight answer.</p>
+      </form>
+    </div>
+  </section>
+
+  <section class="tight" id="result" hidden>
+    <div class="wrap">
+      <div class="card result-card" id="result-yes" hidden>
+        <span class="tag tag-green">Looks like a fit</span>
+        <h2>One more step.</h2>
+        <p class="lede">Send us your answers and we'll reply within one business hour with times that work.</p>
+        <!-- Replace this block with a Cal.com inline embed once the account exists. The mailto below is the fallback so no enquiry is ever lost. -->
+        <p><a class="btn btn-primary" id="send-yes" href="#">Send my answers →</a></p>
+        <p class="small">That opens your email app with everything you just entered, addressed to <a href="mailto:hello@joinexhibit.com">hello@joinexhibit.com</a>. Nothing is submitted until you press send.</p>
+      </div>
+
+      <div class="card result-card" id="result-no" hidden>
+        <span class="tag tag-amber">Probably not us, and that's fine</span>
+        <h2 id="no-title">A simpler tool will serve you better.</h2>
+        <p class="lede" id="no-body"></p>
+        <p class="small">If your situation changes (more systems, more volume, more mornings lost), write to <a href="mailto:hello@joinexhibit.com">hello@joinexhibit.com</a> and we'll pick it up from there.</p>
+      </div>
+
+      <div class="card result-card" id="result-wait" hidden>
+        <span class="tag tag-amber">Not live in your industry yet</span>
+        <h2>Join the waitlist.</h2>
+        <p class="lede">Property management is live now. Home services and law firms are next; auto repair and veterinary follow. Send your answers and we'll email you the moment your industry opens.</p>
+        <p><a class="btn btn-primary" id="send-wait" href="#">Join the waitlist →</a></p>
+        <p class="small">That opens your email app with your answers, addressed to <a href="mailto:hello@joinexhibit.com">hello@joinexhibit.com</a>. Nothing is sent until you press send.</p>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<script>
+  const form = document.getElementById('qualify') as HTMLFormElement;
+  const result = document.getElementById('result')!;
+  const yes = document.getElementById('result-yes')!;
+  const no = document.getElementById('result-no')!;
+  const wait = document.getElementById('result-wait')!;
+  const err = document.getElementById('form-error')!;
+  const noTitle = document.getElementById('no-title')!;
+  const noBody = document.getElementById('no-body')!;
+
+  const NO_COPY: Record<string, [string, string]> = {
+    phone: [
+      'A $49–109/mo AI receptionist will serve you better.',
+      'From what you\'ve described, the problem is a phone that needs answering, and there\'s no second system for us to reason across. An AI receptionist app will do this well for a fraction of our price. Look at Smith.ai\'s AI tier, AgentZap, or Voksha. Set-up is an afternoon.',
+    ],
+    tool: [
+      'You want a tool, and we\'re deliberately not one.',
+      'We only sell the managed version: we run it, you get a digest. If you\'d rather have software your team configures and owns day to day, a vertical platform like Avoca (home services) or Vellum (property management) is built for exactly that.',
+    ],
+    health: [
+      'We don\'t work with patient data.',
+      'Anything touching protected health information is off the table for us until the platform we build on carries a signed BAA. We\'d rather say so now than discover it in week two.',
+    ],
+    enterprise: [
+      'We\'re built for owner-operators, not procurement.',
+      'Formal procurement, security questionnaires and multi-stakeholder rollouts are a full-time job we\'ve chosen not to have. A larger integrator will serve you better.',
+    ],
+  };
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!form.checkValidity()) {
+      err.hidden = false;
+      form.reportValidity();
+      return;
+    }
+    err.hidden = true;
+    const data = new FormData(form);
+    const industry = String(data.get('industry'));
+    const mode = String(data.get('mode'));
+    const systems = data.getAll('systems').map(String);
+    const onlyPhone = systems.length === 0 || (systems.length === 1 && systems[0] === 'Just a phone');
+
+    let outcome: 'yes' | 'no' | 'wait' = 'yes';
+    let reason = '';
+    if (industry === 'health') { outcome = 'no'; reason = 'health'; }
+    else if (industry === 'enterprise') { outcome = 'no'; reason = 'enterprise'; }
+    else if (mode === 'tool') { outcome = 'no'; reason = 'tool'; }
+    else if (onlyPhone) { outcome = 'no'; reason = 'phone'; }
+    else if (industry !== 'pm') { outcome = 'wait'; }
+
+    // No backend yet, so the answers are handed to the visitor's mail client rather than dropped.
+    // When a form endpoint exists, POST `data` here and keep the mailto as a fallback.
+    const lines = [
+      `Industry: ${industry}`,
+      `Size: ${data.get('size')}`,
+      `Systems: ${systems.length ? systems.join(', ') : 'none selected'}`,
+      `Wants: ${mode}`,
+      '',
+      'What happens when a call is missed after hours:',
+      String(data.get('story')),
+      '',
+      `Name: ${data.get('name')}`,
+      `Email: ${data.get('email')}`,
+      `Phone: ${data.get('phone') || 'not given'}`,
+    ];
+    const href =
+      'mailto:hello@joinexhibit.com' +
+      `?subject=${encodeURIComponent(outcome === 'wait' ? 'Waitlist request' : 'Intro call request')}` +
+      `&body=${encodeURIComponent(lines.join('\n'))}`;
+    (document.getElementById('send-yes') as HTMLAnchorElement).href = href;
+    (document.getElementById('send-wait') as HTMLAnchorElement).href = href;
+
+    form.hidden = true;
+    result.hidden = false;
+    yes.hidden = outcome !== 'yes';
+    wait.hidden = outcome !== 'wait';
+    no.hidden = outcome !== 'no';
+    if (outcome === 'no') {
+      const [t, b] = NO_COPY[reason];
+      noTitle.textContent = t;
+      noBody.textContent = b;
+    }
+    result.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+</script>
+
+<style>
+  .hero { padding: 64px 0 40px; }
+  .book-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 48px; align-items: start; }
+  @media (max-width: 900px) { .book-grid { grid-template-columns: 1fr; } }
+  .book-grid .checks { margin-top: 20px; }
+  #qualify { padding: 32px; }
+  .form-note { margin-top: 14px; }
+  .error { color: var(--red); }
+  #result { scroll-margin-top: 90px; }
+  .result-card { max-width: 720px; }
+  .result-card .tag { margin-bottom: 14px; }
+  .cal-placeholder { border: 1px dashed var(--line); border-radius: 12px; padding: 32px; text-align: center; background: var(--bg-2); }
+</style>

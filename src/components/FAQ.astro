@@ -1,0 +1,19 @@
+---
+interface Item { q: string; a: string }
+interface Props { items: Item[]; title?: string }
+const { items, title = 'Questions we get on every call' } = Astro.props;
+---
+
+<div class="faq-wrap">
+  <h2>{title}</h2>
+  {items.map((it) => (
+    <details class="faq">
+      <summary>{it.q}</summary>
+      <p set:html={it.a} />
+    </details>
+  ))}
+</div>
+
+<style>
+  .faq-wrap { max-width: 760px; }
+</style>

@@ -1,0 +1,74 @@
+---
+interface Props { compact?: boolean }
+const { compact = false } = Astro.props;
+---
+
+<div class="grid pricing">
+  <div class="card">
+    <span class="eyebrow">Connector Build</span>
+    <p class="price">$3,500</p>
+    <p class="small">One system connected, tested, documented and handed over. 2 weeks.</p>
+    {!compact && (
+      <ul class="checks">
+        <li>One system (AppFolio, Buildium, Clio, Housecall Pro…) connected to the agent</li>
+        <li>Tested against your real data</li>
+        <li>Written handover. You own it</li>
+        <li>50% to start, 50% on delivery</li>
+      </ul>
+    )}
+  </div>
+  <div class="card">
+    <span class="eyebrow">Starter Package</span>
+    <p class="price">$4,500</p>
+    <p class="small">One property or location, up to 150 units. The full workflow and digest. 2 to 3 weeks.</p>
+    {!compact && (
+      <ul class="checks">
+        <li>Up to 2 connectors</li>
+        <li>Playbooks, approval gates, morning digest</li>
+        <li>First month of Managed Agent included</li>
+        <li>50% to start, 50% at go-live</li>
+        <li>Add properties later at $1,000 each</li>
+      </ul>
+    )}
+  </div>
+  <div class="card featured">
+    <span class="tag tag-amber">Multi-property</span>
+    <span class="eyebrow">Workflow Package</span>
+    <p class="price">$7,500</p>
+    <p class="small">Up to three properties or locations. Connectors, playbooks, digest, two weeks of supervised running. 3 to 4 weeks.</p>
+    {!compact && (
+      <ul class="checks">
+        <li>Up to 3 connectors, up to 3 properties</li>
+        <li>Additional properties $1,000 each</li>
+        <li>Billed in thirds: scope sign-off · integration complete · go-live</li>
+        <li>First month of Managed Agent included</li>
+        <li><b>30-day go-live guarantee</b>: miss it on our side and the final third is waived</li>
+      </ul>
+    )}
+  </div>
+  <div class="card">
+    <span class="eyebrow">Managed Agent</span>
+    <p class="price">$5<span class="per">/unit/mo</span></p>
+    <p class="small">$750 minimum. $4 per unit after 300. First two properties included, then $100 per property.</p>
+    {!compact && (
+      <ul class="checks">
+        <li>24/7 running, daily digest</li>
+        <li>Monthly playbook tuning</li>
+        <li>Priority support, quarterly review</li>
+        <li>Three-month minimum, then month to month</li>
+        <li>Home services and law firms: per truck / per attorney, published at launch</li>
+      </ul>
+    )}
+  </div>
+</div>
+
+<style>
+  .pricing { grid-template-columns: repeat(4, 1fr); }
+  @media (max-width: 1000px) { .pricing { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .pricing { grid-template-columns: 1fr; } }
+  .price { font-size: 2.2rem; font-weight: 700; letter-spacing: -0.03em; margin: 4px 0 6px; }
+  .per { font-size: 0.95rem; font-weight: 500; color: var(--muted); }
+  .featured { border-color: var(--amber); position: relative; }
+  .featured .tag { position: absolute; top: -12px; left: 24px; }
+  .pricing .checks { margin-top: 16px; font-size: 0.92rem; }
+</style>

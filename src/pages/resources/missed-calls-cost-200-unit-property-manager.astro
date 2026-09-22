@@ -1,0 +1,95 @@
+---
+import Article from '../../layouts/Article.astro';
+---
+
+<Article slug="missed-calls-cost-200-unit-property-manager">
+  <p>
+    Every property manager knows they miss calls. Almost none of them know what it costs, because the loss never shows
+    up on a statement. There is no line item called "the person who called at 7:40pm and leased somewhere else." So
+    here is the arithmetic, with every input sourced, for a 200-unit portfolio.
+  </p>
+
+  <h2>Start with the missed-call rate</h2>
+  <p>
+    Over 60% of calls to multifamily properties go unanswered. That figure surprises people, so it is worth sitting
+    with: for every ten people who call about a unit, six reach voicemail, a full mailbox, or nobody at all.
+  </p>
+  <p>
+    The second number matters more. A 30-minute delay in responding to a rental inquiry drops renter engagement from
+    40% to 10%. Not a lost lease necessarily, but a three-quarters reduction in the chance they still care by the time
+    you call back. In practice, a voicemail returned the next morning is usually a dead lead.
+  </p>
+
+  <h2>Turn that into leases</h2>
+  <p>Assume a 200-unit portfolio generating 30 leasing inquiries in a month. Applying the benchmark:</p>
+  <ul>
+    <li>30 inquiries, 60% missed or answered too late, so <b>18 lost contacts</b></li>
+    <li>Suppose an automated system recovers 12 of those 18, answering in under a minute at any hour</li>
+    <li>At a 25% lead-to-lease conversion rate, that is <b>three additional leases a month</b> in leasing season</li>
+  </ul>
+  <p>
+    Three leases. If your average unit rents at $1,500, that is $4,500 a month in rent that was walking out the door,
+    or $54,000 annualised if the pattern held all year. It will not hold all year, because leasing is seasonal, which
+    is why we quote a range rather than a single number.
+  </p>
+
+  <h2>Then add the vacancy math</h2>
+  <p>
+    Median list-to-lease time hit 41 days in early 2026, against 26 days in 2022. It has since improved to roughly 32
+    days as of August 2026, but units are still sitting empty substantially longer than they were four years ago, and
+    every day is rent you do not collect.
+  </p>
+  <p>
+    An assistant that responds instantly and books tours without waiting for someone to get to the inbox typically
+    pulls a few days out of that cycle. Cutting five days off a turn is worth $225 to $375 per turn. On a 200-unit
+    portfolio with a 40% annual turnover rate, that is 80 turns, or <b>$18,000 to $30,000 a year</b> in avoided
+    vacancy alone.
+  </p>
+
+  <h2>Do not forget the hours</h2>
+  <p>
+    Buildium reports up to 12 hours a week saved on communication and admin for a 20-unit portfolio using AI tooling.
+    Scaling that conservatively to 200 units, call it 20 or more hours a week. That is half a full-time position spent
+    on voicemail triage, inbox sorting, and re-typing maintenance requests into the system, every single week.
+  </p>
+
+  <div class="callout">
+    <p><b>The rough total for 200 units:</b> $30,000 to $90,000 a year in recovered rent and avoided vacancy, plus
+    roughly 800 staff hours returned. Against a managed service at $12,000 a year, the arithmetic is not close.</p>
+  </div>
+
+  <h2>Where this estimate could be wrong</h2>
+  <p>Three assumptions do most of the work, and any of them could be off for your portfolio:</p>
+  <ul>
+    <li>
+      <b>Your missed-call rate.</b> If you already answer 90% of calls because you have a great front-desk person, the
+      recovery number collapses. Measure yours before believing any of this. Most phone systems will report it.
+    </li>
+    <li>
+      <b>Your conversion rate.</b> 25% lead-to-lease is a reasonable middle. If your units are in high demand and you
+      convert at 40%, the number goes up. If you are in a soft market at 15%, it goes down.
+    </li>
+    <li>
+      <b>Seasonality.</b> Three extra leases a month is a May number, not a January number.
+    </li>
+  </ul>
+
+  <h2>How to check it yourself in one week</h2>
+  <p>
+    Pull your phone system's call report for the last 30 days and find three numbers: total inbound calls, calls
+    answered, and average time to first response on your leasing inbox. Multiply the gap by your own conversion rate
+    and your own average rent. If the result is not several times what a fix would cost, do not buy one.
+  </p>
+  <p>
+    The <a href="/property-management#calc">calculator on our property management page</a> does this arithmetic with
+    your numbers instead of the benchmarks.
+  </p>
+
+  <h2>Sources</h2>
+  <ul>
+    <li><a href="https://www.retellai.com/blog/best-property-management-answering-service" rel="nofollow noopener">Retell AI, Property Management Answering Service, 2026</a> for the unanswered-call rate and per-call rent loss.</li>
+    <li><a href="https://www.vellum.ai/blog/best-ai-assistants-for-property-managers" rel="nofollow noopener">Vellum, Best AI Assistants for Property Managers, 2026</a>, citing the Rently 2026 Renter Touring Expectations Report for the response-delay effect.</li>
+    <li><a href="https://www.onewave-ai.com/blog/ai-for-property-management-smb-playbook" rel="nofollow noopener">OneWave AI, SMB Playbook, 2026</a> for list-to-lease timing and avoided-vacancy value.</li>
+    <li><a href="https://www.buildium.com/blog/best-ai-property-management-tools/" rel="nofollow noopener">Buildium, Best AI Property Management Tools, 2026</a> for hours saved per 20 units.</li>
+  </ul>
+</Article>

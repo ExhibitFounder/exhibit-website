@@ -1,0 +1,104 @@
+---
+import Article from '../../layouts/Article.astro';
+---
+
+<Article slug="approval-gates">
+  <p>
+    Most conversations about business automation focus on what the system can do. The more useful question, and the one
+    that decides whether you can sleep while it runs, is what it is not allowed to do.
+  </p>
+  <p>
+    An approval gate is a rule that says: this action never happens until a specific human says yes. It is not a safety
+    feature bolted on afterwards. It is the thing that makes an autonomous system deployable in a real business at all.
+  </p>
+
+  <h2>The three lanes</h2>
+  <p>Every action an automated system might take belongs in one of three lanes. The work is deciding which.</p>
+
+  <h3>Lane 1: Handled automatically</h3>
+  <p>
+    Routine, reversible, and bounded by facts you have already published. Answering whether a unit is available. Booking
+    a tour into an open calendar slot. Logging a maintenance request as a work order. Sending a confirmation text.
+  </p>
+  <p>
+    The test: if it goes wrong, can you fix it with an apology and five minutes? A tour booked in the wrong slot is
+    annoying. It is not a loss.
+  </p>
+
+  <h3>Lane 2: Handled, logged for review</h3>
+  <p>
+    Actions with real judgment in them, where doing nothing is worse than acting, but you want to see what happened.
+    Re-engaging a lead that went cold. Rescheduling a vendor. Marking a caller as suspicious. Recommending a lead be
+    closed.
+  </p>
+  <p>
+    These appear in the morning digest as a record, not a question. You are not approving them, you are staying
+    informed, and over time this lane is where you learn whether the playbook matches your judgment.
+  </p>
+
+  <h3>Lane 3: Waits for approval</h3>
+  <p>Nothing here moves without a human. The categories are consistent across industries:</p>
+  <ul>
+    <li><b>Money out.</b> Refunds, credits, fee waivers, discounts, goodwill gestures.</li>
+    <li><b>Contractual commitments.</b> Lease terms, pricing exceptions, warranty decisions, anything that binds you.</li>
+    <li><b>Legal weight.</b> Notices, anything resembling legal or medical advice, anything with a deadline attached.</li>
+    <li><b>Damaged relationships.</b> An angry customer, a complaint, a threat to leave a review.</li>
+  </ul>
+  <p>
+    The common thread is irreversibility. Not "important," not "expensive," but hard to take back. A $40 credit you did
+    not authorise is a small amount of money and a large amount of precedent.
+  </p>
+
+  <h2>Why a well-built system needs this more, not less</h2>
+  <p>
+    There is an intuition that better AI needs fewer guardrails. The opposite is true in practice. A system that is
+    obviously clumsy gets supervised closely. A system that is fluent and usually right gets trusted, and the failure,
+    when it comes, arrives with total confidence and nobody watching.
+  </p>
+  <p>
+    The failure mode is rarely something dramatic. It is a plausible-sounding answer to an unusual question. A price
+    that is roughly right but not your price. A commitment that sounds like something you would say. These are exactly
+    the errors that slip past a quick skim of a log.
+  </p>
+
+  <h2>What a gate looks like in practice</h2>
+  <p>A properly built gate has four parts:</p>
+  <ol>
+    <li><b>Detection.</b> The system recognises this class of request before responding, not after.</li>
+    <li><b>A safe holding response.</b> The customer is not left hanging. "I've passed that to Dana, who'll come back to you first thing" is a complete, honest answer.</li>
+    <li><b>Context for the human.</b> The transcript, the customer's history, what the system would have said, and why it stopped.</li>
+    <li><b>A one-tap decision.</b> If approving takes more than a few seconds, it will not happen and the gate becomes a bottleneck.</li>
+  </ol>
+
+  <h2>The part vendors do not like discussing</h2>
+  <p>
+    Gates cost conversion. A system that quotes a price on the spot closes more jobs than one that says a human will
+    confirm tomorrow. That is a genuine trade-off and anyone claiming otherwise is selling.
+  </p>
+  <p>
+    The reason to take the trade anyway is asymmetry. The upside of an unauthorised commitment is one faster booking.
+    The downside is a price you have to honour, a tenant expecting something you did not promise, or a client who
+    believes they received advice. Those are not symmetrical outcomes, so the conservative default is correct even
+    though it costs something measurable.
+  </p>
+
+  <div class="callout">
+    <p>
+      <b>How to audit any vendor in ten minutes:</b> ask them to write down every action their system can take without a
+      human. Then ask what happens when a customer asks for a discount, threatens a bad review, or says something the
+      system has never seen. A good vendor answers immediately and specifically. A bad one talks about how advanced the
+      model is.
+    </p>
+  </div>
+
+  <h2>Building your own list</h2>
+  <p>
+    If you are scoping automation, write the lane-3 list before anyone writes code. Sit down for twenty minutes and list
+    every action in your business that would be expensive or embarrassing to take back. That list is the spine of the
+    whole project and it is more valuable than any feature comparison.
+  </p>
+  <p>
+    You can see ours on the <a href="/how-it-works">how it works page</a>, and the industry-specific versions on each
+    industry page.
+  </p>
+</Article>

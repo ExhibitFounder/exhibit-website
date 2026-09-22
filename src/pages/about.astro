@@ -1,0 +1,61 @@
+---
+import Base from '../layouts/Base.astro';
+import CTA from '../components/CTA.astro';
+
+const title = 'About | Exhibit Automation';
+const description =
+  "Built by a property-management operator who did the 7am call and inbox triage by hand. Five industries, owner-operators only, 2 to 3 clients a month.";
+---
+
+<Base title={title} description={description} path="/about">
+  <section class="hero">
+    <div class="wrap about-grid">
+      <div>
+        <span class="eyebrow">About</span>
+        <h1>I ran the morning triage myself. This is the employee I wish I'd had.</h1>
+        <p class="lede">
+          Before this, I worked property-management operations at Varsity. Every morning started the same way: the
+          voicemail box, the shared inbox, the listing-site leads that came in at 9pm, and the one maintenance email
+          that turned out to be a real leak. Two hours, most of it re-typing things from one system into another,
+          before any actual decision got made.
+        </p>
+        <p>
+          Exhibit Automation is that two hours, done overnight, by an agent that works inside the software you already
+          use, plus a person who designs, runs and keeps tuning it so you never have to learn a dashboard.
+        </p>
+        <p>
+          We work in five industries on purpose: property management, home services, small law firms, auto repair and
+          veterinary clinics. Owner-operators, not enterprises. Two or three new clients a month, so every one of them
+          gets built properly.
+        </p>
+        <p class="small">Afan Rashid, founder · <a href="mailto:hello@joinexhibit.com">hello@joinexhibit.com</a></p>
+      </div>
+      <div class="card portrait">
+        <!-- Replace with a real founder photo (public/founder.jpg). Never a generated one. -->
+        <div class="portrait-ph" role="img" aria-label="Founder photo placeholder"></div>
+        <p class="small">Founder photo goes here.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="wrap">
+      <span class="eyebrow">What we believe</span>
+      <div class="grid grid-3">
+        <div class="card"><h3>Sell the outcome, not the tool</h3><p class="small">Nobody wants "AI." They want the leasing lead answered at 7:41pm and the leak escalated at 2am. That's what we sell.</p></div>
+        <div class="card"><h3>Nothing irreversible without a human</h3><p class="small">Approval gates aren't a feature, they're the product. An agent that can issue a refund is a liability. One that asks first is an employee.</p></div>
+        <div class="card"><h3>Say no early</h3><p class="small">If a $49 tool would do, we'll tell you. If you're an enterprise, we'll point you elsewhere. Our first three clients need us to be right, not busy.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <CTA />
+</Base>
+
+<style>
+  .hero { padding: 72px 0 56px; }
+  .about-grid { display: grid; grid-template-columns: 1.3fr 0.7fr; gap: 48px; align-items: start; }
+  @media (max-width: 860px) { .about-grid { grid-template-columns: 1fr; } }
+  .portrait { text-align: center; }
+  .portrait-ph { aspect-ratio: 4 / 5; border-radius: 12px; background: linear-gradient(160deg, var(--amber-soft), var(--bg-2)); margin-bottom: 12px; }
+</style>

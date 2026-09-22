@@ -1,0 +1,211 @@
+---
+import Base from '../layouts/Base.astro';
+import Digest from '../components/Digest.astro';
+import Calculator from '../components/Calculator.astro';
+import FAQ from '../components/FAQ.astro';
+import Guardrails from '../components/Guardrails.astro';
+import CTA from '../components/CTA.astro';
+import Scene from '../components/Scene.astro';
+
+const title = 'AI Intake for Small Law Firms | Exhibit Automation';
+const description =
+  "Every intake call answered and qualified by practice area, consults booked into Clio. No legal advice, ever. From $750/mo.";
+
+const faqs = [
+  { q: 'Does it give legal advice?', a: 'Never. That is a hard line written into the playbook and the contract. If a caller asks whether they have a case, the agent says only an attorney can answer that and offers a consult. It does not characterise claims, estimate outcomes, or discuss deadlines.' },
+  { q: 'Who decides whether to take the client?', a: 'You do, every time. The agent captures the intake, runs the conflict-check questions you specify, and books a consult. It never accepts a client, never signs anyone up, and never quotes a fee beyond your published schedule.' },
+  { q: 'How does conflict checking work?', a: 'The agent collects the information your conflict process needs: party names, opposing parties, matter type, dates. It checks those against your existing matters in Clio or MyCase and flags anything that matches, without completing an intake. A flagged conflict goes to you as the first item in the digest.' },
+  { q: 'What about confidentiality?', a: 'Intake conversations are handled under the same confidentiality obligations you would expect from staff. Recordings and transcripts are retained for 90 days by default, or whatever period you specify, then deleted. We do not use client conversations to train anything. Details are in the privacy policy and the engagement terms.' },
+  { q: 'How is this different from AgentZap or Smith.ai?', a: 'AgentZap starts around $109 a month for 150 minutes, plus a setup fee and per-minute overage, and it is a good product. If intake calls are your only gap, buy it. Smith.ai offers real humans, which matters for some firms. We are for the firm where intake is one of six things falling through: the unsigned engagement letters, the document requests nobody chased, the inquiry form nobody answered. Only 33% of firms respond to email inquiries at all.' },
+  { q: 'Which practice areas does this work for?', a: 'Best fit is high-volume intake work: personal injury, family, immigration, estate planning, criminal defence, employment. Poor fit is anything where intake is a relationship rather than a form, such as M&A or complex commercial litigation.' },
+];
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Legal Intake Automation for Small Law Firms',
+    provider: { '@type': 'Organization', name: 'Exhibit Automation' },
+    areaServed: 'US',
+    audience: { '@type': 'BusinessAudience', name: 'Law firms, 1 to 10 attorneys' },
+    description,
+    offers: { '@type': 'Offer', price: '750', priceCurrency: 'USD' },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+  },
+];
+---
+
+<Base title={title} description={description} path="/law-firms" schema={schema}>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Law firms · 1 to 10 attorneys</span>
+        <h1>Every intake call answered, qualified, and in Clio before you are at your desk.</h1>
+        <p class="lede">
+          Intake by practice area. Conflict-check data captured. Consults booked. Engagement letters chased. No legal
+          advice, ever, and every prospective client is still your decision.
+        </p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="/book">See if you qualify →</a>
+          <a class="btn btn-secondary" href="#calc">Calculate what missed intake costs you</a>
+        </div>
+        <p class="small">Waitlist is open now. Property management is live; law firms start onboarding after home services.</p>
+      </div>
+      <Digest variant="law" caption={false} />
+    </div>
+  </section>
+
+  <section class="tight">
+    <div class="wrap">
+      <Scene img="law-firms" alt="A small law office at early morning, a desk phone and closed laptop on a wooden desk, warm light through tall windows" caption="7:30am. Three intakes captured overnight, two consults booked, one conflict flagged for you." />
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="wrap">
+      <span class="eyebrow">The problem, in numbers</span>
+      <h2>They do not leave a voicemail. They call the next firm.</h2>
+      <div class="grid grid-2 stats">
+        <div class="card stat"><b>40%</b><span>of firms actually answered the phone in Clio's secret-shopper study of 500 firms, down from 56% in 2019<sup><a href="#fn1">1</a></sup></span></div>
+        <div class="card stat"><b>62%</b><span>of callers who do not reach a business contact a competitor instead<sup><a href="#fn2">2</a></sup></span></div>
+        <div class="card stat"><b>400%</b><span>higher conversion from a five-minute response versus an hour<sup><a href="#fn2">2</a></sup></span></div>
+        <div class="card stat"><b>33%</b><span>of firms respond to email inquiries at all; 26% never answer web forms<sup><a href="#fn1">1</a></sup></span></div>
+      </div>
+      <p class="small">Clio also found that firms which improve client onboarding, including adding online intake tools, average 50% more incoming potential clients and 50% more revenue.<sup><a href="#fn1">1</a></sup></p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap two-col">
+      <div>
+        <span class="eyebrow">What we handle</span>
+        <h2>The intake work that never gets done at 8pm.</h2>
+        <ul class="checks">
+          <li><b>Intake by practice area</b>, using your questions, in your order</li>
+          <li><b>Conflict-check data capture</b>, checked against existing matters, flagged not resolved</li>
+          <li><b>Consult scheduling</b> into Clio, MyCase, Lawmatics or PracticePanther</li>
+          <li><b>Web form and email inquiries</b> answered in under a minute, not next Tuesday</li>
+          <li><b>Referral-out</b> for anything outside your practice areas, using your referral list</li>
+          <li><b>Engagement letter chasing</b> until signed</li>
+          <li><b>Document request follow-up</b> on open matters</li>
+          <li><b>Payment reminders</b> on outstanding invoices through LawPay</li>
+          <li><b>Morning intake digest</b> with everything captured and everything flagged</li>
+        </ul>
+      </div>
+      <div>
+        <span class="eyebrow">What never happens</span>
+        <h2>The hard lines.</h2>
+        <ul class="checks waits">
+          <li>No legal advice, in any form</li>
+          <li>No accepting a client or a matter</li>
+          <li>No fee quotes beyond your published schedule</li>
+          <li>No discussion of deadlines, limitations or filings</li>
+          <li>No completed intake where a conflict is flagged</li>
+        </ul>
+        <p class="small">These are written into the playbook you sign off and into the engagement terms. They are not settings someone can toggle.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="wrap">
+      <span class="eyebrow">Systems we connect to</span>
+      <h2>Your practice stack.</h2>
+      <div class="systems">
+        {['Clio', 'MyCase', 'Lawmatics', 'PracticePanther', 'Smokeball', 'LawPay', 'Google Workspace', 'Microsoft 365', 'RingCentral', 'Dialpad', 'OpenPhone', 'Website intake forms'].map((s) => <span class="sys">{s}</span>)}
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <Calculator
+        defaults={{ calls: 40, missed: 35, value: 3000, close: 30 }}
+        valueLabel="Average value of a retained matter ($)"
+      />
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="wrap">
+      <span class="eyebrow">Projected results · 3-attorney firm</span>
+      <h2>What the math says, before we have proven it on your firm.</h2>
+      <p class="lede">We are new in this vertical. Here is what we expect and where the numbers come from. We will replace this with client results as we earn them.</p>
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>Retained matters</h3>
+          <p>At 40 inquiries a month with 35% missed, 14 go unanswered and roughly 9 are lost for good. Recovering 6 at a 30% consult-to-retain rate and a $3,000 average matter is about <b>$5,400 a month</b>.</p>
+        </div>
+        <div class="card">
+          <h3>Intake cost</h3>
+          <p>AI intake tools reduce client intake costs by up to 40% for small and mid-sized firms.<sup><a href="#fn3">3</a></sup> The bigger gain is usually the inquiries nobody had time to answer at all.</p>
+        </div>
+      </div>
+      <div class="card total">
+        <div class="stat"><b>$50K to $120K / yr</b><span>projected additional retained matters</span></div>
+        <div class="stat"><b>Under 60 sec</b><span>target first response to a new inquiry</span></div>
+        <div class="stat"><b>$15K / yr</b><span>Managed Agent at the indicative 3 to 5 attorney rate</span></div>
+      </div>
+      <p class="footnote">Projections use published industry benchmarks and the assumptions stated above. Your numbers will differ. This is not a guarantee of results, and nothing here is legal or business advice.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <span class="eyebrow">Pricing</span>
+      <h2>Per attorney, $750 minimum.</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Firm size</th><th>Monthly</th><th>Includes</th></tr></thead>
+          <tbody>
+            <tr><td>1 to 2 attorneys</td><td><b>$750</b></td><td rowspan="3">24/7 running · daily intake digest · monthly playbook tuning · priority support · quarterly review · three-month minimum, then month to month</td></tr>
+            <tr><td>3 to 5 attorneys</td><td><b>$1,250</b></td></tr>
+            <tr><td>6 to 10 attorneys</td><td><b>$1,900</b></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small" style="margin-top:14px">Indicative pricing, confirmed at launch. Setup is the <a href="/pricing">Starter Package at $4,500</a> for a single office or the <a href="/pricing">Workflow Package at $7,500</a> for multiple, with the first month of Managed Agent included and a 30-day go-live guarantee.</p>
+    </div>
+  </section>
+
+  <Guardrails variant="law" />
+
+  <section>
+    <div class="wrap">
+      <FAQ items={faqs} />
+    </div>
+  </section>
+
+  <CTA title="Get on the law firm waitlist." body="Twenty minutes. We will map where intake is leaking, tell you what we would automate first, and tell you honestly if a $109 intake tool would cover it." />
+
+  <section class="tight">
+    <div class="wrap">
+      <p class="footnote" id="fn1">1. Answer rate, email response rate and onboarding impact come from <a href="https://www.clio.com/resources/legal-trends/" rel="nofollow noopener">Clio's Legal Trends Report</a>, based on a secret-shopper study of 500 law firms. A separate <a href="https://www.cbs42.com/business/press-releases/ein-presswire/839484491/new-national-study-finds-35-of-law-firm-calls-go-unanswered-costing-industry-an-estimated-109-billion-annually/" rel="nofollow noopener">national study</a> puts unanswered calls at 35% and the industry cost at an estimated $109 billion a year.</p>
+      <p class="footnote" id="fn2">2. Caller-to-competitor behaviour is reported across several call-analytics vendors, with studies ranging from 82% to 88% for callers who do not leave a voicemail. Definitions differ between studies, so treat it as a range. Response-time conversion effects: <a href="https://hyperleap.ai/blog/legal-client-intake-statistics-2026" rel="nofollow noopener">Legal Client Intake Statistics, 2026</a>.</p>
+      <p class="footnote" id="fn3">3. Intake cost reduction for small and mid-sized firms: <a href="https://www.lawmatics.com/blog/best-ai-receptionists-for-law-firms" rel="nofollow noopener">Best AI Receptionists for Law Firms, Lawmatics, 2026</a>.</p>
+      <p class="footnote">Exhibit Automation is not a law firm and does not provide legal services or advice.</p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero { padding: 72px 0 56px; }
+  .hero-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 48px; align-items: center; }
+  @media (max-width: 960px) { .hero-grid { grid-template-columns: 1fr; gap: 36px; } }
+  .hero h1 { font-size: clamp(1.9rem, 4vw, 2.9rem); }
+  .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin: 24px 0 14px; }
+  .stats { margin-top: 24px; }
+  .stats .stat b { color: var(--amber); }
+  .two-col { display: grid; grid-template-columns: 1.3fr 1fr; gap: 48px; }
+  @media (max-width: 860px) { .two-col { grid-template-columns: 1fr; } }
+  .two-col .checks li b { color: var(--ink); }
+  .systems { display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0; }
+  .sys { padding: 8px 14px; border-radius: 999px; background: var(--card); border: 1px solid var(--line); font-size: 0.92rem; font-weight: 500; }
+  .total { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 24px; border-color: var(--amber); }
+  .total .stat b { color: var(--amber); font-size: 1.7rem; }
+  @media (max-width: 760px) { .total { grid-template-columns: 1fr; } }
+</style>

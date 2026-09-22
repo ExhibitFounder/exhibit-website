@@ -1,0 +1,99 @@
+---
+import Scene from './Scene.astro';
+
+interface Stat { big: string; label: string; note?: string }
+interface Props {
+  eyebrow: string;
+  h1: string;
+  lede: string;
+  img: string;
+  imgAlt: string;
+  imgCaption: string;
+  stats: Stat[];
+  handles: string[];
+  waits: string[];
+  systems: string[];
+  position: string;
+  footnotes: { id: string; html: string }[];
+}
+const { eyebrow, h1, lede, img, imgAlt, imgCaption, stats, handles, waits, systems, position, footnotes } = Astro.props;
+---
+
+<section class="hero">
+  <div class="wrap narrow">
+    <span class="tag tag-amber">Waitlist</span>
+    <span class="eyebrow block">{eyebrow}</span>
+    <h1>{h1}</h1>
+    <p class="lede">{lede}</p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="/book">Join the waitlist →</a>
+      <a class="btn btn-secondary" href="/property-management">See a live workflow</a>
+    </div>
+    <p class="small">Property management is live now. Home services and law firms are next, then this one. Joining the waitlist takes two minutes and gets you first slot when we open.</p>
+  </div>
+</section>
+
+<section class="tight">
+  <div class="wrap">
+    <Scene img={img} alt={imgAlt} caption={imgCaption} height="tall" />
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <span class="eyebrow">Why this industry is on our list</span>
+    <div class="grid grid-2 stats">
+      {stats.map((s) => (
+        <div class="card stat">
+          <b>{s.big}</b>
+          <span set:html={s.label} />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap two-col">
+    <div>
+      <span class="eyebrow">What we would handle</span>
+      <h2>The routine, every night.</h2>
+      <ul class="checks">{handles.map((h) => <li set:html={h} />)}</ul>
+    </div>
+    <div>
+      <span class="eyebrow">What would wait for you</span>
+      <h2>The judgment calls.</h2>
+      <ul class="checks waits">{waits.map((w) => <li set:html={w} />)}</ul>
+      <p class="small">Nothing irreversible happens without a human. That is the same in every industry we work in.</p>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <span class="eyebrow">Systems we would connect to</span>
+    <div class="systems">{systems.map((s) => <span class="sys">{s}</span>)}</div>
+    <p class="small">{position}</p>
+  </div>
+</section>
+
+<section class="tight">
+  <div class="wrap">
+    {footnotes.map((f) => <p class="footnote" id={f.id} set:html={f.html} />)}
+  </div>
+</section>
+
+<style>
+  .hero { padding: 72px 0 40px; }
+  .narrow { max-width: 780px; }
+  .hero .tag { margin-bottom: 16px; display: inline-block; }
+  .eyebrow.block { display: block; }
+  .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin: 24px 0 14px; }
+  .stats { margin-top: 20px; }
+  .stats .stat b { color: var(--amber); }
+  .two-col { display: grid; grid-template-columns: 1.3fr 1fr; gap: 48px; }
+  @media (max-width: 860px) { .two-col { grid-template-columns: 1fr; } }
+  .two-col .checks li b { color: var(--ink); }
+  .systems { display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0; }
+  .sys { padding: 8px 14px; border-radius: 999px; background: var(--card); border: 1px solid var(--line); font-size: 0.92rem; font-weight: 500; }
+</style>

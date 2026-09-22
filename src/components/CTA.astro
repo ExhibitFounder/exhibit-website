@@ -1,0 +1,25 @@
+---
+interface Props { title?: string; body?: string; label?: string }
+const {
+  title = 'Book a 20-minute intro call.',
+  body = 'We take on two or three new clients a month so every one of them gets built properly. If we\'re not the right fit, we\'ll tell you what is.',
+  label = 'See if you qualify',
+} = Astro.props;
+---
+
+<section class="cta-band">
+  <div class="wrap cta-inner">
+    <div>
+      <h2>{title}</h2>
+      <p class="lede">{body}</p>
+    </div>
+    <a class="btn btn-amber" href="/book">{label} →</a>
+  </div>
+</section>
+
+<style>
+  .cta-band { background: var(--ink); color: var(--bg); padding: 64px 0; }
+  .cta-band .lede { color: color-mix(in srgb, var(--bg) 78%, transparent); }
+  .cta-inner { display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+  .cta-band h2 { margin-bottom: 8px; }
+</style>

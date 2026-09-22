@@ -1,0 +1,112 @@
+---
+interface Props { defaults?: { units: number; properties: number } }
+const { defaults = { units: 200, properties: 2 } } = Astro.props;
+---
+
+<div class="pcalc card" id="pcalc">
+  <div class="pcalc-head">
+    <span class="eyebrow">Price calculator</span>
+    <h3>What would this cost for your portfolio?</h3>
+    <p class="small">Managed Agent is $5 per unit per month for the first 300 units and $4 per unit after that, with a $750 minimum. Your first two properties are included; each additional property is $100 per month.</p>
+  </div>
+  <form class="pcalc-grid" onsubmit="return false">
+    <div class="field">
+      <label for="p-units">Total units under management</label>
+      <input id="p-units" type="number" min="1" max="2000" value={defaults.units} inputmode="numeric" />
+    </div>
+    <div class="field">
+      <label for="p-props">Number of properties</label>
+      <input id="p-props" type="number" min="1" max="50" value={defaults.properties} inputmode="numeric" />
+    </div>
+  </form>
+
+  <div class="pcalc-out" id="p-out">
+    <div class="pcalc-main">
+      <div class="stat"><b id="p-monthly">$0</b><span>Managed Agent, per month</span></div>
+      <div class="stat"><b id="p-perunit">$0</b><span>effective cost per unit per month</span></div>
+    </div>
+    <ul class="pcalc-lines small">
+      <li><span>Units</span><span id="p-line-units"></span></li>
+      <li><span>Additional properties</span><span id="p-line-props"></span></li>
+      <li id="p-floor-note" hidden><span>Minimum applied</span><span>$750</span></li>
+    </ul>
+    <div class="pcalc-setup">
+      <p class="small"><b>Recommended setup:</b> <span id="p-setup"></span></p>
+    </div>
+  </div>
+
+  <div class="pcalc-big" id="p-big" hidden>
+    <p><b>Above 500 units we quote individually.</b> That's past the size band we built for, and you probably have an ops team. <a href="/book">Talk to us</a> and we'll tell you honestly whether we're the right fit.</p>
+  </div>
+
+  <div class="pcalc-cta">
+    <a class="btn btn-primary" href="/book">See if you qualify</a>
+    <span class="small">Three-month minimum, then month to month.</span>
+  </div>
+</div>
+
+<script>
+  const $ = (id: string) => document.getElementById(id) as HTMLElement;
+  const inp = (id: string) => document.getElementById(id) as HTMLInputElement;
+  const usd = (n: number) => n.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
+  const usd2 = (n: number) => n.toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+  const run = () => {
+    const units = Math.max(1, Math.floor(+inp('p-units').value || 0));
+    const props = Math.max(1, Math.floor(+inp('p-props').value || 1));
+    const big = units > 500;
+    $('p-big').hidden = !big;
+    $('p-out').hidden = big;
+    if (big) return;
+
+    const first = Math.min(units, 300) * 5;
+    const rest = Math.max(0, units - 300) * 4;
+    const unitCost = first + rest;
+    const floored = Math.max(750, unitCost);
+    const extraProps = Math.max(0, props - 2);
+    const propCost = extraProps * 100;
+    const monthly = floored + propCost;
+
+    $('p-monthly').textContent = usd(monthly);
+    $('p-perunit').textContent = usd2(monthly / units);
+    $('p-line-units').textContent =
+      units <= 300
+        ? `${units} × $5 = ${usd(unitCost)}`
+        : `300 × $5 + ${units - 300} × $4 = ${usd(unitCost)}`;
+    $('p-line-props').textContent = extraProps === 0 ? 'First two included' : `${extraProps} × $100 = ${usd(propCost)}`;
+    $('p-floor-note').hidden = floored === unitCost;
+
+    let setup: string;
+    if (props === 1 && units <= 150) {
+      setup = 'Starter Package, $4,500. One property, first month of Managed Agent included.';
+    } else if (props <= 3) {
+      setup = 'Workflow Package, $7,500. Covers up to three properties, billed in thirds, first month of Managed Agent included.';
+    } else {
+      const extra = props - 3;
+      setup = `Workflow Package, $7,500, plus ${extra} additional ${extra === 1 ? 'property' : 'properties'} at $1,000 each = ${usd(7500 + extra * 1000)}. Billed in thirds, first month of Managed Agent included.`;
+    }
+    $('p-setup').textContent = setup;
+  };
+
+  ['p-units', 'p-props'].forEach((id) => inp(id).addEventListener('input', run));
+  run();
+</script>
+
+<style>
+  .pcalc { padding: 32px; }
+  .pcalc-head h3 { font-size: 1.5rem; }
+  .pcalc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; margin-top: 16px; }
+  @media (max-width: 640px) { .pcalc-grid { grid-template-columns: 1fr; } }
+  .pcalc-out { padding: 20px; border-radius: 12px; background: var(--bg-2); margin: 8px 0 12px; }
+  .pcalc-main { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 640px) { .pcalc-main { grid-template-columns: 1fr; } }
+  .pcalc-main .stat b { color: var(--amber); }
+  .pcalc-lines { list-style: none; padding: 0; margin: 16px 0 0; border-top: 1px dashed var(--line); }
+  .pcalc-lines li { display: flex; justify-content: space-between; gap: 16px; padding: 8px 0; border-bottom: 1px dashed var(--line); }
+  .pcalc-lines li[hidden] { display: none; }
+  .pcalc-setup { margin-top: 14px; }
+  .pcalc-setup p { margin: 0; }
+  .pcalc-big { padding: 20px; border-radius: 12px; background: var(--amber-soft); margin: 8px 0 12px; }
+  .pcalc-big p { margin: 0; color: var(--ink); }
+  .pcalc-cta { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 16px; }
+</style>

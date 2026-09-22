@@ -1,0 +1,95 @@
+---
+import Base from '../layouts/Base.astro';
+import Guardrails from '../components/Guardrails.astro';
+import CTA from '../components/CTA.astro';
+
+const title = 'How It Works | Exhibit Automation';
+const description =
+  "Map your morning in 60 minutes, we connect and build in 2 to 4 weeks, then it runs 24/7 with approval gates. About 30 minutes a week from you.";
+---
+
+<Base title={title} description={description} path="/how-it-works">
+  <section class="hero">
+    <div class="wrap">
+      <span class="eyebrow">How it works</span>
+      <h1>Three steps. About three hours of your time.</h1>
+      <p class="lede">You don't learn a tool. You describe your morning once, approve a written playbook, and start getting a digest.</p>
+    </div>
+  </section>
+
+  <section class="tight">
+    <div class="wrap timeline">
+      <div class="step">
+        <div class="step-marker">1</div>
+        <div class="card">
+          <span class="tag tag-amber">Week 1 · 60 minutes of your time</span>
+          <h2>Map</h2>
+          <p>A working session, not a sales call. We walk through what actually happened in your inbox and on your phone system in the last seven days. What got missed, what got forwarded three times, who made which decision, what you'd never want automated.</p>
+          <p>You get back a <b>written playbook</b>: every routine task, how it should be handled, what triggers an escalation, and the approval gates. You mark it up. When you sign it off, scope is frozen and the first milestone is invoiced.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-marker">2</div>
+        <div class="card">
+          <span class="tag tag-amber">Weeks 2–3 · About 1 hour of your time</span>
+          <h2>Connect &amp; build</h2>
+          <p>We connect to your phone system, inbox and property or practice software. We build the mappings (which caller is which tenant, which inquiry is which unit), the schedules, the escalation rules and the digest. We test it against your real data with the outbound side switched off.</p>
+          <p>Your hour is spent granting access and answering "what would you do here?" on the handful of edge cases we find. Second milestone on integration complete.</p>
+          <p class="small">Under the hood it runs on Meta's Muse. We build the connectors and playbooks; you never touch either.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-marker">3</div>
+        <div class="card">
+          <span class="tag tag-green">Week 4 onward · 30 minutes a week</span>
+          <h2>Run &amp; manage</h2>
+          <p>Go-live is supervised for two weeks: we read every digest with you and tune anything that felt off. Then it runs. Nights, weekends, holidays. You get the digest at the time you choose and tap approve or decline on the handful of items that need you. Most clients spend about 30 minutes a week on it in total.</p>
+          <p>Every month we review what was flagged and tighten the playbook. Every quarter we sit down and ask what else is eating your mornings. Final milestone at go-live, then Managed Agent.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="wrap">
+      <span class="eyebrow">A week in month two</span>
+      <h2>What it actually feels like.</h2>
+      <div class="grid grid-3">
+        <div class="card"><h3>Monday 7:30am</h3><p class="small">Digest covers the whole weekend. 23 calls, 41 emails. Six items need you. You clear them before your first coffee is cold.</p></div>
+        <div class="card"><h3>Wednesday 11:52pm</h3><p class="small">"No heat" from unit 7C. Your on-call gets a text with the unit, the tenant's history, and the HVAC vendor's after-hours number within 90 seconds. You find out in the morning.</p></div>
+        <div class="card"><h3>Friday 4pm</h3><p class="small">Our monthly tuning note: three lease-break requests flagged this month were all the same question about early-termination fees. We propose adding the published fee to the auto-answer set. You approve with one reply.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <Guardrails />
+
+  <section>
+    <div class="wrap">
+      <span class="eyebrow">What we need from you</span>
+      <h2>The whole list.</h2>
+      <ul class="checks">
+        <li>One 60-minute mapping session</li>
+        <li>Access to your phone system, inbox and property/practice software (we'll send a checklist)</li>
+        <li>A sign-off on the written playbook</li>
+        <li>Roughly an hour of "what would you do here?" during the build</li>
+        <li>About 30 minutes a week to check in on the digest and approve what needs you</li>
+      </ul>
+    </div>
+  </section>
+
+  <CTA />
+</Base>
+
+<style>
+  .hero { padding: 72px 0 24px; }
+  .timeline { display: flex; flex-direction: column; gap: 24px; }
+  .step { display: grid; grid-template-columns: 48px 1fr; gap: 20px; align-items: start; }
+  .step-marker {
+    width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    background: var(--amber-soft); color: var(--amber); font-weight: 700; font-size: 1.1rem; margin-top: 24px;
+  }
+  .step .card .tag { margin-bottom: 12px; }
+  .step h2 { margin-bottom: 12px; }
+  @media (max-width: 640px) { .step { grid-template-columns: 1fr; } .step-marker { margin-top: 0; } }
+</style>

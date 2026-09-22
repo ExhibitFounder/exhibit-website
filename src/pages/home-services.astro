@@ -1,0 +1,211 @@
+---
+import Base from '../layouts/Base.astro';
+import Digest from '../components/Digest.astro';
+import Calculator from '../components/Calculator.astro';
+import FAQ from '../components/FAQ.astro';
+import Guardrails from '../components/Guardrails.astro';
+import CTA from '../components/CTA.astro';
+import Scene from '../components/Scene.astro';
+
+const title = 'AI Answering for HVAC and Plumbing | Exhibit Automation';
+const description =
+  "After-hours answering and dispatch for 1 to 3 truck shops. Emergencies paged in seconds, jobs booked into Housecall Pro or Jobber. From $750/mo.";
+
+const faqs = [
+  { q: 'What happens with a real emergency at midnight?', a: 'No heat, no water, gas smell, burst pipe, electrical burning: the agent recognises the language, pages your on-call number within seconds with the address, the customer history and a transcript, and stays on the line with the customer until you confirm. Everything else waits for the 6:45am digest. You define the emergency list and we test it before go-live.' },
+  { q: 'Will it quote prices?', a: 'Only from your published price book, and only for jobs you have told it to quote. Anything outside that, including discounts and warranty disputes, is captured with full detail and waits for you. It will never invent a number.' },
+  { q: 'Does it book straight into my software?', a: 'Yes. Housecall Pro, Jobber, ServiceTitan and FieldEdge, plus your Google or Microsoft calendar. It checks real availability, respects your service area and your job-type durations, and writes the customer record. Nothing to re-key in the morning.' },
+  { q: 'How is this different from Avoca?', a: 'Avoca is excellent and we say so. It is built around ServiceTitan and priced for shops doing $3M or more with a CSR team. If that is you, look at them first. We built for the one-to-three truck shop where the owner is the dispatcher, the estimator and the person who answers the phone at 9pm.' },
+  { q: 'Do customers know it is an AI?', a: 'Yes. It introduces itself as your after-hours line and never pretends to be a person. In practice customers care about reaching someone in 22 seconds at 11pm, not about who typed the reply. Where state law requires it, calls carry a recording notice.' },
+  { q: 'What if it books a job I cannot cover?', a: 'It only books into real open slots on your calendar, inside your service area, for job types you have approved. Anything it is unsure about becomes a captured lead with a callback, not a booking.' },
+];
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Home Services After-Hours Answering and Dispatch Automation',
+    provider: { '@type': 'Organization', name: 'Exhibit Automation' },
+    areaServed: 'US',
+    audience: { '@type': 'BusinessAudience', name: 'HVAC, plumbing and electrical contractors, 1 to 3 trucks' },
+    description,
+    offers: { '@type': 'Offer', price: '750', priceCurrency: 'USD' },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+  },
+];
+---
+
+<Base title={title} description={description} path="/home-services" schema={schema}>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Home services · 1 to 3 trucks</span>
+        <h1>Never lose another after-hours job.</h1>
+        <p class="lede">
+          The 9pm call gets answered. Emergencies page you in seconds. Everything else is triaged, booked into Housecall
+          Pro or Jobber, and waiting in one dispatch digest before your first truck rolls.
+        </p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="/book">See if you qualify →</a>
+          <a class="btn btn-secondary" href="#calc">Calculate what missed calls cost you</a>
+        </div>
+        <p class="small">Waitlist is open now. Property management is live; home services starts onboarding next.</p>
+      </div>
+      <Digest variant="home" caption={false} />
+    </div>
+  </section>
+
+  <section class="tight">
+    <div class="wrap">
+      <Scene img="home-services" alt="Two white service vans parked in a gravel yard at sunrise" caption="6:45am. The no-heat call came in at 11:52pm and was dispatched by 12:20." />
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="wrap">
+      <span class="eyebrow">The problem, in numbers</span>
+      <h2>Half your demand arrives when nobody is there to answer it.</h2>
+      <div class="grid grid-2 stats">
+        <div class="card stat"><b>27 to 60%</b><span>of calls to home-service businesses go unanswered<sup><a href="#fn1">1</a></sup></span></div>
+        <div class="card stat"><b>35 to 45%</b><span>of HVAC and plumbing call volume arrives after hours, with pickup under 18%<sup><a href="#fn1">1</a></sup></span></div>
+        <div class="card stat"><b>$1,200 to $3,500</b><span>average value of a single missed HVAC call<sup><a href="#fn2">2</a></sup></span></div>
+        <div class="card stat"><b>$45K to $120K</b><span>estimated annual revenue lost to missed calls, across contractor trades<sup><a href="#fn2">2</a></sup></span></div>
+      </div>
+      <p class="small">And 85% of people who reach your voicemail never call back.<sup><a href="#fn3">3</a></sup> They call the next number on the list.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap two-col">
+      <div>
+        <span class="eyebrow">What we handle</span>
+        <h2>Nights, weekends, and the overflow you never get to.</h2>
+        <ul class="checks">
+          <li><b>Emergency triage</b>: no heat, no water, gas, burst pipe, electrical. Pages your on-call in seconds with address, history and transcript</li>
+          <li><b>Job booking</b> into Housecall Pro, Jobber, ServiceTitan or FieldEdge, in real open slots inside your service area</li>
+          <li><b>Quote requests captured</b> with photos and job detail, dropped into your estimate queue</li>
+          <li><b>Estimate follow-up</b> on everything pending, on the schedule you set</li>
+          <li><b>Overdue invoice nudges</b>, polite and automatic</li>
+          <li><b>Reschedules and confirmations</b>, including on-my-way texts</li>
+          <li><b>Review requests</b> after a job closes clean</li>
+          <li><b>Morning dispatch digest</b> with today's board and anything that needs you</li>
+        </ul>
+      </div>
+      <div>
+        <span class="eyebrow">What waits for you</span>
+        <h2>Anything that costs you money or goodwill.</h2>
+        <ul class="checks waits">
+          <li>Pricing exceptions and discounts</li>
+          <li>Warranty disputes</li>
+          <li>Refunds and credits</li>
+          <li>Jobs outside your service area</li>
+          <li>Anything the customer is angry about</li>
+        </ul>
+        <p class="small">Each arrives in the digest with the full transcript and a one-tap approve or decline. The agent never invents a price.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="wrap">
+      <span class="eyebrow">Systems we connect to</span>
+      <h2>Your stack, not ours.</h2>
+      <div class="systems">
+        {['Housecall Pro', 'Jobber', 'ServiceTitan', 'FieldEdge', 'QuickBooks', 'Google Workspace', 'Microsoft 365', 'CallRail', 'RingCentral', 'Dialpad', 'OpenPhone', 'Twilio-based phones', 'Angi leads', 'Thumbtack leads'].map((s) => <span class="sys">{s}</span>)}
+      </div>
+      <p class="small">Don't see yours? Ask on the call. Most field-service software has an API or an email hook we can work with, and we will tell you straight if yours does not.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <Calculator
+        defaults={{ calls: 60, missed: 40, value: 450, close: 65 }}
+        valueLabel="Average revenue per booked job ($)"
+      />
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="wrap">
+      <span class="eyebrow">Projected results · 2-truck shop</span>
+      <h2>What the math says, before we have proven it on your shop.</h2>
+      <p class="lede">We are new in this vertical. Here is what we expect and where the numbers come from. We will replace this with client results as we earn them.</p>
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>Recovered jobs</h3>
+          <p>At 60 inbound calls a week with 40% missed, 24 go unanswered. If 14 of those are bookable and we recover 8 to 10 a week at a $450 average ticket, that is <b>$3,600 to $4,500 a week</b>.</p>
+          <p class="small">Vendors in this category report large reductions in missed calls after switching from an answering service. We have not found independent research confirming a specific figure, so we do not quote one.<sup><a href="#fn4">4</a></sup></p>
+        </div>
+        <div class="card">
+          <h3>Recovered evenings</h3>
+          <p>The owner stops being the after-hours dispatcher. No more answering from the dinner table, and no more Monday morning spent reconstructing what came in over the weekend.</p>
+        </div>
+      </div>
+      <div class="card total">
+        <div class="stat"><b>$80K to $180K / yr</b><span>projected recovered job revenue</span></div>
+        <div class="stat"><b>Under 60 sec</b><span>target first response, day or night</span></div>
+        <div class="stat"><b>$15K / yr</b><span>Managed Agent at the indicative 2 to 3 truck rate</span></div>
+      </div>
+      <p class="footnote">Projections use published industry benchmarks and the assumptions stated above. Your numbers will differ. This is not a guarantee of results.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <span class="eyebrow">Pricing</span>
+      <h2>Per truck, $750 minimum.</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Shop size</th><th>Monthly</th><th>Includes</th></tr></thead>
+          <tbody>
+            <tr><td>1 truck</td><td><b>$750</b></td><td rowspan="3">24/7 running · daily dispatch digest · monthly playbook tuning · priority support · quarterly review · three-month minimum, then month to month</td></tr>
+            <tr><td>2 to 3 trucks</td><td><b>$1,250</b></td></tr>
+            <tr><td>4 to 6 trucks</td><td><b>$1,900</b></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small" style="margin-top:14px">Indicative pricing, confirmed at launch. Setup is the <a href="/pricing">Starter Package at $4,500</a> for a single location or the <a href="/pricing">Workflow Package at $7,500</a> for multiple, with the first month of Managed Agent included and a 30-day go-live guarantee.</p>
+    </div>
+  </section>
+
+  <Guardrails variant="home" />
+
+  <section>
+    <div class="wrap">
+      <FAQ items={faqs} />
+    </div>
+  </section>
+
+  <CTA title="Get on the home services waitlist." body="Twenty minutes on the phone. We will map your after-hours flow, tell you what we would automate first, and tell you honestly if Avoca or a $99 answering service is the better buy." />
+
+  <section class="tight">
+    <div class="wrap">
+      <p class="footnote" id="fn1">1. Missed-call rates, after-hours share and pickup rate: <a href="https://ainora.lt/blog/hvac-service-call-statistics-2026" rel="nofollow noopener">HVAC, Plumbing and Electrical Service Call Statistics, 2026</a>.</p>
+      <p class="footnote" id="fn2">2. Per-call and annual loss by trade: <a href="https://aioperations.io/missed-calls-cost-home-service-businesses-2026/" rel="nofollow noopener">What Missed Calls Actually Cost Home Service Businesses, 2026</a>. These are industry estimates published by service vendors rather than independent research, and estimates vary widely between sources.</p>
+      <p class="footnote" id="fn3">3. 85% of missed callers do not call back: <a href="https://answeringagent.com/blog/missed-calls-business-revenue" rel="nofollow noopener">Missed Call Revenue Statistics, 2026</a>.</p>
+      <p class="footnote" id="fn4">4. Improvement figures in this category come from vendors selling the software, and we have found no independent study of AI phone agents in the trades. We have therefore removed the specific percentages we previously quoted here. See <a href="https://calljolt.com/blog/hvac/home-service-industry-phone-statistics" rel="nofollow noopener">Home Service Phone Statistics, 2026</a> for the vendor-reported range.</p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero { padding: 72px 0 56px; }
+  .hero-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 48px; align-items: center; }
+  @media (max-width: 960px) { .hero-grid { grid-template-columns: 1fr; gap: 36px; } }
+  .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin: 24px 0 14px; }
+  .stats { margin-top: 24px; }
+  .stats .stat b { color: var(--amber); }
+  .two-col { display: grid; grid-template-columns: 1.3fr 1fr; gap: 48px; }
+  @media (max-width: 860px) { .two-col { grid-template-columns: 1fr; } }
+  .two-col .checks li b { color: var(--ink); }
+  .systems { display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0; }
+  .sys { padding: 8px 14px; border-radius: 999px; background: var(--card); border: 1px solid var(--line); font-size: 0.92rem; font-weight: 500; }
+  .total { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 24px; border-color: var(--amber); }
+  .total .stat b { color: var(--amber); font-size: 1.7rem; }
+  @media (max-width: 760px) { .total { grid-template-columns: 1fr; } }
+</style>

@@ -1,0 +1,49 @@
+---
+import Base from '../layouts/Base.astro';
+import WaitlistPage from '../components/WaitlistPage.astro';
+import CTA from '../components/CTA.astro';
+
+const title = 'AI Front Desk for Vet Clinics | Exhibit Automation';
+const description =
+  "Waitlist open. Call overflow answered, appointments booked, refills routed. Scheduling and logistics only, never medical advice or triage.";
+---
+
+<Base title={title} description={description} path="/veterinary">
+  <WaitlistPage
+    eyebrow="Veterinary · 1 to 3 doctors"
+    h1="Your front desk is on hold. So are twenty clients."
+    lede="Call overflow answered, appointments booked, refill requests routed to the right person, reminders sent. Scheduling and logistics only, with a hard line at anything medical."
+    img="veterinary"
+    imgAlt="A quiet veterinary clinic reception at early morning, a phone on the front desk, empty waiting bench by the window"
+    imgCaption="Front desk opens at eight. Twenty calls came in during yesterday's peak and nobody could reach the phone."
+    stats={[
+      { big: '24 to 28%', label: 'of calls to the average veterinary clinic go unanswered, roughly one in four appointments<sup><a href="#fn1">1</a></sup>' },
+      { big: '90%+', label: 'of veterinary appointments are still booked over the phone<sup><a href="#fn1">1</a></sup>' },
+      { big: '$100K+', label: 'combined missed revenue and wasted marketing spend for a typical three-doctor practice<sup><a href="#fn2">2</a></sup>' },
+      { big: '~20 calls', label: 'unanswered per day at a mid-size clinic during peak hours<sup><a href="#fn2">2</a></sup>' },
+    ]}
+    handles={[
+      '<b>Call overflow</b> answered when the front desk is on another line or with a client',
+      '<b>Appointment booking and rescheduling</b> into your practice software',
+      '<b>Prescription refill requests</b> captured and routed to a technician, never approved by the agent',
+      '<b>Appointment and vaccine reminders</b>',
+      '<b>Boarding and grooming inquiries</b>',
+      '<b>Post-visit follow-up</b> and review requests',
+      '<b>Morning digest</b> with everything captured overnight and anything that needs a human',
+    ]}
+    waits={[
+      'Anything medical. The agent does not triage, assess symptoms, or advise',
+      'Every emergency call is routed immediately to your emergency line or the on-call number, with no triage attempted',
+      'Euthanasia and end-of-life conversations. These go to a person, always',
+      'Prescription approvals',
+      'Billing disputes and goodwill credits',
+    ]}
+    systems={['ezyVet', 'AVImark', 'Cornerstone', 'Shepherd', 'Vetspire', 'Google Workspace', 'RingCentral', 'OpenPhone', 'Twilio-based phones']}
+    position="A note on scope: we handle scheduling and logistics, not care. The agent never performs triage or gives medical guidance of any kind, and anything urgent goes straight to a human. We also do not build workflows that involve human patient data."
+    footnotes={[
+      { id: 'fn1', html: '1. Unanswered call rate and share of appointments booked by phone: <a href="https://www.peerlogic.com/post/how-many-calls-are-you-missing--and-whats-it-costing-your-clinic" rel="nofollow noopener">Peerlogic</a>, which reports 24 to 28% of calls to the average clinic going unanswered. Other vendors publish higher figures; we quote the most conservative we found.' },
+      { id: 'fn2', html: '2. Peak-hour call volume and three-doctor practice loss estimates: <a href="https://agentzap.ai/blog/veterinary-phone-statistics" rel="nofollow noopener">Veterinary Practice Phone Statistics, 2026</a>. Published by a vendor in this market; treat as an estimate rather than independent research.' },
+    ]}
+  />
+  <CTA title="Join the veterinary waitlist." body="Two minutes now for the first slot when we open. If your need is really clinical triage, we are not the right people and we will say so." />
+</Base>

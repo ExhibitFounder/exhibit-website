@@ -1,0 +1,48 @@
+---
+import Base from '../../layouts/Base.astro';
+import CTA from '../../components/CTA.astro';
+import { posts } from '../../data/posts';
+
+const title = 'Resources | Exhibit Automation';
+const description =
+  "Sourced guides on missed-call cost, AI receptionists versus done-for-you operations, after-hours coverage, legal intake and approval gates.";
+---
+
+<Base title={title} description={description} path="/resources">
+  <section class="hero">
+    <div class="wrap">
+      <span class="eyebrow">Resources</span>
+      <h1>Useful, sourced, and not a lead magnet in disguise.</h1>
+      <p class="lede">
+        Everything here is written for owner-operators deciding whether automation is worth it. Every number has a link
+        to where it came from. Read them, use the arithmetic, and hire us only if it holds up.
+      </p>
+    </div>
+  </section>
+
+  <section class="tight">
+    <div class="wrap">
+      <div class="grid grid-2">
+        {posts.map((p) => (
+          <a class="card post" href={`/resources/${p.slug}`}>
+            <span class="eyebrow">{p.industry}</span>
+            <h2>{p.title}</h2>
+            <p class="small">{p.description}</p>
+            <span class="small muted foot">{p.readingTime} read</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTA />
+</Base>
+
+<style>
+  .hero { padding: 72px 0 16px; }
+  .hero h1 { max-width: 20ch; }
+  .post { text-decoration: none; display: flex; flex-direction: column; }
+  .post h2 { font-size: 1.25rem; margin: 6px 0 10px; }
+  .post .foot { margin-top: auto; padding-top: 14px; }
+  .post:hover { border-color: var(--amber); }
+</style>

@@ -1,0 +1,157 @@
+---
+import Base from '../layouts/Base.astro';
+import CTA from '../components/CTA.astro';
+
+const title = 'Projected Results and the Math | Exhibit Automation';
+const description =
+  "We are new, so instead of case studies we publish the math: what missed calls cost, what we expect to recover, and every source behind it.";
+---
+
+<Base title={title} description={description} path="/results">
+  <section class="hero">
+    <div class="wrap">
+      <span class="eyebrow">Results</span>
+      <h1>We are new. Here is the math instead of case studies.</h1>
+      <p class="lede">
+        Every agency site you visit has testimonials. Ours does not yet, because we have not earned them. What we can
+        show you is exactly how we expect to make you money, using published industry benchmarks, with the assumptions
+        written out so you can argue with them.
+      </p>
+      <div class="card promise">
+        <p><b>The promise on this page:</b> no invented client quotes, no borrowed logos, no numbers without a source. When we have three clients with ninety days of data, this page becomes real case studies and this note goes away.</p>
+        <p class="small">We re-verify every figure on this site periodically. In our September 2026 pass we removed two claims we could not trace to any primary research and corrected four others against better sources. Where a number comes from a company selling something, we now say so next to it.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="wrap">
+      <span class="eyebrow">Property management · 200 units, 2 properties</span>
+      <h2>Recovered leases and returned hours.</h2>
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>The assumptions</h3>
+          <ul class="checks">
+            <li>30 leasing inquiries a month</li>
+            <li>60% currently unanswered or answered too late, so 18 lost<sup><a href="#fn1">1</a></sup></li>
+            <li>We recover 12 of the 18</li>
+            <li>25% lead-to-lease conversion</li>
+            <li>Five days of vacancy avoided per turn, worth $225 to $375<sup><a href="#fn2">2</a></sup></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>The arithmetic</h3>
+          <p>12 recovered × 25% = <b>3 additional leases a month</b> in leasing season.</p>
+          <p>Staff time: Buildium reports up to 12 hours a week saved per 20 units on communication and admin.<sup><a href="#fn3">3</a></sup> At 200 units we project conservatively 20+ hours a week.</p>
+          <p class="small">A 30-minute delay in responding drops renter engagement from 40% to 10%, so speed is doing most of the work here.<sup><a href="#fn4">4</a></sup></p>
+        </div>
+      </div>
+      <div class="card total">
+        <div class="stat"><b>$30K to $90K</b><span>projected annual recovered rent and avoided vacancy</span></div>
+        <div class="stat"><b>800+ hrs</b><span>projected staff hours returned per year</span></div>
+        <div class="stat"><b>$12,000</b><span>Managed Agent cost per year at this size</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <span class="eyebrow">Home services · 2-truck HVAC shop</span>
+      <h2>The jobs that went to whoever answered.</h2>
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>The assumptions</h3>
+          <ul class="checks">
+            <li>60 inbound calls a week</li>
+            <li>40% missed, so 24 unanswered<sup><a href="#fn5">5</a></sup></li>
+            <li>14 of those are bookable work</li>
+            <li>We recover 8 to 10 a week</li>
+            <li>$450 average revenue per booked job</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>The arithmetic</h3>
+          <p>8 to 10 recovered jobs × $450 = <b>$3,600 to $4,500 a week</b>.</p>
+          <p>Recovery rate is the assumption we are least sure of. Vendor-reported improvements in this category are large but we have found no independent study, so treat the 8 to 10 figure as our estimate, not a benchmark.<sup><a href="#fn6">6</a></sup></p>
+          <p class="small">After-hours is 35 to 45% of total volume with pickup under 18%, which is where almost all of this comes from.<sup><a href="#fn5">5</a></sup></p>
+        </div>
+      </div>
+      <div class="card total">
+        <div class="stat"><b>$80K to $180K</b><span>projected annual recovered job revenue</span></div>
+        <div class="stat"><b>Under 60 sec</b><span>target first response, any hour</span></div>
+        <div class="stat"><b>$15,000</b><span>Managed Agent cost per year at 2 to 3 trucks</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="wrap">
+      <span class="eyebrow">Law firms · 3 attorneys</span>
+      <h2>The callers who did not leave a voicemail.</h2>
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>The assumptions</h3>
+          <ul class="checks">
+            <li>40 inquiries a month</li>
+            <li>Clio's secret-shopper study found only 40% of firms answered the phone at all<sup><a href="#fn7">7</a></sup></li>
+            <li>We model a more conservative 35% miss rate, so 14 unanswered, and assume most do not call back<sup><a href="#fn7">7</a></sup></li>
+            <li>We recover 6</li>
+            <li>30% consult-to-retain, $3,000 average matter</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>The arithmetic</h3>
+          <p>6 recovered × 30% × $3,000 = <b>$5,400 a month</b>.</p>
+          <p>Clio found firms that improve client onboarding, including online intake tools, average 50% more potential clients and 50% more revenue.<sup><a href="#fn7">7</a></sup></p>
+          <p class="small">A five-minute response window converts 400% better than responding an hour later.<sup><a href="#fn8">8</a></sup></p>
+        </div>
+      </div>
+      <div class="card total">
+        <div class="stat"><b>$50K to $120K</b><span>projected annual additional retained matters</span></div>
+        <div class="stat"><b>Under 60 sec</b><span>target first response to a new inquiry</span></div>
+        <div class="stat"><b>$15,000</b><span>Managed Agent cost per year at 3 to 5 attorneys</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap narrow">
+      <span class="eyebrow">Where this could be wrong</span>
+      <h2>The assumptions most likely to break.</h2>
+      <ul class="checks waits">
+        <li><b>Your missed-call rate may be lower than the benchmark.</b> If you already answer 90% of calls, the recovery number shrinks a lot. We measure yours during the build rather than assuming.</li>
+        <li><b>Recovered does not mean closed.</b> We answer faster and capture more; your team still has to run the tour or the consult well.</li>
+        <li><b>Seasonality is real.</b> Three extra leases a month is a leasing-season number, not a February number. HVAC swings the same way.</li>
+        <li><b>Average values are averages.</b> A $450 ticket and a $3,000 matter may not be yours. The calculators on each industry page let you use your own numbers.</li>
+      </ul>
+      <p class="small">If we cannot make the arithmetic work with your real numbers on the intro call, we will say so and not take the project.</p>
+    </div>
+  </section>
+
+  <CTA title="Run the math on your own numbers." body="The calculator on each industry page uses your call volume, your close rate and your ticket size. If the result is not a multiple of what we cost, do not hire us." />
+
+  <section class="tight">
+    <div class="wrap">
+      <p class="footnote" id="fn1">1. Over 60% of calls to multifamily properties go unanswered; per-call rent loss: <a href="https://www.retellai.com/blog/best-property-management-answering-service" rel="nofollow noopener">Retell AI, 2026</a>.</p>
+      <p class="footnote" id="fn2">2. Avoided vacancy value per turn and median list-to-lease: <a href="https://www.onewave-ai.com/blog/ai-for-property-management-smb-playbook" rel="nofollow noopener">OneWave AI, 2026</a>.</p>
+      <p class="footnote" id="fn3">3. Hours saved per 20-unit portfolio: <a href="https://www.buildium.com/blog/best-ai-property-management-tools/" rel="nofollow noopener">Buildium, 2026</a>.</p>
+      <p class="footnote" id="fn4">4. Rently 2026 Renter Touring Expectations Report, cited in <a href="https://www.vellum.ai/blog/best-ai-assistants-for-property-managers" rel="nofollow noopener">Vellum, 2026</a>.</p>
+      <p class="footnote" id="fn5">5. Missed-call rate, after-hours share and pickup rate: <a href="https://ainora.lt/blog/hvac-service-call-statistics-2026" rel="nofollow noopener">HVAC, Plumbing and Electrical Service Call Statistics, 2026</a>.</p>
+      <p class="footnote" id="fn6">6. Missed-call reduction and dispatch speed after switching to AI answering: <a href="https://calljolt.com/blog/hvac/home-service-industry-phone-statistics" rel="nofollow noopener">CallJolt, 2026</a>.</p>
+      <p class="footnote" id="fn7">7. Law firm missed-call rate and voicemail behaviour: <a href="https://www.legalsoft.com/blog/law-firm-client-intake-statistics" rel="nofollow noopener">Legal Soft, 2026</a>.</p>
+      <p class="footnote" id="fn8">8. Intake technology impact and response-time conversion: <a href="https://hyperleap.ai/blog/legal-client-intake-statistics-2026" rel="nofollow noopener">Legal Client Intake Statistics, 2026</a>.</p>
+      <p class="footnote">All figures on this page are projections based on published industry benchmarks and the stated assumptions. They are not guarantees, and individual results vary.</p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero { padding: 72px 0 24px; }
+  .hero h1 { max-width: 22ch; }
+  .promise { margin-top: 28px; max-width: 70ch; border-color: var(--amber); }
+  .promise p { margin: 0; }
+  .total { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 24px; border-color: var(--amber); }
+  .total .stat b { color: var(--amber); font-size: 1.7rem; }
+  @media (max-width: 760px) { .total { grid-template-columns: 1fr; } }
+  .narrow { max-width: 760px; }
+</style>

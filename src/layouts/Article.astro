@@ -1,0 +1,90 @@
+---
+import Base from './Base.astro';
+import CTA from '../components/CTA.astro';
+import { bySlug, posts } from '../data/posts';
+
+interface Props { slug: string }
+const { slug } = Astro.props;
+const post = bySlug(slug);
+const path = `/resources/${post.slug}`;
+const related = posts.filter((p) => p.slug !== post.slug && p.industry === post.industry).slice(0, 2);
+const fallback = posts.filter((p) => p.slug !== post.slug).slice(0, 2);
+const more = related.length ? related : fallback;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: post.title,
+  description: post.description,
+  datePublished: post.date,
+  author: { '@type': 'Organization', name: 'Exhibit Automation' },
+  publisher: { '@type': 'Organization', name: 'Exhibit Automation' },
+  mainEntityOfPage: `https://joinexhibit.com${path}`,
+};
+
+const formatted = new Date(post.date + 'T00:00:00').toLocaleDateString('en-US', {
+  year: 'numeric', month: 'long', day: 'numeric',
+});
+---
+
+<Base title={`${post.seoTitle} | Exhibit Automation`} description={post.description} path={path} schema={schema}>
+  <article>
+    <section class="hero">
+      <div class="wrap narrow">
+        <a class="back" href="/resources">← All resources</a>
+        <span class="eyebrow">{post.industry}</span>
+        <h1>{post.title}</h1>
+        <p class="lede">{post.description}</p>
+        <p class="small meta">{formatted} · {post.readingTime} read</p>
+      </div>
+    </section>
+
+    <section class="tight">
+      <div class="wrap narrow prose">
+        <slot />
+      </div>
+    </section>
+  </article>
+
+  <section class="alt">
+    <div class="wrap">
+      <h2>More on this</h2>
+      <div class="grid grid-2">
+        {more.map((p) => (
+          <a class="card more-card" href={`/resources/${p.slug}`}>
+            <span class="eyebrow">{p.industry}</span>
+            <h3>{p.title}</h3>
+            <p class="small">{p.description}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTA />
+</Base>
+
+<style>
+  .hero { padding: 56px 0 16px; }
+  .narrow { max-width: 720px; }
+  .back { display: inline-block; margin-bottom: 20px; font-size: 0.92rem; color: var(--muted); text-decoration: none; }
+  .back:hover { color: var(--ink); }
+  .meta { margin-top: 16px; }
+  .prose :global(h2) { font-size: 1.5rem; margin-top: 2.2em; }
+  .prose :global(h3) { font-size: 1.15rem; margin-top: 1.8em; }
+  .prose :global(p) { color: var(--ink-2); }
+  .prose :global(ul), .prose :global(ol) { color: var(--ink-2); padding-left: 22px; }
+  .prose :global(li) { margin-bottom: 8px; }
+  .prose :global(blockquote) {
+    margin: 1.6em 0; padding: 4px 0 4px 20px; border-left: 3px solid var(--amber);
+    color: var(--ink); font-size: 1.05rem;
+  }
+  .prose :global(table) { margin: 1.6em 0; }
+  .prose :global(.callout) {
+    background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+    padding: 20px 24px; margin: 1.8em 0;
+  }
+  .prose :global(.callout p:last-child) { margin-bottom: 0; }
+  .more-card { text-decoration: none; }
+  .more-card h3 { margin: 6px 0 8px; font-size: 1.1rem; }
+</style>
