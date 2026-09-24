@@ -1,0 +1,127 @@
+---
+// A real Muse conversation against the Buildium connector running on sample data (recorded 24 September 2026).
+// Muse's wording is kept; only punctuation is edited (em dashes swapped for commas, colons or full stops).
+// If the transcript is ever re-recorded, replace it whole. Never edit the wording by hand.
+
+interface Exchange {
+  ask: string;
+  reply: string[];
+  bullets?: string[];
+  tail?: string[];
+  action?: string;
+  tools: string;
+  shows: string;
+}
+
+const exchanges: Exchange[] = [
+  {
+    ask: 'Run an overnight digest.',
+    reply: [
+      'Overnight digest, last 12 hours:',
+      '<b>High priority first:</b> one open: "No heat" at Riverside Commons, unit 7C (Dana Whitfield). Thermostat set to 70, apartment at 58°F, reported 11:52pm. Still in New status, entry permitted. This is the one to chase this morning.',
+      '<b>New since yesterday evening:</b>',
+    ],
+    bullets: [
+      '"Dishwasher not draining": Riverside Commons, Priya Nair\'s unit. Standing water after every cycle. Normal priority, entry permitted.',
+      'Update on the kitchen sink leak at Northgate (Jordan Ellis, unit 4B): moved to In Progress today.',
+    ],
+    tail: [
+      '<b>Vacancy:</b> 3 units vacant across the portfolio. One flag: unit 3D at Riverside Commons (2bd/2ba, $1,690) is vacant but not listed: it\'s invisible to prospects right now.',
+      'Heads-up: the server notes this is sample data, not a live Buildium account, so treat the names and details as demo content.',
+    ],
+    tools: 'overnight_summary',
+    shows: 'The emergency comes first, and it spots a vacant unit nobody listed without being asked.',
+  },
+  {
+    ask: 'A caller from 612-555-0142 says there\'s water under their sink. Who is it and is anything already open?',
+    reply: [
+      'That\'s <b>Jordan Ellis</b>: tenant in unit 4B at Northgate Apartments, active lease through May 2027.',
+      'And yes, there\'s already something open for exactly this: request <b>#1182 "Slow leak under kitchen sink"</b>, Normal priority, currently In Progress, updated today. The description matches the caller\'s report (water collecting in the cabinet under the sink).',
+      'So no new request needed: this looks like a follow-up on the existing one. If they\'re calling back, the useful move is giving them the status rather than opening a duplicate.',
+    ],
+    tools: 'find_tenant → get_tenant_context',
+    shows: 'A phone number becomes a tenant, a unit and an open work order. It declines to file a duplicate.',
+  },
+  {
+    ask: 'Log a repair for Priya Nair in 12A: water under the bathroom sink, normal priority.',
+    reply: [
+      'Preview ready. This is what would be logged:',
+      '<b>Tenant:</b> Priya Nair, unit 12A (lease 5003, active)<br /><b>Title:</b> Water under bathroom sink<br /><b>Priority:</b> Normal<br /><b>Description:</b> Water pooling under the bathroom sink. Reported by tenant.',
+      'Nothing\'s been created yet. Say the word and I\'ll file it.',
+    ],
+    action: 'Yes, log it',
+    tools: 'find_tenant → create_maintenance_request (preview only)',
+    shows: 'Writing to Buildium waits for a human. That is the approval gate, working.',
+  },
+];
+---
+
+<div class="demo" id="demo">
+  <div class="demo-bar">
+    <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+    <span class="demo-title">Muse, connected to a sample Buildium account</span>
+  </div>
+  <ol class="demo-body">
+    {exchanges.map((x, i) => (
+      <li class="exchange">
+        <p class="ask">{x.ask}</p>
+        <div class="reply">
+          <span class="who">Muse</span>
+          {x.reply.map((p) => <p set:html={p} />)}
+          {x.bullets && <ul>{x.bullets.map((b) => <li set:html={b} />)}</ul>}
+          {x.tail?.map((p) => <p set:html={p} />)}
+          {x.action && <span class="action">{x.action}</span>}
+        </div>
+        <p class="behind">
+          <span class="step">{i + 1}</span>
+          <span><b>Behind it:</b> <code>{x.tools}</code><br />{x.shows}</span>
+        </p>
+      </li>
+    ))}
+  </ol>
+</div>
+
+<style>
+  .demo {
+    background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+    box-shadow: var(--shadow); overflow: hidden; max-width: 820px; scroll-margin-top: 90px;
+  }
+  .demo-bar {
+    display: flex; align-items: center; gap: 6px;
+    padding: 10px 14px; border-bottom: 1px solid var(--line); background: var(--bg-2);
+  }
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--line); }
+  .demo-title { margin-left: 8px; font-size: 0.8rem; color: var(--muted); font-weight: 600; }
+  .demo-body { list-style: none; margin: 0; padding: 8px 20px 4px; }
+  .exchange { padding: 18px 0; border-bottom: 1px dashed var(--line); }
+  .exchange:last-child { border-bottom: 0; }
+  .ask {
+    margin: 0 0 12px auto; max-width: 78%; width: fit-content;
+    background: var(--ink); color: var(--bg); padding: 10px 14px;
+    border-radius: 16px 16px 4px 16px; font-size: 0.95rem;
+  }
+  .reply {
+    max-width: 88%; background: var(--bg-2); border-radius: 16px 16px 16px 4px;
+    padding: 12px 16px; font-size: 0.94rem; color: var(--ink-2);
+  }
+  .reply p { margin: 0 0 8px; }
+  .reply ul { margin: 0 0 8px; padding-left: 20px; }
+  .reply li { margin-bottom: 4px; }
+  .reply :global(b) { color: var(--ink); }
+  .who { display: block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+  .action {
+    display: inline-block; margin-top: 4px; padding: 6px 12px; border: 1px dashed var(--line);
+    border-radius: 8px; font-size: 0.88rem; color: var(--ink);
+  }
+  .behind { display: flex; gap: 10px; align-items: flex-start; margin: 12px 0 0; font-size: 0.86rem; color: var(--muted); }
+  .behind code { font-size: 0.82rem; color: var(--ink-2); background: var(--bg-2); padding: 1px 6px; border-radius: 4px; }
+  .step {
+    flex: none; display: inline-flex; width: 22px; height: 22px; align-items: center; justify-content: center;
+    border-radius: 50%; background: var(--amber-soft); color: var(--amber); font-weight: 700; font-size: 0.78rem;
+  }
+  @media (max-width: 640px) {
+    .demo-body { padding: 4px 14px; }
+    .ask { max-width: 92%; }
+    .reply { max-width: 100%; }
+  }
+</style>

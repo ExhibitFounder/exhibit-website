@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Guardrails from '../components/Guardrails.astro';
+import MuseDemo from '../components/MuseDemo.astro';
 import CTA from '../components/CTA.astro';
 
 const title = 'How It Works | Exhibit Automation';
@@ -35,7 +36,7 @@ const description =
           <h2>Connect &amp; build</h2>
           <p>We connect to your phone system, inbox and property or practice software. We build the mappings (which caller is which tenant, which inquiry is which unit), the schedules, the escalation rules and the digest. We test it against your real data with the outbound side switched off.</p>
           <p>Your hour is spent granting access and answering "what would you do here?" on the handful of edge cases we find. Second milestone on integration complete.</p>
-          <p class="small">Under the hood it runs on Meta's Muse. We build the connectors and playbooks; you never touch either.</p>
+          <p class="small">Under the hood, our own always-on system answers the phone, works the inbox and writes to your software through connectors we build. Your team can also ask Meta's Muse about any of it (there's a live demo below). We maintain the connectors and playbooks; you never have to.</p>
         </div>
       </div>
       <div class="step">
@@ -47,6 +48,16 @@ const description =
           <p>Every month we review what was flagged and tighten the playbook. Every quarter we sit down and ask what else is eating your mornings. Final milestone at go-live, then Managed Agent.</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <span class="eyebrow">Live demo · sample data</span>
+      <h2>The connector, running in Muse.</h2>
+      <p class="lede">This is a real conversation, not a mockup. Meta's Muse is connected to a Buildium account through the connector we built, and it answers by calling that connector's tools. The account holds sample data, so the tenants and addresses are invented.</p>
+      <MuseDemo />
+      <p class="small demo-note">Recorded 24 September 2026. Muse's wording is unchanged; we edited punctuation only. The morning digest is the standard way you see all of this. If your team already uses Muse, they can also ask it directly.</p>
     </div>
   </section>
 
@@ -90,6 +101,7 @@ const description =
     background: var(--amber-soft); color: var(--amber); font-weight: 700; font-size: 1.1rem; margin-top: 24px;
   }
   .step .card .tag { margin-bottom: 12px; }
+  .demo-note { margin-top: 16px; max-width: 70ch; }
   .step h2 { margin-bottom: 12px; }
   @media (max-width: 640px) { .step { grid-template-columns: 1fr; } .step-marker { margin-top: 0; } }
 </style>
