@@ -29,6 +29,7 @@ const { defaults = { units: 200, properties: 2 } } = Astro.props;
       <li><span>Units</span><span id="p-line-units"></span></li>
       <li><span>Additional properties</span><span id="p-line-props"></span></li>
       <li id="p-floor-note" hidden><span>Minimum applied</span><span>$750</span></li>
+      <li><span>Voice minutes included each month</span><span id="p-line-minutes"></span></li>
     </ul>
     <div class="pcalc-setup">
       <p class="small"><b>Recommended setup:</b> <span id="p-setup"></span></p>
@@ -75,6 +76,7 @@ const { defaults = { units: 200, properties: 2 } } = Astro.props;
         : `300 × $5 + ${units - 300} × $4 = ${usd(unitCost)}`;
     $('p-line-props').textContent = extraProps === 0 ? 'First two included' : `${extraProps} × $100 = ${usd(propCost)}`;
     $('p-floor-note').hidden = floored === unitCost;
+    $('p-line-minutes').textContent = `${Math.max(750, units * 5).toLocaleString('en-US')}, then $0.35 a minute`;
 
     let setup: string;
     if (props === 1 && units <= 150) {

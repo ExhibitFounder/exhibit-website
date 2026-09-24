@@ -195,7 +195,6 @@ const description =
         // The email fallbacks only matter until the booking exists; afterwards they read like a failure.
         document.getElementById('prefer-email')!.hidden = true;
         fallback.hidden = true;
-        w.plausible?.('Intro call booked');
       },
     });
   }
