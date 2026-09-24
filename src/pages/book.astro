@@ -91,7 +91,7 @@ const description =
             <p class="lede">Twenty minutes. Your answers are already attached to the booking, so we come prepared.</p>
             <div id="cal-inline" class="cal-inline"></div>
             <p class="small booked" id="cal-booked" role="status" hidden><b>Booked.</b> The invite is on its way to your inbox.</p>
-            <p class="small">Prefer email? <a id="send-yes" href="#">Send your answers to hello@joinexhibit.com instead</a>.</p>
+            <p class="small" id="prefer-email">Prefer email? <a id="send-yes" href="#">Send your answers to hello@joinexhibit.com instead</a>.</p>
           </>
         ) : (
           <>
@@ -192,6 +192,9 @@ const description =
       action: 'bookingSuccessfulV2',
       callback: () => {
         document.getElementById('cal-booked')!.hidden = false;
+        // The email fallbacks only matter until the booking exists; afterwards they read like a failure.
+        document.getElementById('prefer-email')!.hidden = true;
+        fallback.hidden = true;
         w.plausible?.('Intro call booked');
       },
     });
