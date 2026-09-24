@@ -73,7 +73,7 @@ const schema = [
         <div class="card stat"><b>60%+</b><span>of calls to multifamily properties go unanswered<sup><a href="#fn1">1</a></sup></span></div>
         <div class="card stat"><b>40% → 10%</b><span>renter engagement after a 30-minute delay in responding to an inquiry<sup><a href="#fn2">2</a></sup></span></div>
         <div class="card stat"><b>32 to 41 days</b><span>median list-to-lease during 2026, against 26 days in 2022<sup><a href="#fn3">3</a></sup></span></div>
-        <div class="card stat"><b>$15–30K</b><span>annual rent lost from a single missed leasing call<sup><a href="#fn1">1</a></sup></span></div>
+        <div class="card stat"><b>$15–30K</b><span>in annual lease revenue can ride on a single missed leasing call<sup><a href="#fn1">1</a></sup></span></div>
       </div>
     </div>
   </section>
@@ -117,15 +117,17 @@ const schema = [
       <div class="systems">
         {['AppFolio', 'Buildium', 'Rent Manager', 'Yardi Breeze', 'RentCafe', 'Propertyware', 'Google Workspace', 'Microsoft 365', 'RingCentral', 'Dialpad', 'OpenPhone', 'Twilio-based phones', 'Zillow leads', 'Apartments.com leads'].map((s) => <span class="sys">{s}</span>)}
       </div>
-      <p class="small">Don't see yours? Ask. Most property software has an API or an email hook we can work with; we'll tell you on the call if it doesn't.</p>
+      <p class="small">Don't see yours? Ask. Most property software has an API or an email hook we can work with. Some vendors limit API access to certain plans or approved partners, so we confirm access for your specific account on the intro call, before you pay anything.</p>
     </div>
   </section>
 
   <section>
     <div class="wrap">
       <Calculator
-        defaults={{ calls: 30, missed: 60, value: 1800, close: 25 }}
-        valueLabel="Value of one closed lease to you ($, e.g. first-month rent + avoided vacancy)"
+        defaults={{ calls: 30, season: 12, missed: 60, close: 25, value: 1500, recover: 67 }}
+        callsLabel="Leasing inquiries in a typical month"
+        closeLabel="% of answered leasing inquiries that sign a lease"
+        valueLabel="Value of one recovered lease to you ($, one month's rent is a fair start)"
       />
     </div>
   </section>
@@ -138,8 +140,9 @@ const schema = [
       <div class="grid grid-2">
         <div class="card">
           <h3>Recovered leasing revenue</h3>
-          <p>At 30 leasing inquiries a month with 60% currently missed, 18 go unanswered. Recovering 12 of those at a 25% lead-to-lease rate is roughly <b>3 additional leases a month</b> in season.</p>
-          <p>Faster response cutting days-vacant by five saves <b>$225–375 per turn</b>.<sup><a href="#fn3">3</a></sup></p>
+          <p>At 30 leasing inquiries a month with 60% currently missed, 18 go unanswered. Recovering 12 of those at a 25% lead-to-lease rate is roughly <b>3 additional leases a month</b>.</p>
+          <p>Valuing each recovered lease at one month's rent ($1,500), that is <b>$27,000 a year</b> if it only happens in a six-month leasing season and <b>$54,000</b> if it holds all year.</p>
+          <p>Faster response cutting five days of vacancy saves <b>$225–375 per turn</b>.<sup><a href="#fn3">3</a></sup> At 40% annual turnover (80 turns on 200 units, our assumption) that is another <b>$18,000–30,000 a year</b>. The two overlap slightly, so treat the top of the range as optimistic.</p>
         </div>
         <div class="card">
           <h3>Recovered staff time</h3>
@@ -147,7 +150,7 @@ const schema = [
         </div>
       </div>
       <div class="card total">
-        <div class="stat"><b>$30K–90K / yr</b><span>projected recovered rent and avoided vacancy</span></div>
+        <div class="stat"><b>$45K–84K / yr</b><span>projected recovered rent and avoided vacancy</span></div>
         <div class="stat"><b>800+ hrs / yr</b><span>projected staff time returned</span></div>
         <div class="stat"><b>$12K / yr</b><span>Managed Agent cost at 200 units, 2 properties</span></div>
       </div>
@@ -193,7 +196,7 @@ const schema = [
 
   <section class="tight">
     <div class="wrap">
-      <p class="footnote" id="fn1">1. 60.8% unanswered and the $15,000 to $30,000 per-call figure come from an analysis of more than 170,000 multifamily call records, presented at Cadence Connect and reported by <a href="https://digible.com/our-thoughts/why-missed-calls-are-costing-you-leases-data-driven-insights-and-solutions-for-multifamily-operators/" rel="nofollow noopener">Digible</a>.</p>
+      <p class="footnote" id="fn1">1. 60.8% unanswered comes from an analysis of 170,825 calls to multifamily properties in one quarter, presented by Fiona at Cadence Connect and reported by <a href="https://digible.com/our-thoughts/why-missed-calls-are-costing-you-leases-data-driven-insights-and-solutions-for-multifamily-operators/" rel="nofollow noopener">Digible</a>, which also estimates that each missed call or unengaged lead could mean $15,000 to $30,000 in lost annual lease revenue.</p>
       <p class="footnote" id="fn2">2. <a href="https://use.rently.com/blog/rently-2026-renter-touring-expectations-report/" rel="nofollow noopener">Rently 2026 Renter Touring Expectations Report</a>, an online survey of 800 US renters aged 18+ conducted in May 2026 via Pollfish.</p>
       <p class="footnote" id="fn3">3. Median list-to-lease and avoided-vacancy value: <a href="https://www.onewave-ai.com/blog/ai-for-property-management-smb-playbook" rel="nofollow noopener">OneWave AI, AI for Property Management: The SMB Playbook, 2026</a>.</p>
       <p class="footnote" id="fn4">4. Hours saved per 20-unit portfolio is <a href="https://www.buildium.com/blog/best-ai-property-management-tools/" rel="nofollow noopener">Buildium's own published claim about its Lumina AI tooling</a>, not an independent benchmark. We cite it because it is attributable, and we scale it down rather than up.</p>

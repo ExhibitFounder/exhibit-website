@@ -33,9 +33,9 @@ export const posts: Post[] = [
   {
     slug: 'after-hours-problem-hvac',
     seoTitle: 'The After-Hours Problem in HVAC',
-    title: 'The after-hours problem in HVAC: 35 to 45% of your calls, under 18% answered',
+    title: 'The after-hours problem in HVAC is smaller than you have been told. The daytime one is bigger.',
     description:
-      'Where the money leaks in a one-to-three truck shop, why voicemail stopped working, and what a realistic fix looks like.',
+      'Only 10 to 14% of HVAC calls arrive after hours, yet nearly half of callers never reach a person. Where the money actually leaks in a small shop.',
     date: '2026-09-22',
     readingTime: '6 min',
     industry: 'Home services',
@@ -52,10 +52,10 @@ export const posts: Post[] = [
   },
   {
     slug: 'law-firm-intake-62-percent',
-    seoTitle: 'Why Missed Callers Never Call Back',
-    title: 'Why 62% of missed callers never call your firm back',
+    seoTitle: 'Where Law Firm Intake Leaks',
+    title: 'Where law firm intake leaks, and what the "62%" statistic really says',
     description:
-      'Legal intake leaks in four specific places. What the data says about each, and which ones are worth fixing first.',
+      'Legal intake leaks in four specific places. What the better data says about each, and which ones to fix first.',
     date: '2026-09-22',
     readingTime: '6 min',
     industry: 'Law firms',
@@ -76,7 +76,7 @@ export const posts: Post[] = [
     title: 'What running an AI operations system actually costs, line by line',
     description:
       'Voice minutes, tokens, telephony, storage and the lines vendors leave off the pricing page. Real ranges, and why 24/7 is not the expensive part.',
-    date: '2026-10-06',
+    date: '2026-09-22',
     readingTime: '7 min',
     industry: 'All industries',
   },
@@ -86,7 +86,7 @@ export const posts: Post[] = [
     title: 'Seven questions to answer before you automate anything',
     description:
       'A pre-flight checklist for owner-operators. Most failed automation projects fail on one of these, and all seven are answerable in an afternoon.',
-    date: '2026-10-20',
+    date: '2026-09-22',
     readingTime: '8 min',
     industry: 'All industries',
   },

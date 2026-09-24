@@ -66,7 +66,7 @@ const nav = [
       rel="stylesheet"
     />
     {schemas.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
-    <!-- Analytics: swap data-domain to the production domain at launch -->
+    {/* Analytics: swap data-domain to the production domain at launch */}
     <script defer data-domain="joinexhibit.com" src="https://plausible.io/js/script.outbound-links.js"></script>
   </head>
   <body>

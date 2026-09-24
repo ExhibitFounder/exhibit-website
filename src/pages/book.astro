@@ -83,7 +83,7 @@ const description =
         <span class="tag tag-green">Looks like a fit</span>
         <h2>One more step.</h2>
         <p class="lede">Send us your answers and we'll reply within one business hour with times that work.</p>
-        <!-- Replace this block with a Cal.com inline embed once the account exists. The mailto below is the fallback so no enquiry is ever lost. -->
+        {/* Replace this block with a Cal.com inline embed once the account exists. The mailto below is the fallback so no enquiry is ever lost. */}
         <p><a class="btn btn-primary" id="send-yes" href="#">Send my answers →</a></p>
         <p class="small">That opens your email app with everything you just entered, addressed to <a href="mailto:hello@joinexhibit.com">hello@joinexhibit.com</a>. Nothing is submitted until you press send.</p>
       </div>
@@ -102,6 +102,16 @@ const description =
         <p><a class="btn btn-primary" id="send-wait" href="#">Join the waitlist →</a></p>
         <p class="small">That opens your email app with your answers, addressed to <a href="mailto:hello@joinexhibit.com">hello@joinexhibit.com</a>. Nothing is sent until you press send.</p>
       </div>
+
+      <div class="card result-card fallback" id="fallback" hidden>
+        <p class="small"><b>Email app didn't open?</b> Copy your answers and send them to <a href="mailto:hello@joinexhibit.com">hello@joinexhibit.com</a> from any email account, including Gmail or Outlook on the web.</p>
+        <label class="visually-hidden" for="answers">Your answers</label>
+        <textarea id="answers" readonly rows="9"></textarea>
+        <p class="copy-row">
+          <button type="button" class="btn btn-secondary" id="copy-answers">Copy my answers</button>
+          <span class="small" id="copied" role="status"></span>
+        </p>
+      </div>
     </div>
   </section>
 </Base>
@@ -115,6 +125,19 @@ const description =
   const err = document.getElementById('form-error')!;
   const noTitle = document.getElementById('no-title')!;
   const noBody = document.getElementById('no-body')!;
+  const fallback = document.getElementById('fallback')!;
+  const answers = document.getElementById('answers') as HTMLTextAreaElement;
+  const copied = document.getElementById('copied')!;
+
+  document.getElementById('copy-answers')!.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(answers.value);
+    } catch {
+      answers.select();
+      document.execCommand('copy');
+    }
+    copied.textContent = 'Copied. Paste it into a new email to hello@joinexhibit.com.';
+  });
 
   const NO_COPY: Record<string, [string, string]> = {
     phone: [
@@ -159,11 +182,13 @@ const description =
 
     // No backend yet, so the answers are handed to the visitor's mail client rather than dropped.
     // When a form endpoint exists, POST `data` here and keep the mailto as a fallback.
+    const industryText = (form.elements.namedItem('industry') as HTMLSelectElement).selectedOptions[0].text;
+    const modeText = (form.querySelector('input[name=mode]:checked')?.parentElement?.textContent || mode).trim();
     const lines = [
-      `Industry: ${industry}`,
+      `Industry: ${industryText}`,
       `Size: ${data.get('size')}`,
       `Systems: ${systems.length ? systems.join(', ') : 'none selected'}`,
-      `Wants: ${mode}`,
+      `Wants: ${modeText}`,
       '',
       'What happens when a call is missed after hours:',
       String(data.get('story')),
@@ -178,12 +203,15 @@ const description =
       `&body=${encodeURIComponent(lines.join('\n'))}`;
     (document.getElementById('send-yes') as HTMLAnchorElement).href = href;
     (document.getElementById('send-wait') as HTMLAnchorElement).href = href;
+    answers.value = lines.join('\n');
+    copied.textContent = '';
 
     form.hidden = true;
     result.hidden = false;
     yes.hidden = outcome !== 'yes';
     wait.hidden = outcome !== 'wait';
     no.hidden = outcome !== 'no';
+    fallback.hidden = outcome === 'no';
     if (outcome === 'no') {
       const [t, b] = NO_COPY[reason];
       noTitle.textContent = t;
@@ -204,5 +232,8 @@ const description =
   #result { scroll-margin-top: 90px; }
   .result-card { max-width: 720px; }
   .result-card .tag { margin-bottom: 14px; }
+  .fallback { margin-top: 20px; }
+  .fallback textarea { width: 100%; font: inherit; font-size: 0.9rem; margin: 8px 0 4px; }
+  .copy-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin: 8px 0 0; }
   .cal-placeholder { border: 1px dashed var(--line); border-radius: 12px; padding: 32px; text-align: center; background: var(--bg-2); }
 </style>

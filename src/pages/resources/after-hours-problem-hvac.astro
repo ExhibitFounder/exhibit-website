@@ -4,45 +4,49 @@ import Article from '../../layouts/Article.astro';
 
 <Article slug="after-hours-problem-hvac">
   <p>
-    Here is the uncomfortable shape of a home services business in 2026: between 35% and 45% of your call volume arrives
-    outside business hours, and the pickup rate on those calls is under 18%. That is not a small leak at the edges. It
-    is close to half the demand, mostly unanswered.
+    If you have read anything about missed calls in the trades, you have probably seen the claim that 35 to 45% of HVAC
+    call volume arrives after hours. We repeated it ourselves, until we found the platform data. It is wrong by a factor
+    of three or four. The real leak in a small shop is less dramatic and more expensive: the calls that go unanswered
+    during the working day, while the owner is on a roof.
   </p>
 
   <h2>The three numbers that define the problem</h2>
   <p>
-    <b>Contractors miss 27% to 60% of inbound calls</b> depending on which study you read and how busy the season is.
-    Even at the low end, a shop taking 50 calls a week is sending 13 people to voicemail.
+    <b>After hours is 10 to 14% of calls, not 40%.</b> ServiceTitan's platform data on residential HVAC contractors
+    through 2025 puts off-hours calls, outside Monday to Friday 8am to 5pm, at 14.1% at the June peak and 9.8% at the
+    October trough. Those calls matter, because a no-heat call at 11pm is often the most valuable job of the week. But
+    they are not most of the problem.
   </p>
   <p>
-    <b>Caller patience is short and getting shorter.</b> Roughly 30% of callers hang up within the first 60 seconds of
-    being put on hold, and more than half are gone by 90 seconds. Figures vary between studies depending on how each one
-    defines abandonment, so treat them as direction rather than precision. Every dataset points the same way.
+    <b>Nearly half of callers never reach a person.</b> Invoca's 2026 benchmarks, drawn from more than 70 million tracked
+    calls, found that only 52% of callers to home-service businesses spoke with a person. Answer rates vary widely by
+    trade, from 32% to 74%. If only a small fraction of calls arrive after hours and nearly half go unanswered, most of
+    the unanswered ones are arriving during business hours.
   </p>
   <p>
-    <b>85% of people who reach voicemail never call back.</b> They call the next result. Your marketing paid for that
-    lead and a competitor closed it.
+    <b>Most callers do not wait for you.</b> In a CallRail survey of 1,000 US consumers, 82% said they would call a
+    competitor if a business did not answer, and only 42% said they leave a voicemail. Those are stated intentions rather
+    than observed behaviour, but they point the same way as everything else. Your marketing paid for that lead and a
+    competitor closed it.
   </p>
 
   <h2>What one missed call is worth</h2>
-  <p>The per-trade numbers are stark:</p>
-  <ul>
-    <li>HVAC: $1,200 to $3,500 per missed call</li>
-    <li>Plumbing: $800 to $2,000</li>
-    <li>Electrical: $600 to $1,800</li>
-  </ul>
   <p>
-    Annualised, HVAC contractors lose an average of $45,600 a year to missed calls, and roughly $81,900 a year from
-    missed after-hours emergency calls alone. Plumbers lose up to $125,000. These are averages across shop sizes, so
-    treat them as direction rather than gospel, but the direction is unambiguous.
+    Service Roundtable benchmarks, as reported by the AI phone vendor AInora, put the blended average revenue per booked
+    residential HVAC call at $450 to $950, with a typical booking rate around 65%. That makes the expected value of a
+    single missed call roughly $290 at the bottom of the range: $450 times a 65% chance it would have booked.
+  </p>
+  <p>
+    You will see much bigger numbers quoted, often $1,200 to $3,500 per missed call. We could not trace those to any
+    underlying data, so we do not use them.
   </p>
 
   <h2>Why voicemail stopped working</h2>
   <p>
     Voicemail was fine when the alternative was also voicemail. It stopped working when a meaningful share of your
-    competitors started answering at 9pm. A customer with a failing furnace in February is not leaving a considered
-    message and waiting; they are working down a list until someone picks up. The first shop to answer books the job,
-    and often the relationship.
+    competitors started answering. A customer with a failing furnace in February is not leaving a considered message
+    and waiting; they are working down a list until someone picks up. The first shop to answer books the job, and often
+    the relationship.
   </p>
   <p>
     The traditional fix, a human answering service, has its own problem: they take a message. They do not know your
@@ -72,29 +76,32 @@ import Article from '../../layouts/Article.astro';
     </li>
   </ol>
   <p>
+    Notice that none of these are specific to nights. A system that only switches on at 5pm misses the daytime calls
+    that make up most of the leak.
+  </p>
+  <p>
     Vendors in this category publish large improvements in missed-call rates and dispatch speed after shops switch from
     a traditional answering service. We are not going to quote a specific number, because every figure we could find
     traces back to a company selling the software, and we have found no independent study of AI phone agents in the
-    trades. Dispatch speed matters as much as the answer rate, because it is the difference between a same-day job and a
-    next-week job, but you should measure it on your own shop rather than trusting anyone's marketing page, including
-    ours.
+    trades. Measure it on your own shop rather than trusting anyone's marketing page, including ours.
   </p>
 
   <div class="callout">
     <p>
-      <b>The arithmetic for a two-truck shop:</b> 60 calls a week, 40% missed, 24 unanswered. If 14 are bookable and you
-      recover 8 to 10 a week at a $450 average ticket, that is $3,600 to $4,500 a week, or roughly $180,000 a year at
-      the top end. Against a service costing $15,000 a year, you do not need the estimate to be accurate. You need it to
-      be within an order of magnitude.
+      <b>The arithmetic for a two-truck shop:</b> 60 calls in a busy week, 40% missed, 24 unanswered. At a 65% booking
+      rate about 16 were bookable. Recover 8 to 10 a week at a $450 average ticket and that is $3,600 to $4,500 a week.
+      HVAC is seasonal, so count 26 to 40 weeks a year at that volume: roughly $94,000 to $180,000 a year. Against a
+      service costing $15,000 a year, you do not need the estimate to be accurate. You need it to be within an order of
+      magnitude.
     </p>
   </div>
 
   <h2>Check your own number first</h2>
   <p>
     Before believing any of this, pull your call log for the last 30 days. Most VoIP systems export answered versus
-    missed, with timestamps. Look specifically at calls between 5pm and 8am and on weekends. Multiply the missed count
-    by your own average ticket and your own booking rate. You now have your actual number, which is worth more than any
-    benchmark in this article.
+    missed, with timestamps. Split it into business hours, evenings and weekends, and see where your misses actually
+    fall. Multiply the missed count by your own booking rate and your own average ticket. You now have your actual
+    number, which is worth more than any benchmark in this article.
   </p>
   <p>
     Our <a href="/home-services#calc">home services calculator</a> will do the arithmetic if you would rather not.
@@ -102,16 +109,16 @@ import Article from '../../layouts/Article.astro';
 
   <h2>Sources, and a caveat about them</h2>
   <p>
-    Worth stating plainly: the home services trade has no equivalent of Clio's Legal Trends Report. Nearly every
-    statistic circulating about missed calls in this industry originates from a company selling answering software,
-    including some of the numbers below, and those sources frequently cite each other rather than any primary data.
-    We use them because they are the best available, we have removed the ones we could not trace at all, and we would
-    rather show you the seams than pretend to a precision nobody in this market actually has.
+    Worth stating plainly: the home services trade has no equivalent of Clio's Legal Trends Report. The best data comes
+    from software platforms reporting on their own customers' calls, and much of what circulates beyond that originates
+    from companies selling answering software, often citing each other rather than any primary data. We have removed
+    the figures we could not trace, and we say who published each one we kept.
   </p>
   <ul>
-    <li><a href="https://ainora.lt/blog/hvac-service-call-statistics-2026" rel="nofollow noopener">HVAC, Plumbing and Electrical Service Call Statistics, 2026</a> for missed-call rates, after-hours share, pickup rate and caller patience.</li>
-    <li><a href="https://aioperations.io/missed-calls-cost-home-service-businesses-2026/" rel="nofollow noopener">What Missed Calls Actually Cost Home Service Businesses, 2026</a> for per-trade and annual loss figures.</li>
-    <li><a href="https://calljolt.com/blog/hvac/home-service-industry-phone-statistics" rel="nofollow noopener">Home Service Phone Statistics, CallJolt, 2026</a> for missed-call reduction and dispatch speed after switching.</li>
-    <li><a href="https://answeringagent.com/blog/missed-calls-business-revenue" rel="nofollow noopener">Missed Call Revenue Statistics, 2026</a> for callback behaviour.</li>
+    <li><a href="https://www.servicetitan.com/toolbox/state-of-the-trades/trends/hvac-summer-after-hours-call-spike" rel="nofollow noopener">ServiceTitan, HVAC after-hours call data, 2025</a> for the off-hours share. ServiceTitan sells field-service software.</li>
+    <li><a href="https://www.invoca.com/reports/the-invoca-home-services-lead-conversion-benchmarks-report-2026" rel="nofollow noopener">Invoca Home Services Lead Conversion Benchmarks Report, 2026</a> for answer rates. Invoca sells call-tracking software.</li>
+    <li><a href="https://www.callrail.com/blog/missed-calls-cost-businesses-more-than-ever" rel="nofollow noopener">CallRail consumer survey, 2025</a> for caller behaviour. CallRail sells call-tracking software.</li>
+    <li><a href="https://ainora.lt/blog/hvac-service-call-statistics-2026" rel="nofollow noopener">AInora, HVAC, Plumbing and Electrical Service Call Statistics, 2026</a>, reporting Service Roundtable benchmarks for ticket value and booking rate. AInora sells AI phone software.</li>
+    <li><a href="https://calljolt.com/blog/hvac/home-service-industry-phone-statistics" rel="nofollow noopener">CallJolt, Home Service Phone Statistics, 2026</a> for the vendor-reported improvement range we decline to quote.</li>
   </ul>
 </Article>

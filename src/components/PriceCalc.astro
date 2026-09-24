@@ -83,7 +83,7 @@ const { defaults = { units: 200, properties: 2 } } = Astro.props;
       setup = 'Workflow Package, $7,500. Covers up to three properties, billed in thirds, first month of Managed Agent included.';
     } else {
       const extra = props - 3;
-      setup = `Workflow Package, $7,500, plus ${extra} additional ${extra === 1 ? 'property' : 'properties'} at $1,000 each = ${usd(7500 + extra * 1000)}. Billed in thirds, first month of Managed Agent included.`;
+      setup = `Workflow Package, $7,500, plus ${extra === 1 ? '1 additional property at $1,000' : `${extra} additional properties at $1,000 each`} = ${usd(7500 + extra * 1000)}. Billed in thirds, first month of Managed Agent included.`;
     }
     $('p-setup').textContent = setup;
   };

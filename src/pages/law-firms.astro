@@ -16,7 +16,7 @@ const faqs = [
   { q: 'Who decides whether to take the client?', a: 'You do, every time. The agent captures the intake, runs the conflict-check questions you specify, and books a consult. It never accepts a client, never signs anyone up, and never quotes a fee beyond your published schedule.' },
   { q: 'How does conflict checking work?', a: 'The agent collects the information your conflict process needs: party names, opposing parties, matter type, dates. It checks those against your existing matters in Clio or MyCase and flags anything that matches, without completing an intake. A flagged conflict goes to you as the first item in the digest.' },
   { q: 'What about confidentiality?', a: 'Intake conversations are handled under the same confidentiality obligations you would expect from staff. Recordings and transcripts are retained for 90 days by default, or whatever period you specify, then deleted. We do not use client conversations to train anything. Details are in the privacy policy and the engagement terms.' },
-  { q: 'How is this different from AgentZap or Smith.ai?', a: 'AgentZap starts around $109 a month for 150 minutes, plus a setup fee and per-minute overage, and it is a good product. If intake calls are your only gap, buy it. Smith.ai offers real humans, which matters for some firms. We are for the firm where intake is one of six things falling through: the unsigned engagement letters, the document requests nobody chased, the inquiry form nobody answered. Only 33% of firms respond to email inquiries at all.' },
+  { q: 'How is this different from AgentZap or Smith.ai?', a: 'AgentZap\'s legal plans start at $109 a month for 150 minutes, with higher tiers at $295 and $899, and it is a good product. If intake calls are your only gap, buy it. Smith.ai offers real humans, which matters for some firms. We are for the firm where intake is one of six things falling through: the unsigned engagement letters, the document requests nobody chased, the inquiry form nobody answered. In Clio\'s secret-shopper study, only 33% of firms responded to an email inquiry at all.' },
   { q: 'Which practice areas does this work for?', a: 'Best fit is high-volume intake work: personal injury, family, immigration, estate planning, criminal defence, employment. Poor fit is anything where intake is a relationship rather than a form, such as M&A or complex commercial litigation.' },
 ];
 
@@ -68,14 +68,14 @@ const schema = [
   <section class="alt">
     <div class="wrap">
       <span class="eyebrow">The problem, in numbers</span>
-      <h2>They do not leave a voicemail. They call the next firm.</h2>
+      <h2>Most do not leave a voicemail. They call the next firm.</h2>
       <div class="grid grid-2 stats">
         <div class="card stat"><b>40%</b><span>of firms actually answered the phone in Clio's secret-shopper study of 500 firms, down from 56% in 2019<sup><a href="#fn1">1</a></sup></span></div>
-        <div class="card stat"><b>62%</b><span>of callers who do not reach a business contact a competitor instead<sup><a href="#fn2">2</a></sup></span></div>
-        <div class="card stat"><b>400%</b><span>higher conversion from a five-minute response versus an hour<sup><a href="#fn2">2</a></sup></span></div>
-        <div class="card stat"><b>33%</b><span>of firms respond to email inquiries at all; 26% never answer web forms<sup><a href="#fn1">1</a></sup></span></div>
+        <div class="card stat"><b>48%</b><span>of firms could not be reached by phone at all in the same study, even counting callbacks<sup><a href="#fn1">1</a></sup></span></div>
+        <div class="card stat"><b>33%</b><span>of firms responded to an email inquiry, down from 40% in 2019<sup><a href="#fn1">1</a></sup></span></div>
+        <div class="card stat"><b>82%</b><span>of consumers say they will call a competitor if a business does not answer. Only 42% leave a voicemail<sup><a href="#fn3">3</a></sup></span></div>
       </div>
-      <p class="small">Clio also found that firms which improve client onboarding, including adding online intake tools, average 50% more incoming potential clients and 50% more revenue.<sup><a href="#fn1">1</a></sup></p>
+      <p class="small">Clio has also found that firms which improve client onboarding, including adding online intake tools, average 50% more incoming potential clients and 50% more revenue.<sup><a href="#fn1">1</a></sup></p>
     </div>
   </section>
 
@@ -118,13 +118,16 @@ const schema = [
       <div class="systems">
         {['Clio', 'MyCase', 'Lawmatics', 'PracticePanther', 'Smokeball', 'LawPay', 'Google Workspace', 'Microsoft 365', 'RingCentral', 'Dialpad', 'OpenPhone', 'Website intake forms'].map((s) => <span class="sys">{s}</span>)}
       </div>
+      <p class="small">Don't see yours? Ask on the call. Some vendors limit API access to certain plans or approved partners, so we confirm access for your specific account before you pay anything.</p>
     </div>
   </section>
 
   <section>
     <div class="wrap">
       <Calculator
-        defaults={{ calls: 40, missed: 35, value: 3000, close: 30 }}
+        defaults={{ calls: 40, season: 12, missed: 35, close: 30, value: 3000, recover: 43 }}
+        callsLabel="New inquiries in a typical month (calls, forms and email)"
+        closeLabel="% of answered inquiries you retain"
         valueLabel="Average value of a retained matter ($)"
       />
     </div>
@@ -138,15 +141,15 @@ const schema = [
       <div class="grid grid-2">
         <div class="card">
           <h3>Retained matters</h3>
-          <p>At 40 inquiries a month with 35% missed, 14 go unanswered and roughly 9 are lost for good. Recovering 6 at a 30% consult-to-retain rate and a $3,000 average matter is about <b>$5,400 a month</b>.</p>
+          <p>At 40 inquiries a month with 35% missed, 14 go unanswered.<sup><a href="#fn2">2</a></sup> Some of those call back on their own; most do not. Recovering 5 to 7 of the 14, at a 30% consult-to-retain rate and a $3,000 average matter (both our assumptions), is <b>$4,500 to $6,300 a month</b>.</p>
         </div>
         <div class="card">
           <h3>Intake cost</h3>
-          <p>AI intake tools reduce client intake costs by up to 40% for small and mid-sized firms.<sup><a href="#fn3">3</a></sup> The bigger gain is usually the inquiries nobody had time to answer at all.</p>
+          <p>Lawmatics, which sells intake software, reports that AI intake tools cut intake costs by up to 40% for small and mid-sized firms.<sup><a href="#fn4">4</a></sup> We have not seen independent research on this. The bigger gain is usually the inquiries nobody had time to answer at all.</p>
         </div>
       </div>
       <div class="card total">
-        <div class="stat"><b>$50K to $120K / yr</b><span>projected additional retained matters</span></div>
+        <div class="stat"><b>$54K to $76K / yr</b><span>projected additional retained matters</span></div>
         <div class="stat"><b>Under 60 sec</b><span>target first response to a new inquiry</span></div>
         <div class="stat"><b>$15K / yr</b><span>Managed Agent at the indicative 3 to 5 attorney rate</span></div>
       </div>
@@ -184,9 +187,10 @@ const schema = [
 
   <section class="tight">
     <div class="wrap">
-      <p class="footnote" id="fn1">1. Answer rate, email response rate and onboarding impact come from <a href="https://www.clio.com/resources/legal-trends/" rel="nofollow noopener">Clio's Legal Trends Report</a>, based on a secret-shopper study of 500 law firms. A separate <a href="https://www.cbs42.com/business/press-releases/ein-presswire/839484491/new-national-study-finds-35-of-law-firm-calls-go-unanswered-costing-industry-an-estimated-109-billion-annually/" rel="nofollow noopener">national study</a> puts unanswered calls at 35% and the industry cost at an estimated $109 billion a year.</p>
-      <p class="footnote" id="fn2">2. Caller-to-competitor behaviour is reported across several call-analytics vendors, with studies ranging from 82% to 88% for callers who do not leave a voicemail. Definitions differ between studies, so treat it as a range. Response-time conversion effects: <a href="https://hyperleap.ai/blog/legal-client-intake-statistics-2026" rel="nofollow noopener">Legal Client Intake Statistics, 2026</a>.</p>
-      <p class="footnote" id="fn3">3. Intake cost reduction for small and mid-sized firms: <a href="https://www.lawmatics.com/blog/best-ai-receptionists-for-law-firms" rel="nofollow noopener">Best AI Receptionists for Law Firms, Lawmatics, 2026</a>.</p>
+      <p class="footnote" id="fn1">1. <a href="https://www.clio.com/blog/highlights-from-2024-legal-trends-report/" rel="nofollow noopener">Clio Legal Trends Report, 2024</a>. A third-party research firm secret-shopped 500 US law firms in June and July 2024: 40% answered the phone (56% in 2019), 52% either answered or called back, and 33% responded to an email (40% in 2019). The onboarding figures come from the same report series.</p>
+      <p class="footnote" id="fn2">2. The 35% unanswered-call rate comes from a <a href="https://www.cbs42.com/business/press-releases/ein-presswire/839484491/new-national-study-finds-35-of-law-firm-calls-go-unanswered-costing-industry-an-estimated-109-billion-annually/" rel="nofollow noopener">2025 national industry study</a> released as a press release. We use it rather than Clio's worse figure to keep the projection conservative.</p>
+      <p class="footnote" id="fn3">3. <a href="https://www.callrail.com/blog/missed-calls-cost-businesses-more-than-ever" rel="nofollow noopener">CallRail survey of 1,000 US consumers</a>, 2025, covering businesses in general rather than law firms. CallRail sells call-tracking software. We previously quoted a "62% call a competitor" figure here; it traces to an answering-service company and to all businesses, not legal, so we replaced it.</p>
+      <p class="footnote" id="fn4">4. <a href="https://www.lawmatics.com/blog/best-ai-receptionists-for-law-firms" rel="nofollow noopener">Best AI Receptionists for Law Firms, Lawmatics, 2026</a>. A vendor claim, not independent research.</p>
       <p class="footnote">Exhibit Automation is not a law firm and does not provide legal services or advice.</p>
     </div>
   </section>

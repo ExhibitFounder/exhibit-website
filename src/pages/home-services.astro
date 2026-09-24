@@ -9,14 +9,14 @@ import Scene from '../components/Scene.astro';
 
 const title = 'AI Answering for HVAC and Plumbing | Exhibit Automation';
 const description =
-  "After-hours answering and dispatch for 1 to 3 truck shops. Emergencies paged in seconds, jobs booked into Housecall Pro or Jobber. From $750/mo.";
+  "Answering and dispatch for 1 to 3 truck shops, day and night. Emergencies paged in seconds, jobs booked into Housecall Pro or Jobber. From $750/mo.";
 
 const faqs = [
   { q: 'What happens with a real emergency at midnight?', a: 'No heat, no water, gas smell, burst pipe, electrical burning: the agent recognises the language, pages your on-call number within seconds with the address, the customer history and a transcript, and stays on the line with the customer until you confirm. Everything else waits for the 6:45am digest. You define the emergency list and we test it before go-live.' },
   { q: 'Will it quote prices?', a: 'Only from your published price book, and only for jobs you have told it to quote. Anything outside that, including discounts and warranty disputes, is captured with full detail and waits for you. It will never invent a number.' },
   { q: 'Does it book straight into my software?', a: 'Yes. Housecall Pro, Jobber, ServiceTitan and FieldEdge, plus your Google or Microsoft calendar. It checks real availability, respects your service area and your job-type durations, and writes the customer record. Nothing to re-key in the morning.' },
   { q: 'How is this different from Avoca?', a: 'Avoca is excellent and we say so. It is built around ServiceTitan and priced for shops doing $3M or more with a CSR team. If that is you, look at them first. We built for the one-to-three truck shop where the owner is the dispatcher, the estimator and the person who answers the phone at 9pm.' },
-  { q: 'Do customers know it is an AI?', a: 'Yes. It introduces itself as your after-hours line and never pretends to be a person. In practice customers care about reaching someone in 22 seconds at 11pm, not about who typed the reply. Where state law requires it, calls carry a recording notice.' },
+  { q: 'Do customers know it is an AI?', a: 'Yes. It introduces itself as your answering line and never pretends to be a person. In practice customers care about reaching someone in 22 seconds at 11pm, not about who typed the reply. Where state law requires it, calls carry a recording notice.' },
   { q: 'What if it books a job I cannot cover?', a: 'It only books into real open slots on your calendar, inside your service area, for job types you have approved. Anything it is unsure about becomes a captured lead with a callback, not a booking.' },
 ];
 
@@ -24,7 +24,7 @@ const schema = [
   {
     '@context': 'https://schema.org',
     '@type': 'Service',
-    name: 'Home Services After-Hours Answering and Dispatch Automation',
+    name: 'Home Services Answering and Dispatch Automation',
     provider: { '@type': 'Organization', name: 'Exhibit Automation' },
     areaServed: 'US',
     audience: { '@type': 'BusinessAudience', name: 'HVAC, plumbing and electrical contractors, 1 to 3 trucks' },
@@ -44,10 +44,11 @@ const schema = [
     <div class="wrap hero-grid">
       <div>
         <span class="eyebrow">Home services · 1 to 3 trucks</span>
-        <h1>Never lose another after-hours job.</h1>
+        <h1>Never lose another job to voicemail.</h1>
         <p class="lede">
-          The 9pm call gets answered. Emergencies page you in seconds. Everything else is triaged, booked into Housecall
-          Pro or Jobber, and waiting in one dispatch digest before your first truck rolls.
+          The call you miss on a roof at 2pm gets answered, and so does the one at 9pm. Emergencies page you in seconds.
+          Everything else is triaged, booked into Housecall Pro or Jobber, and waiting in one dispatch digest before your
+          first truck rolls.
         </p>
         <div class="hero-ctas">
           <a class="btn btn-primary" href="/book">See if you qualify →</a>
@@ -68,14 +69,14 @@ const schema = [
   <section class="alt">
     <div class="wrap">
       <span class="eyebrow">The problem, in numbers</span>
-      <h2>Half your demand arrives when nobody is there to answer it.</h2>
+      <h2>Nearly half your callers never reach a person.</h2>
       <div class="grid grid-2 stats">
-        <div class="card stat"><b>27 to 60%</b><span>of calls to home-service businesses go unanswered<sup><a href="#fn1">1</a></sup></span></div>
-        <div class="card stat"><b>35 to 45%</b><span>of HVAC and plumbing call volume arrives after hours, with pickup under 18%<sup><a href="#fn1">1</a></sup></span></div>
-        <div class="card stat"><b>$1,200 to $3,500</b><span>average value of a single missed HVAC call<sup><a href="#fn2">2</a></sup></span></div>
-        <div class="card stat"><b>$45K to $120K</b><span>estimated annual revenue lost to missed calls, across contractor trades<sup><a href="#fn2">2</a></sup></span></div>
+        <div class="card stat"><b>48%</b><span>of callers to home-service businesses never speak with a person, across more than 70 million tracked calls<sup><a href="#fn1">1</a></sup></span></div>
+        <div class="card stat"><b>82%</b><span>of consumers say they will call a competitor if you do not answer<sup><a href="#fn4">4</a></sup></span></div>
+        <div class="card stat"><b>$450 to $950</b><span>blended average revenue per booked residential HVAC call<sup><a href="#fn3">3</a></sup></span></div>
+        <div class="card stat"><b>10 to 14%</b><span>of calls to residential HVAC shops arrive outside business hours. Most missed calls happen during the working day<sup><a href="#fn2">2</a></sup></span></div>
       </div>
-      <p class="small">And 85% of people who reach your voicemail never call back.<sup><a href="#fn3">3</a></sup> They call the next number on the list.</p>
+      <p class="small">Only 42% of consumers say they leave a voicemail.<sup><a href="#fn4">4</a></sup> The rest call the next number on the list.</p>
     </div>
   </section>
 
@@ -117,14 +118,17 @@ const schema = [
       <div class="systems">
         {['Housecall Pro', 'Jobber', 'ServiceTitan', 'FieldEdge', 'QuickBooks', 'Google Workspace', 'Microsoft 365', 'CallRail', 'RingCentral', 'Dialpad', 'OpenPhone', 'Twilio-based phones', 'Angi leads', 'Thumbtack leads'].map((s) => <span class="sys">{s}</span>)}
       </div>
-      <p class="small">Don't see yours? Ask on the call. Most field-service software has an API or an email hook we can work with, and we will tell you straight if yours does not.</p>
+      <p class="small">Don't see yours? Ask on the call. Most field-service software has an API or an email hook we can work with. Some vendors limit API access to certain plans or approved partners, so we confirm access for your specific account before you pay anything.</p>
     </div>
   </section>
 
   <section>
     <div class="wrap">
       <Calculator
-        defaults={{ calls: 60, missed: 40, value: 450, close: 65 }}
+        period="week"
+        defaults={{ calls: 60, season: 40, missed: 40, close: 65, value: 450, recover: 60 }}
+        callsLabel="Inbound calls in a busy week"
+        closeLabel="% of answered calls you book"
         valueLabel="Average revenue per booked job ($)"
       />
     </div>
@@ -138,8 +142,9 @@ const schema = [
       <div class="grid grid-2">
         <div class="card">
           <h3>Recovered jobs</h3>
-          <p>At 60 inbound calls a week with 40% missed, 24 go unanswered. If 14 of those are bookable and we recover 8 to 10 a week at a $450 average ticket, that is <b>$3,600 to $4,500 a week</b>.</p>
-          <p class="small">Vendors in this category report large reductions in missed calls after switching from an answering service. We have not found independent research confirming a specific figure, so we do not quote one.<sup><a href="#fn4">4</a></sup></p>
+          <p>At 60 inbound calls in a busy week with 40% missed (below the 48% in the benchmark), 24 go unanswered. At a 65% booking rate about 16 of those were bookable. If we recover half to two thirds of them, that is 8 to 10 jobs a week at a $450 average ticket, or <b>$3,600 to $4,500 a week</b>.<sup><a href="#fn3">3</a></sup></p>
+          <p>HVAC demand is seasonal, so we count only 26 to 40 weeks a year at that volume, not 52: <b>$94,000 to $180,000 a year</b>.</p>
+          <p class="small">Vendors in this category report large reductions in missed calls after switching from an answering service. We have not found independent research confirming a specific figure, so we do not quote one.<sup><a href="#fn5">5</a></sup></p>
         </div>
         <div class="card">
           <h3>Recovered evenings</h3>
@@ -147,7 +152,7 @@ const schema = [
         </div>
       </div>
       <div class="card total">
-        <div class="stat"><b>$80K to $180K / yr</b><span>projected recovered job revenue</span></div>
+        <div class="stat"><b>$94K to $180K / yr</b><span>projected recovered job revenue</span></div>
         <div class="stat"><b>Under 60 sec</b><span>target first response, day or night</span></div>
         <div class="stat"><b>$15K / yr</b><span>Managed Agent at the indicative 2 to 3 truck rate</span></div>
       </div>
@@ -185,10 +190,11 @@ const schema = [
 
   <section class="tight">
     <div class="wrap">
-      <p class="footnote" id="fn1">1. Missed-call rates, after-hours share and pickup rate: <a href="https://ainora.lt/blog/hvac-service-call-statistics-2026" rel="nofollow noopener">HVAC, Plumbing and Electrical Service Call Statistics, 2026</a>.</p>
-      <p class="footnote" id="fn2">2. Per-call and annual loss by trade: <a href="https://aioperations.io/missed-calls-cost-home-service-businesses-2026/" rel="nofollow noopener">What Missed Calls Actually Cost Home Service Businesses, 2026</a>. These are industry estimates published by service vendors rather than independent research, and estimates vary widely between sources.</p>
-      <p class="footnote" id="fn3">3. 85% of missed callers do not call back: <a href="https://answeringagent.com/blog/missed-calls-business-revenue" rel="nofollow noopener">Missed Call Revenue Statistics, 2026</a>.</p>
-      <p class="footnote" id="fn4">4. Improvement figures in this category come from vendors selling the software, and we have found no independent study of AI phone agents in the trades. We have therefore removed the specific percentages we previously quoted here. See <a href="https://calljolt.com/blog/hvac/home-service-industry-phone-statistics" rel="nofollow noopener">Home Service Phone Statistics, 2026</a> for the vendor-reported range.</p>
+      <p class="footnote" id="fn1">1. <a href="https://www.invoca.com/reports/the-invoca-home-services-lead-conversion-benchmarks-report-2026" rel="nofollow noopener">Invoca Home Services Lead Conversion Benchmarks Report, 2026</a>: 52% of callers to home-service businesses speak with a person, across more than 70 million tracked calls. Answer rates range from 32% to 74% between trades. Invoca sells call-tracking software.</p>
+      <p class="footnote" id="fn2">2. <a href="https://www.servicetitan.com/toolbox/state-of-the-trades/trends/hvac-summer-after-hours-call-spike" rel="nofollow noopener">ServiceTitan platform data</a> for residential HVAC contractors through 2025, with business hours defined as Monday to Friday, 8am to 5pm: 14.1% of calls arrived off-hours at the June peak and 9.8% at the October trough. We previously quoted "35 to 45% after hours," a figure widely repeated by answering-software vendors, and removed it when we found this data.</p>
+      <p class="footnote" id="fn3">3. Service Roundtable benchmarks for residential HVAC (average revenue per booked call of $450 to $950, and a typical 65% booking rate), as reported by <a href="https://ainora.lt/blog/hvac-service-call-statistics-2026" rel="nofollow noopener">AInora</a>, a vendor of AI phone software. We have not seen the underlying Service Roundtable data, and we use the bottom of the revenue range.</p>
+      <p class="footnote" id="fn4">4. <a href="https://www.callrail.com/blog/missed-calls-cost-businesses-more-than-ever" rel="nofollow noopener">CallRail survey of 1,000 US consumers</a>, published September 2025. CallRail sells call-tracking software. These are stated intentions, not observed behaviour.</p>
+      <p class="footnote" id="fn5">5. Improvement figures in this category come from vendors selling the software, and we have found no independent study of AI phone agents in the trades. We have therefore removed the specific percentages we previously quoted here. See <a href="https://calljolt.com/blog/hvac/home-service-industry-phone-statistics" rel="nofollow noopener">Home Service Phone Statistics, 2026</a> for the vendor-reported range.</p>
     </div>
   </section>
 </Base>

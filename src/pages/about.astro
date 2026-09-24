@@ -30,11 +30,7 @@ const description =
         </p>
         <p class="small">Afan Rashid, founder · <a href="mailto:hello@joinexhibit.com">hello@joinexhibit.com</a></p>
       </div>
-      <div class="card portrait">
-        <!-- Replace with a real founder photo (public/founder.jpg). Never a generated one. -->
-        <div class="portrait-ph" role="img" aria-label="Founder photo placeholder"></div>
-        <p class="small">Founder photo goes here.</p>
-      </div>
+      {/* Founder photo goes in a second column here once a real one exists (public/founder.jpg). Never a generated one. Restore the two-column grid below when it does. */}
     </div>
   </section>
 
@@ -54,8 +50,5 @@ const description =
 
 <style>
   .hero { padding: 72px 0 56px; }
-  .about-grid { display: grid; grid-template-columns: 1.3fr 0.7fr; gap: 48px; align-items: start; }
-  @media (max-width: 860px) { .about-grid { grid-template-columns: 1fr; } }
-  .portrait { text-align: center; }
-  .portrait-ph { aspect-ratio: 4 / 5; border-radius: 12px; background: linear-gradient(160deg, var(--amber-soft), var(--bg-2)); margin-bottom: 12px; }
+  .about-grid { max-width: 760px; }
 </style>
